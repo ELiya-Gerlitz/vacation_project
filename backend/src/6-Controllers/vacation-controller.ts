@@ -2,6 +2,8 @@ import express, { NextFunction, Request, Response } from "express"
 
 import path from "path"
 import vacationLogic from "../5-Logic/vacationLogic"
+import verifyLoggedIn from "../3-Middleware/verify-loggedin"
+import VacationModel from "../4-Models/VacationModel"
 
 const router= express.Router()
 
@@ -15,39 +17,39 @@ router.get("/vacations", async( request: Request, response: Response,next: NextF
 })
 
 
-// // get single book according to the bookId + get extra field from the genre JOIN
-// router.get("/genres/:bookId", async(request: Request, response: Response,next: NextFunction)=>{
-//     try{
-//         const genreId= +request.params.bookId
-//         const genreName= await bookLogic.getOneBookWithExtensions(genreId)
-//         response.json(genreName)
-//     }catch(err:any){
-//         next(err)
-//     }
-// })
+// // get single vacation according to the vacationId
+router.get("/vacations/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
+    try{
+        const vacationId= +request.params.vacationId
+        const singleVacation = await vacationLogic.getOneVacation(vacationId)
+        response.json(singleVacation)
+    }catch(err:any){
+        next(err)
+    }
+})
 
-// router.post("/books", verifyLoggedIn, async (request: Request, response: Response, next:NextFunction)=>{
-//     try{
-//         request.body.image= request.files?.image
-//         const book=new BookModel(request.body)
-//         const addedBook=await bookLogic.postOneBook(book)
-//         response.status(201).json(addedBook)
-//     }catch(err:any){
-//         next(err)
-//     }
-// })
+router.post("/vacations", async (request: Request, response: Response, next:NextFunction)=>{
+    try{
+        request.body.image= request.files?.image
+        const newVacation = new VacationModel(request.body)
+        const addedVacation = await vacationLogic.postNewVacation(newVacation)
+        response.status(201).json(addedVacation)
+    }catch(err:any){
+        next(err)
+    }
+})
 
-// router.put("/books/:bookId([0-9]+)", verifyLoggedIn, async(request: Request, response: Response,next: NextFunction)=>{
-//     try{
-//         request.body.image= request.files?.image
-//         request.body.bookId= +request.params.bookId
-//         const book = new BookModel(request.body)
-//         const updatedBook = await bookLogic.putBook(book)
-//         response.status(201).json(updatedBook)
-//     }catch(err:any){
-//         next(err)
-//     }
-// })
+router.put("/vacations/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
+    try{
+        request.body.image= request.files?.image
+        request.body.vacationId= +request.params.vacationId
+        const vacationToUpdate = new VacationModel(request.body)
+        const updatedVacation = await vacationLogic.putVacation(vacationToUpdate)
+        response.status(201).json(updatedVacation)
+    }catch(err:any){
+        next(err)
+    }
+})
 // router.delete("/books/:bookId", verifyLoggedIn, async (request: Request, response: Response,next: NextFunction)=>{
 //     try{
 //         const bookId= +request.params.bookId
@@ -58,15 +60,15 @@ router.get("/vacations", async( request: Request, response: Response,next: NextF
 //     }
 // })
 
-// router.get("/books/images/:imageName", async (request: Request, response: Response,next: NextFunction)=>{
-//     try{
-//         let imagename= request.params?.imageName
-//             const file= path.join(__dirname,"..", "1-Assets", "images" , imagename) 
-//             response.sendFile(file)
-//     }catch(err:any){
-//         next(err)
-//     }
-// })
+router.get("/books/images/:imageName", async (request: Request, response: Response,next: NextFunction)=>{
+    try{
+        let imagename= request.params?.imageName
+            const file= path.join(__dirname,"..", "1-Assets", "images" , imagename) 
+            response.sendFile(file)
+    }catch(err:any){
+        next(err)
+    }
+})
 
 // router.get("/genres/", async (request: Request, response: Response,next: NextFunction)=>{
 //     try{

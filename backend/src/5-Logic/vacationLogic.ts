@@ -12,92 +12,95 @@ import VacationModel from "../4-Models/VacationModel";
 
 async function getAllVacations():Promise<VacationModel[]>{
     const sql=`
-        SELECT vacationId, destination, description, DATE_FORMAT(startingDate, '%d.%m.%Y') , DATE_FORMAT(endingDate, '%d.%m.%Y') 
+        SELECT vacationId, destination, description, DATE_FORMAT(startingDate, '%d.%m.%Y'), 
+        DATE_FORMAT(endingDate, '%d.%m.%Y') , price, imageName
         FROM vacations 
     `
     const vacations = await dal.execute(sql)
     return vacations
 }
 
-// async function getOneBookWithExtensions(bookId :number):Promise<BookModel>{
-//     const sql= `
-//         SELECT books.* , genre.genreName
-//         FROM genre Join books
-//         ON genre.genreId = books.genreId
-//         WHERE books.bookId = ?
-//     `
-//     const info : OkPacket = await dal.execute(sql, bookId)
-//     if(!info[0]) throw new ResourceNotFoundErrorModel(bookId)
-//     return info[0]  // überflüßig? Nein! Im gegenteil!🤠
-// }
+async function getOneVacation(vacationId :number):Promise<VacationModel>{
+    const sql= `
+        SELECT *
+        FROM vacations
+        WHERE vacations.vacationId = ?
+    `
+    const info : OkPacket = await dal.execute(sql, vacationId)
+    if(!info[0]) throw new ResourceNotFoundErrorModel(vacationId)
+    return info[0]  // überflüßig? Nein! Im gegenteil!🤠
+}
 
-// async function postOneBook(book:BookModel):Promise<BookModel>{
-//     const err= book.validate()
-//     if(err) throw new ValidationErrorModel(err)
+async function postNewVacation(vacation :VacationModel):Promise<VacationModel>{
+    const err= vacation.validate()
+    if(err) throw new ValidationErrorModel(err)
 
-//     if(book.image){
-//         try{
-//             // handleFiles(book) no need to delete anything.(!🙄) it is a completely new book added presently.
-//             const extension = path.extname(book.image.name)
-//             book.imageName= uuid() +extension
-//             console.log("I am in the if statement in before the post query Logic" + book.imageName)
-//             const pathToKeep="./src/1-Assets/images/" + book.imageName
-//             await book.image.mv(pathToKeep)
-//             delete book.image
+    if(vacation.image){
+        try{
+            // handleFiles(book) no need to delete anything.(!🙄) it is a completely new book added presently.
+            const extension = path.extname(vacation.image.name)
+            vacation.imageName= uuid() +extension
+            console.log("I am in the if statement in before the post query Logic" + vacation.imageName)
+            const pathToKeep="./src/1-Assets/images/" + vacation.imageName
+            await vacation.image.mv(pathToKeep)
+            delete vacation.image
 
-//         }catch(err:any){
-//             console.log(err)
-//         }
-//     }
-//     const sql=
-//     `
-//     INSERT INTO books(name, price, stock, imageName, genreId)
-//     VALUES(?, ?, ?, ?, ?)
-//     `
-//     const response: OkPacket = await dal.execute(sql, [book.name, book.price, book.stock, book.imageName, book.genreId ])
-//     book.bookId = response.insertId
-//     console.log(" I am the added book.bookId"+ book.bookId) //Das wirkt gut ohne zum die arr[0] zurückkehren. Wieso? 🤲🤔
-//     return book
-// }
+        }catch(err:any){
+            console.log(err)
+        }
+    }
+    const sql=
+    `
+    INSERT INTO vacations
+    VALUES(DEFAULT, ?, ?, ?, ?, ?,?)
+    `
+    const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName ]
+    const response: OkPacket = await dal.execute(sql, values )
+    vacation.vacationId = response.insertId
+    console.log(" I am the added book.bookId"+ vacation.vacationId) //Das wirkt gut ohne zum die arr[0] zurückkehren. Wieso? 🤲🤔
+    return vacation
+}
 
 // // Das war nicht gut. Was hat gefehlt? Des fetches des vorherigen Buch. (! Es nervt mich dass ich das Fehler nich verstehe!)
 
-// async function putBook(book: BookModel):Promise<BookModel>{
-//     const err= book.validate()
-//     if(err) throw new ValidationErrorModel(err)
+async function putVacation(vacation: VacationModel):Promise<VacationModel>{
+    const err= vacation.validate()
+    if(err) throw new ValidationErrorModel(err)
 
-//     // const bookToUpdate = await getOneBook(book.bookId)         
-//     const bookToUpdate = await getOneBookWithExtensions(book.bookId)         
-//         if(book.image){
-//            const imagePath= "./src/1-Assets/images/" + bookToUpdate.imageName
+    // const vacationToUpdate = await getOneBook(book.bookId)         
+    const bookToUpdate = await getOneVacation(vacation.vacationId)         
+        if(vacation.image){
+           const imagePath = "./src/1-Assets/images/" + bookToUpdate.imageName
 
-//         //   await fsPromises.unlink(imagePath) //das wirkt auch gut!
-//            fs.unlinkSync(imagePath)
 
-//            const extension= path.extname(book.image.name)        
-//            book.imageName = uuid()+ extension
-//            await book.image.mv("./src/1-Assets/images/" + book.imageName)
-//            delete book.image
+        //   await fsPromises.unlink(imagePath) //das wirkt auch gut!
+           fs.unlinkSync(imagePath)
 
-//     }else if(!book.image){
-//         book.imageName= bookToUpdate.imageName
-//     }
+           const extension= path.extname(vacation.image.name)        
+           vacation.imageName = uuid()+ extension
+           await vacation.image.mv("./src/1-Assets/images/" + vacation.imageName)
+           delete vacation.image
 
-//     const sql=`
-//     UPDATE books
-//     SET 
-//         name = ?,
-//         price = ?,
-//         stock = ?,
-//         imageName = ?,
-//         genreId = ?
-//     WHERE bookId= ?
-//     `
-//     const updatedInfo: OkPacket= await dal.execute(sql, [book.name, book.price, book.stock, book.imageName, book.genreId, book.bookId])
-//     if(updatedInfo.affectedRows===0) throw new ResourceNotFoundErrorModel(book.bookId)
-//     return updatedInfo[0]
-//     // return book
-// }
+    }else if(!vacation.image){
+        vacation.imageName= bookToUpdate.imageName
+    }
+
+    const sql=`
+    UPDATE vacations
+    SET 
+        destination = ?,
+        description = ?,
+        startingDate = ?,
+        endingDate = ?,
+        price = ?,
+        imageName = ?
+    WHERE vacationId = ?
+    `
+    const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName, vacation.vacationId]
+    const updatedInfo: OkPacket= await dal.execute(sql, values)
+    if(updatedInfo.affectedRows===0) throw new ResourceNotFoundErrorModel(vacation.vacationId)
+    return updatedInfo[0]
+}
 
 // async function deleteBook(id: number):Promise<void>{
 
@@ -147,9 +150,10 @@ async function getAllVacations():Promise<VacationModel[]>{
 
 export default {
     getAllVacations,
-    // getOneBookWithExtensions,
-    // postOneBook,
-    // putBook,
+    getOneVacation,
+    postNewVacation,
+    putVacation
+    // putVacation
     // deleteBook,
     // getAllGenres,
     // // getOneGenre,
