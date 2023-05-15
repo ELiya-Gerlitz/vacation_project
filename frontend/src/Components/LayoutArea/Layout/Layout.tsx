@@ -1,4 +1,6 @@
+import Gallery from "../../VacationArea/Gallery/Gallery";
 import Banner from "../Banner/Banner";
+import CardLayout from "../CardLayout/CardLayout";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Menu from "../Menu/Menu";
@@ -8,10 +10,11 @@ import "./Layout.css";
 function Layout(): JSX.Element {
     return (
         <div className="Layout">
-			I am layout
             <Header/>
-            <Menu/>
             <Banner/>
+            <Menu/>
+            <Gallery/>
+            {/* <CardLayout/> */}
             <Routing/>
             <Footer/>
         </div>

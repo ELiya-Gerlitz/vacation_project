@@ -3,8 +3,6 @@ import "./Header.css";
 function Header(): JSX.Element {
     return (
         <div className="Header">
-			I am header
-
             <header className="site-header">
 			<div className="top-header">
 				<div className="container">
