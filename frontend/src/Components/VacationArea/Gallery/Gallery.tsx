@@ -11,6 +11,7 @@ import asiaSurfing from "../../../Assets/images/tatonomusic-FFCgotROOTY-unsplash
 import auto from "../../../Assets/images/tyler-nix-6mze64HRU2Q-unsplash.jpg"
 import hawaii from "../../../Assets/images/pedro-monteiro-HfIex7qwTlI-unsplash.jpg"
 import statue from "../../../Assets/images/michael-heise-FLn6XDnbVVE-unsplash.jpg"
+import athens from "../../../Assets/images/spencer-davis-ilQmlVIMN4c-unsplash.jpg"
 
 
 function Gallery(): JSX.Element {
@@ -55,7 +56,7 @@ function Gallery(): JSX.Element {
 			</div>
 			<div className="gallery-img-wrap">
 				<a href="images/gallery-img7.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
-					<img src={northAmerica2} alt="gallery-images"/>
+					<img src={athens} alt="gallery-images"/>
 				</a>
 			</div>
 			<div className="gallery-img-wrap">

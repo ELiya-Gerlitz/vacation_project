@@ -1264,6 +1264,8 @@ ul > li {
 
 .gallery-img-wrap a img {
     -webkit-filter: brightness(100%);
+	object-fit: contain;
+
 }
 
 .gallery-img-wrap a img:hover {
