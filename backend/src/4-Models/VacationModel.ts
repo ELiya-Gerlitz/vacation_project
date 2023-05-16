@@ -11,6 +11,7 @@ class VacationModel{
     public price : string
     public image : UploadedFile
     public imageName : string
+    public continentId : number
 
     public constructor(vacation : VacationModel){
         this.vacationId = vacation.vacationId
@@ -21,6 +22,8 @@ class VacationModel{
         this.price = vacation.price
         this.image = vacation.image
         this.imageName = vacation.imageName
+        this.continentId = vacation.continentId
+
     }
 
     public static validationScheme= joi.object({
@@ -31,7 +34,8 @@ class VacationModel{
         endingDate: joi.string().min(1).required(),
         price: joi.string().min(1).max(10000).required(),
         image: joi.required(),
-        imageName: joi.string().min(2).max(250).required()
+        imageName: joi.string().min(2).max(250).required(),
+        continentId: joi.number().required()
     })
 
     public validate():string{

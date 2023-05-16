@@ -12,9 +12,10 @@ import VacationModel from "../4-Models/VacationModel";
 
 async function getAllVacations():Promise<VacationModel[]>{
     const sql=`
-        SELECT vacationId, destination, description, DATE_FORMAT(startingDate, '%d.%m.%Y'), 
-        DATE_FORMAT(endingDate, '%d.%m.%Y') , price, imageName
-        FROM vacations 
+        SELECT v.vacationId, v.destination, v.description, DATE_FORMAT(v.startingDate, '%d.%m.%Y'), 
+        DATE_FORMAT(v.endingDate, '%d.%m.%Y') , v.price, v.imageName, c.continentName
+        FROM vacations AS v JOIN continents AS c
+        ON v.continentId = c.continentId
     `
     const vacations = await dal.execute(sql)
     return vacations
@@ -22,11 +23,12 @@ async function getAllVacations():Promise<VacationModel[]>{
 
 async function getOneVacation(vacationId :number):Promise<VacationModel>{
     const sql= `
-        SELECT *
-        FROM vacations
-        WHERE vacations.vacationId = ?
+        SELECT v.*, c.continentName
+        FROM vacations AS v JOIN continents AS c
+        ON v.continentId = c.continentId
+        WHERE v.vacationId = ?
     `
-    const info : OkPacket = await dal.execute(sql, vacationId)
+    const info : OkPacket = await dal.execute(sql, [vacationId])
     if(!info[0]) throw new ResourceNotFoundErrorModel(vacationId)
     return info[0]  // überflüßig? Nein! Im gegenteil!🤠
 }
@@ -52,9 +54,9 @@ async function postNewVacation(vacation :VacationModel):Promise<VacationModel>{
     const sql=
     `
     INSERT INTO vacations
-    VALUES(DEFAULT, ?, ?, ?, ?, ?,?)
+    VALUES(DEFAULT, ?, ?, ?, ?, ?,?, ?)
     `
-    const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName ]
+    const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName, vacation.continentId ]
     const response: OkPacket = await dal.execute(sql, values )
     vacation.vacationId = response.insertId
     console.log(" I am the added book.bookId"+ vacation.vacationId) //Das wirkt gut ohne zum die arr[0] zurückkehren. Wieso? 🤲🤔
@@ -93,40 +95,43 @@ async function putVacation(vacation: VacationModel):Promise<VacationModel>{
         startingDate = ?,
         endingDate = ?,
         price = ?,
-        imageName = ?
+        imageName = ?,
+        continentId = ?
     WHERE vacationId = ?
     `
-    const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName, vacation.vacationId]
+    const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName, vacation.continentId, vacation.vacationId]
     const updatedInfo: OkPacket= await dal.execute(sql, values)
     if(updatedInfo.affectedRows===0) throw new ResourceNotFoundErrorModel(vacation.vacationId)
     return updatedInfo[0]
 }
 
-// async function deleteBook(id: number):Promise<void>{
+async function deleteVacation( vacationId: number ):Promise<void>{
 
-//     const sqlForDeletingImage=`
-//     SELECT * FROM books
-//     WHERE bookId= ?
-//     `
-//     const bookarr :OkPacket = await dal.execute(sqlForDeletingImage, [id])
-//     const book = bookarr[0]
-//     if(!book) throw new ResourceNotFoundErrorModel(id)
+// we're fetching the vacation that should be deleted in order to delete its image-file.
 
-//        // Delete it:
-//     try{
-//         const path= "./src/1-Assets/images/" + book.imageName
-//         fs.unlinkSync(path);
-//     }catch(err:any){
-//         console.log(err)
-//     }
+    const sqlForDeletingImage=`
+    SELECT * FROM vacations
+    WHERE vacationId = ?
+    `
+    const vacationsArr :OkPacket = await dal.execute(sqlForDeletingImage, [vacationId])
+    const vacationToDelete = vacationsArr[0]
+    if(!vacationToDelete) throw new ResourceNotFoundErrorModel(vacationId)
 
-//     const sql=`
-//     DELETE FROM books
-//     WHERE bookId= ?
-//     `
-//     const info :OkPacket= await dal.execute(sql, [id])
-//     if(info.affectedRows===0) throw new ResourceNotFoundErrorModel(id)
-// }
+       // Delete image:
+    try{
+        const path = "./src/1-Assets/images/" + vacationToDelete.imageName
+        fs.unlinkSync(path);
+    }catch(err:any){
+        console.log(err)
+    }
+
+    const sql=`
+    DELETE FROM vacations
+    WHERE vacationId= ?
+    `
+    const info :OkPacket = await dal.execute(sql, [vacationId])
+    if(info.affectedRows===0) throw new ResourceNotFoundErrorModel(vacationId)
+}
 
 // //Brauche ich das überhaupt? Ja! Für den <select> Tag in den UpdateBook.
 // async function getAllGenres():Promise<GenreModel[]>{
@@ -148,11 +153,22 @@ async function putVacation(vacation: VacationModel):Promise<VacationModel>{
 //     return genreName
 // }
 
+async function getVacationsByContinentName(continent_Id : string):Promise<VacationModel[]>{
+    const sql = `
+    SELECT * FROM vacations
+    WHERE continentId = ${continent_Id}
+    `
+    const vacations = await dal.execute(sql)
+    return vacations
+}
+
 export default {
     getAllVacations,
     getOneVacation,
     postNewVacation,
-    putVacation
+    putVacation,
+    getVacationsByContinentName,
+    deleteVacation
     // putVacation
     // deleteBook,
     // getAllGenres,

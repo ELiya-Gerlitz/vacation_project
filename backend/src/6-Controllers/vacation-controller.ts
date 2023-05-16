@@ -7,15 +7,15 @@ import VacationModel from "../4-Models/VacationModel"
 
 const router= express.Router()
 
+// get All vacations
 router.get("/vacations", async( request: Request, response: Response,next: NextFunction)=>{
     try{
-        const books= await vacationLogic.getAllVacations()
-        response.json(books)
+        const vacations = await vacationLogic.getAllVacations()
+        response.json(vacations)
     }catch(err:any){
         next(err)
     }
 })
-
 
 // // get single vacation according to the vacationId
 router.get("/vacations/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
@@ -28,6 +28,8 @@ router.get("/vacations/:vacationId([0-9]+)", async(request: Request, response: R
     }
 })
 
+// post ONE vacation
+
 router.post("/vacations", async (request: Request, response: Response, next:NextFunction)=>{
     try{
         request.body.image= request.files?.image
@@ -38,6 +40,8 @@ router.post("/vacations", async (request: Request, response: Response, next:Next
         next(err)
     }
 })
+
+// alter ONE vacation
 
 router.put("/vacations/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
     try{
@@ -50,15 +54,18 @@ router.put("/vacations/:vacationId([0-9]+)", async(request: Request, response: R
         next(err)
     }
 })
-// router.delete("/books/:bookId", verifyLoggedIn, async (request: Request, response: Response,next: NextFunction)=>{
-//     try{
-//         const bookId= +request.params.bookId
-//         await bookLogic.deleteBook(bookId)
-//         response.sendStatus(204)
-//     }catch(err:any){
-//         next(err)
-//     }
-// })
+router.delete("/vacations/:vacationId", async (request: Request, response: Response,next: NextFunction)=>{
+    try{
+        const vacationId= +request.params.vacationId
+        await vacationLogic.deleteVacation(vacationId)
+        response.sendStatus(204)
+    }catch(err:any){
+        next(err)
+    }
+})
+
+
+// get ONE image from fs
 
 router.get("/books/images/:imageName", async (request: Request, response: Response,next: NextFunction)=>{
     try{
@@ -78,5 +85,16 @@ router.get("/books/images/:imageName", async (request: Request, response: Respon
 //         next(err)
 //     }
 // })
+
+// // get vacation arr [] according to the continent
+router.get("/vacation_by_continent/:continent_Id", async (request: Request, response: Response,next: NextFunction)=>{
+    try{
+            let continent_Id= request.params?.continent_Id
+            const vacations = await vacationLogic.getVacationsByContinentName(continent_Id)
+            response.json(vacations)
+    }catch(err:any){
+        next(err)
+    }
+})
 
 export default router

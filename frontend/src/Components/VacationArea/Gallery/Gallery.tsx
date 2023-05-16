@@ -12,12 +12,45 @@ import auto from "../../../Assets/images/tyler-nix-6mze64HRU2Q-unsplash.jpg"
 import hawaii from "../../../Assets/images/pedro-monteiro-HfIex7qwTlI-unsplash.jpg"
 import statue from "../../../Assets/images/michael-heise-FLn6XDnbVVE-unsplash.jpg"
 import athens from "../../../Assets/images/spencer-davis-ilQmlVIMN4c-unsplash.jpg"
+import * as jquery from "jquery";
+import * as isotope from "isotope-layout"
+
+Object.assign(global, {
+    $: jquery,
+    jQuery: jquery,
+});
 
 
 function Gallery(): JSX.Element {
+
+// // For Isotopes Course Listing && Gallery 2
+// var $grid = $('#cGrid').isotope({
+// 	itemSelector: '.grid-item',
+// 	layoutMode: 'fitRows'
+//   });
+//   // filter items on button click
+//   $('#filters').on( 'click', 'button', function() {
+// 	var filterValue = $(this).attr('data-filter');
+// 	// use filterFn if matches value
+// 	$grid.isotope({ filter: filterValue });
+//   });
+  
+  
     return (
         <div className="Gallery">
-			I am Gallery
+{/* <!-- das ist das 2. NavBar --> */}
+<section className="gallery-section2"> 
+	<div className="container">
+		<div id="filters" className="button-group">       
+			<button className="button" data-filter="*">all</button>
+			  <button className="button" data-filter=".business">business</button>
+			  <button className="button" data-filter=".design">design</button>
+			  <button className="button" data-filter=".development">development</button>
+			  <button className="button" data-filter=".seo">seo</button>
+			  <button className="button" data-filter=".marketing">marketing</button>
+		</div>
+	</div>
+	 {/* <!-- das habe ich hier geschlossen weil das nehmlich flex probleme macht wann dass mehr unten ist.  --> */}
             <section className="page-heading">
 			<div className="container">
 				<h2>gallery</h2>
@@ -84,8 +117,11 @@ function Gallery(): JSX.Element {
 					<img src={africa2} alt="gallery-images"/>
 				</a>
 			</div>
+
 		</section>
 		{/* <!-- End of gallery Images --> */}
+   </section>
+
         </div>
     );
 }
