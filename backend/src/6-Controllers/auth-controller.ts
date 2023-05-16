@@ -7,8 +7,8 @@ const router= express.Router()
 
 router.post("/auth/register", async(request:Request, response: Response, next:NextFunction)=>{
     try{
-        const user= new UserModel(request.body)
-        const token= await authLogic.register(user)
+        const user = new UserModel(request.body)
+        const token = await authLogic.register(user)
         response.json(token)
     }catch(err:any){
         next(err)

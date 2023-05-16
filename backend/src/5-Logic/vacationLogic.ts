@@ -162,15 +162,56 @@ async function getVacationsByContinentName(continent_Id : string):Promise<Vacati
     return vacations
 }
 
+
+async function follow(userId: number, vacationId :number):Promise<VacationModel>{
+
+// check whether following record exists already
+
+    const checkIfAlreadyFollowingSql = `
+    SELECT * FROM followers
+    WHERE userId = ? AND vacationId = ?
+    `
+    const values = [userId, vacationId]
+    const exists = await dal.execute( checkIfAlreadyFollowingSql, values )
+
+    console.log("exists " + exists[0])
+    try{
+        if(!exists[0]){
+
+            const sql=
+            `
+            INSERT INTO followers
+            VALUES(?, ?)
+            `
+            const followers = await dal.execute( sql, values )
+            return followers[0]
+        }
+        else{
+    console.log("follow already exists")
+        }
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function unfollow( userId: number, vacationId :number ):Promise<void>{
+
+        const sql=`
+        DELETE FROM followers
+        WHERE userId= ? AND vacationId = ?
+        `
+        const info :OkPacket = await dal.execute(sql, [userId, vacationId])
+        if(info.affectedRows===0) throw new ResourceNotFoundErrorModel(vacationId)
+    }
+    
+
 export default {
     getAllVacations,
     getOneVacation,
     postNewVacation,
     putVacation,
     getVacationsByContinentName,
-    deleteVacation
-    // putVacation
-    // deleteBook,
-    // getAllGenres,
-    // // getOneGenre,
+    deleteVacation,
+    follow,
+    unfollow
 }

@@ -67,24 +67,15 @@ router.delete("/vacations/:vacationId", async (request: Request, response: Respo
 
 // get ONE image from fs
 
-router.get("/books/images/:imageName", async (request: Request, response: Response,next: NextFunction)=>{
+router.get("/vacations/images/:imageName", async (request: Request, response: Response,next: NextFunction)=>{
     try{
-        let imagename= request.params?.imageName
-            const file= path.join(__dirname,"..", "1-Assets", "images" , imagename) 
+            let imagename = request.params?.imageName
+            const file = path.join(__dirname,"..", "1-Assets", "images" , imagename) 
             response.sendFile(file)
     }catch(err:any){
         next(err)
     }
 })
-
-// router.get("/genres/", async (request: Request, response: Response,next: NextFunction)=>{
-//     try{
-//         const genres = await bookLogic.getAllGenres()
-//         response.json(genres)
-//     }catch(err:any){
-//         next(err)
-//     }
-// })
 
 // // get vacation arr [] according to the continent
 router.get("/vacation_by_continent/:continent_Id", async (request: Request, response: Response,next: NextFunction)=>{
@@ -96,5 +87,29 @@ router.get("/vacation_by_continent/:continent_Id", async (request: Request, resp
         next(err)
     }
 })
+
+// save followers
+router.post("/follow/:userId([0-9]+)/:vacationId([0-9]+)", async (request: Request, response: Response, next:NextFunction)=>{
+    try{
+        const userId = +request.params.userId
+        const vacationId = +request.params.vacationId
+        const follow = await vacationLogic.follow(userId, vacationId)
+        response.status(201).json(follow)
+    }catch(err:any){
+        next(err)
+    }
+})
+// unfollow
+router.delete("/unfollow/:userId/:vacationId", async (request: Request, response: Response,next: NextFunction)=>{
+    try{
+        const userId = +request.params.userId
+        const vacationId = +request.params.vacationId
+        await vacationLogic.unfollow(userId, vacationId)
+        response.sendStatus(204)
+    }catch(err:any){
+        next(err)
+    }
+})
+
 
 export default router
