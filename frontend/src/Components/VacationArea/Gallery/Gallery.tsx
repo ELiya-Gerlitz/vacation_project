@@ -121,7 +121,6 @@ function Gallery(): JSX.Element {
 		</section>
 		{/* <!-- End of gallery Images --> */}
    </section>
-
         </div>
     );
 }

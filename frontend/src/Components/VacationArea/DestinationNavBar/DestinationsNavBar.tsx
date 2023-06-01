@@ -1,7 +1,7 @@
 import VacationService from "../../../Services/VacationService";
-import "./Listing.css";
+import "./DestinationsNavBar.css";
 
-function Listing(): JSX.Element {
+function DestinationsNavBar(): JSX.Element {
 
 
 const handleClick = (continentId : string)=> {    //the continent is a string for including the "all" fetching.
@@ -11,9 +11,9 @@ const handleClick = (continentId : string)=> {    //the continent is a string fo
 }
   
     return (
-        <div className="Listing">
+        <div className="DestinationsNavBar gallery-section2">
 
-<div className="container">
+<div className="container ">
 		<div id="filters" className="button-group">       
 			  <button className="button" data-filter="*" onClick={()=>{handleClick("continentId")}}>all</button>
 			  <button className="button" data-filter=".europe" onClick={()=>{handleClick("2")}}>Europe</button>
@@ -31,4 +31,4 @@ const handleClick = (continentId : string)=> {    //the continent is a string fo
     );
 }
 
-export default Listing;
+export default DestinationsNavBar;

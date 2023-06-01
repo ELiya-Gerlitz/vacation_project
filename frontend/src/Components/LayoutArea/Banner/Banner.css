@@ -1,3 +1,52 @@
-.Banner {
-	
+.banner {
+	position: relative;
+	margin-bottom: -8px;
+}
+
+.banner img {
+	width: 100%;
+}
+
+.banner .container {
+	position: absolute;
+	top: 0;
+	left: 9.8rem;
+	right: 9.8rem;
+	text-align: center;
+	z-index: 9;
+}
+
+.banner .container h1 {
+	/*font-size: 4rem;*/
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: 5em;
+}
+
+.banner .container h3 {
+	font-weight: normal;
+	/*font-size: 2rem;*/
+}
+
+/*==Banner Owl Carousel===*/
+#owl-four-nav {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.banner .owl-nav .owl-prev, .banner .owl-nav .owl-next{
+	/*font-size: 4rem;*/
+	font-weight: bold;
+	background: transparent;
+	border: none;
+	/*color: #fff;*/
+	cursor: pointer;
+}
+
+.banner #owl-four-nav {
+	position: absolute;
+	top: 40%;
+	left: 0;
+	z-index: 9;
 }
