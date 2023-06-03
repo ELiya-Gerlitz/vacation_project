@@ -13,17 +13,21 @@ import hawaii from "../../../Assets/images/pedro-monteiro-HfIex7qwTlI-unsplash.j
 import statue from "../../../Assets/images/michael-heise-FLn6XDnbVVE-unsplash.jpg"
 import athens from "../../../Assets/images/spencer-davis-ilQmlVIMN4c-unsplash.jpg"
 import * as jquery from "jquery";
-import * as isotope from "isotope-layout"
+import $ from "jquery";
+import Isotope from "isotope-layout"
+import isotope from "isotope-layout"
+import isotope2 from "../../../Assets/js/isotope.pkgd.min.js"
 
-Object.assign(global, {
-    $: jquery,
-    jQuery: jquery,
-});
+
+// Object.assign(global, {
+//     $: jquery,
+//     jQuery: jquery,
+// });
 
 
 function Gallery(): JSX.Element {
 
-// // For Isotopes Course Listing && Gallery 2
+// For Isotopes Course Listing && Gallery 2
 // var $grid = $('#cGrid').isotope({
 // 	itemSelector: '.grid-item',
 // 	layoutMode: 'fitRows'

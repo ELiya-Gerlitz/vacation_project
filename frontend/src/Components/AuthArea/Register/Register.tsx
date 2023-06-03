@@ -10,25 +10,32 @@ function Register(): JSX.Element {
     const navigate = useNavigate();
 
     const send = (data: UserModel) => {
+        alert("Hu")
             if(AuthStore.getState().token){
                 alert("you are already logged in!")
             }else{
+                alert("Hi")
                 authService.register(data)
-                .then(() => { console.log("successfully logged in"); navigate("/books") })
+                .then(() => { console.log("successfully logged in")
+                navigate("/home") })
                 .catch(err => console.log(err))
             }
     }
-
+    const buy = ()=>{
+        alert("buy")
+    }
 
     return (
-        <div className="Register Box">
+        <div className="Register">
             <form onSubmit={handleSubmit(send)}>
                 <input type="text" placeholder="firstName" {...register('firstName', UserModel.firstNameValidation)} />
                 <input type="text" placeholder="lastName" {...register('lastName', UserModel.lastNameValidation)} />
                 <input type="text" placeholder="username" {...register('username', UserModel.usernameValidation)} />
+                <input type="email" placeholder="email" {...register('email') } required />
                 <input type="password" placeholder="password" {...register('password', UserModel.passwordValidation)} />
-                <button>register</button>
+                <strong><button>register</button></strong>
             </form>
+            <button onClick={buy}></button>
 
         </div>
     );

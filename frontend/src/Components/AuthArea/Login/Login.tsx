@@ -15,8 +15,11 @@ function Login(): JSX.Element {
                 alert("you are already logged in!")
             }
             authService.login(data)
-                .then(() => { console.log("successfully logged in"); navigate("/books") })
-                .catch(err => console.log(err))
+                .then(() => { 
+                    alert("successfully logged in")
+                    navigate("/home") })
+                .catch(err => {alert(err)
+                console.log(err)})
         }
 
     return (

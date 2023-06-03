@@ -12,7 +12,7 @@ useEffect(()=>{
     authService.logout()
     .then(()=>{
         alert("bye bye")
-        navigate("/books")
+        navigate("/home")
     })
     .catch(err=>console.log(err))
 },[])

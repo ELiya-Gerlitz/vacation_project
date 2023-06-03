@@ -7,10 +7,10 @@ export class AuthState{
     public user: UserModel = null
 
     public constructor(){
-        this.token= sessionStorage.getItem("token")
+        this.token = sessionStorage.getItem("token")
         if(this.token){
-           const container: {user: UserModel}= jwtDecode(this.token)
-           this.user= container.user
+           const container: {user: UserModel} = jwtDecode(this.token)
+           this.user = container.user
         }
     }
 }

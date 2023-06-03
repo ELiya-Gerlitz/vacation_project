@@ -3,10 +3,14 @@ import jwt from "jsonwebtoken"
 import { AuthorizationErrorModel } from "../4-Models/ErrorModel";
 import UserModel from "../4-Models/UserModel";
 import { options } from "joi";
+import crypto from "crypto";
+
 
 const secretKey= "patzkareshet@!"
 
 function createToken(user:UserModel):Promise<string>{
+
+    delete user.password
 
     const container={user}
     const options= {expiresIn : "3h"}
@@ -47,7 +51,24 @@ function isLoggedIn(request:Request):Promise<boolean>{
    
 }
 
+
+const salt = "MakeThingsGoRight";
+
+function hash(plainText: string): string {
+
+    if(!plainText) return null;
+
+    // Hash without salt:
+    // const hashedText = crypto.createHash("sha512").update(plainText).digest("hex");
+
+    // Hash with salt: 
+    const hashedText = crypto.createHmac("sha512", salt).update(plainText).digest("hex");
+
+    return hashedText;
+}
+
 export default {
     isLoggedIn,
-    createToken
+    createToken,
+    hash
 }

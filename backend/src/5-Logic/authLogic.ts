@@ -4,30 +4,27 @@ import CredentialsModel from "../4-Models/CredentialsModel"
 import { AuthorizationErrorModel, ValidationErrorModel } from "../4-Models/ErrorModel"
 import {OkPacket} from "mysql"
 import UserModel from "../4-Models/UserModel"
+import RoleModel from "../4-Models/RoleModel"
 
 
 
 async function register(user:UserModel):Promise<string>{
     console.log("I am the beginning of authLogic")
-    const err= user.validate()
+    const err = user.validate()
     if(!err) throw new ValidationErrorModel(err)
 
-    // check whether userName is already taken.
-    const sql=`
-        SELECT * FROM users
-        WHERE username= ?
-    `
+    if (await isUsernameTaken(user.username)) throw new ValidationErrorModel(`Username ${user.username} is already taken`);
 
-    const usernameTaken  = await dal.execute(sql, [user.username]) //das (OkPacket) wirk nicht mit SELECT!!!
-    if(usernameTaken.length > 0) throw new ValidationErrorModel("username is already in use!") 
-
-
+    // Hash password:
+    user.password = cyber.hash(user.password);
+    user.role = RoleModel.User
     // save the new user in the DB
-    const sql2save=`
-        INSERT INTO users(firstName, lastName, username, password)
-        VALUES (?, ?, ?, ?) 
+    const sql=`
+        INSERT INTO users(firstName, lastName, username, email, password, role)
+        VALUES (?, ?, ?, ?, ?, ?) 
     `
-    const info : OkPacket = await dal.execute(sql2save, [user.firstName, user.lastName, user.username, user.password])
+    const values = [user.firstName, user.lastName, user.username, user.email, user.password, user.role]
+    const info : OkPacket = await dal.execute(sql, values )
     user.userId=info.insertId
 
     const token= await cyber.createToken(user)
@@ -42,17 +39,27 @@ async function login(credentials: CredentialsModel):Promise<string>{
      // get all users and see whether the userName && password exist.
      const sql=`
      SELECT * FROM users
-     WHERE username = ? AND password = ?;
+     WHERE username = ? AND password = ?
      `
-     const passwordUsernameExist = await dal.execute(sql, [credentials.username, credentials.password])
-     console.log(passwordUsernameExist)
-     if(passwordUsernameExist.length <= 0) throw new ValidationErrorModel("Please register!")
+     const values = [credentials.username, credentials.password = cyber.hash(credentials.password)]
+     const passwordUsernameExist:OkPacket = await dal.execute(sql, values)
+ 
+     if(passwordUsernameExist.fieldCount <= 0) throw new ValidationErrorModel("Please register!")
+    //  if(passwordUsernameExist.length <= 0) throw new ValidationErrorModel("Please register!")
 
-    const token= cyber.createToken(passwordUsernameExist)
+    const token = cyber.createToken(passwordUsernameExist[0])
     return token
+    
+}
+
+async function isUsernameTaken(username: string): Promise<boolean> {
+    const sql = `SELECT COUNT(*) FROM users WHERE username = ?`;
+    const count = await dal.execute(sql, [username])[0];
+    return count > 0;
 }
 
 export default {
     register,
-    login
+    login,
+    isUsernameTaken
 }

@@ -12,8 +12,8 @@ import VacationModel from "../4-Models/VacationModel";
 
 async function getAllVacations():Promise<VacationModel[]>{
     const sql=`
-        SELECT v.vacationId, v.destination, v.description, DATE_FORMAT(v.startingDate, '%d.%m.%Y'), 
-        DATE_FORMAT(v.endingDate, '%d.%m.%Y') , v.price, v.imageName, c.continentName
+        SELECT v.vacationId, v.destination, v.description, DATE_FORMAT(v.startingDate, '%d.%m.%Y') AS startingDate, 
+        DATE_FORMAT(v.endingDate, '%d.%m.%Y') AS endingDate , v.price, v.imageName, c.continentName
         FROM vacations AS v JOIN continents AS c
         ON v.continentId = c.continentId
     `

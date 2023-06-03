@@ -3,6 +3,7 @@ import "./AuthMenu.css";
 import UserModel from "../../../Models/UserModel";
 import { useEffect, useState } from "react";
 import { AuthStore } from "../../Redux/AuthState";
+import Logout from "../Logout/Logout";
 
 function AuthMenu(): JSX.Element {
  const navigate= useNavigate()
@@ -16,11 +17,7 @@ function AuthMenu(): JSX.Element {
     )
         return ()=> unsubscribe()
     },[])
-    
-    const handleLogout = () => {
-
-    }
-
+  
     return (
         <div className="AuthMenu top-header-right">
             {!user && <>
@@ -31,8 +28,8 @@ function AuthMenu(): JSX.Element {
             </>}
 
             {user && <>
-                <span>Hello {user.firstName} {user.lastName}</span>
-                <NavLink to={"#"} onClick={handleLogout}> Logout</NavLink>
+                <span>Hello {user.firstName} {user.lastName}</span> &nbsp;&nbsp;&nbsp;
+                <NavLink to={"/logout"} > Logout</NavLink>
             </>}
         </div>
     );

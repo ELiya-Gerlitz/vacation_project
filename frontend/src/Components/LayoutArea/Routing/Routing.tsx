@@ -6,6 +6,7 @@ import Register from "../../AuthArea/Register/Register";
 import Login from "../../AuthArea/Login/Login";
 import About from "../About/About";
 import DestinationsNavBar from "../../VacationArea/DestinationNavBar/DestinationsNavBar";
+import Logout from "../../AuthArea/Logout/Logout";
 
 function Routing(): JSX.Element {
     return (
@@ -17,6 +18,7 @@ function Routing(): JSX.Element {
                 <Route path="/auth/register" element={<Register/>} />
                 <Route path="/auth/login" element={<Login/>} />
                 <Route path="/about" element={<About/>} />
+                <Route path="/logout" element={<Logout/>} />
                 <Route path="/destinations" element={<DestinationsNavBar/>
 } />
             </Routes>
