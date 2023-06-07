@@ -1,8 +1,6 @@
 import { Request } from "express";
 import jwt from "jsonwebtoken"
-import { AuthorizationErrorModel } from "../4-Models/ErrorModel";
 import UserModel from "../4-Models/UserModel";
-import { options } from "joi";
 import crypto from "crypto";
 import RoleModel from "../4-Models/RoleModel";
 

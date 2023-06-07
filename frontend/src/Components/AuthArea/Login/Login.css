@@ -21,12 +21,6 @@
     margin-right: auto;
 }
 
-.Login .leftDiv {
-    grid-column: span 4;
-    background-color: blue;
-    height: 100px;
-}
-
 .Login .rightDiv {
     grid-column: span 2;
 

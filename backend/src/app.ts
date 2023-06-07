@@ -10,15 +10,16 @@ import sanitize from "./3-Middleware/sanitize";
 import expressRateLimit from "express-rate-limit";
 import helmet from "helmet";
 import directory222 from "./1-Assets/images/dir";
+import followers_router from "./6-Controllers/followersController";
 
 const server = express()
 
 // Defend against DoS attack:
-server.use("/api/", expressRateLimit({
-    max: 10, // Maximum requests per same client
-    windowMs: 1000, // Time window to allow the max requests.
-    message: "Are you a hacker?" // When performing more request - return this message
-}));
+// server.use("/api/", expressRateLimit({
+//     max: 10, // Maximum requests per same client
+//     windowMs: 1000, // Time window to allow the max requests.
+//     message: "Are you a hacker?" // When performing more request - return this message
+// }));
 
 // server.use(helmet()); //deters from images to be accessible!!!
 
@@ -33,6 +34,7 @@ server.use(fileUpload())
 
 server.use("/api", auth_controller)
 server.use("/api", vacation_router)
+server.use("/api", followers_router)
 server.use("*", routeNotFound)
 
 server.use(catchAll)

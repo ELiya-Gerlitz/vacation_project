@@ -7,9 +7,9 @@ class UserModel{
     public email: string
     public password: string
     public role: RoleModel
-    public username: RoleModel
+    public username: string
 
-    public constructor(user:UserModel){
+    public constructor( user:UserModel ) {
         this.userId= user.userId
         this.firstName= user.firstName
         this.lastName= user.lastName
@@ -24,7 +24,9 @@ class UserModel{
         lastName: joi.string().min(2).max(100).required(),
         email: joi.string().email().max(225).required(),
         password: joi.string().min(4).max(19).required(),
-        role: joi.string().min(2).max(19).required()
+        role: joi.string().min(2).max(19).required(),
+        username: joi.string().min(4).max(200).required()
+
     })
 
     public validate():string{
