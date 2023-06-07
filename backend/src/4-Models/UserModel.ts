@@ -7,7 +7,7 @@ class UserModel{
     public email: string
     public password: string
     public role: RoleModel
-    public username: string
+    // public username: string
 
     public constructor( user:UserModel ) {
         this.userId= user.userId
@@ -16,7 +16,7 @@ class UserModel{
         this.email= user.email
         this.password= user.password
         this.role= user.role
-        this.username= user.username
+        // this.username= user.username
     }
 
     public static validationScheme= joi.object({
@@ -25,7 +25,7 @@ class UserModel{
         email: joi.string().email().max(225).required(),
         password: joi.string().min(4).max(19).required(),
         role: joi.string().min(2).max(19).required(),
-        username: joi.string().min(4).max(200).required()
+        // username: joi.string().min(4).max(200).required()
 
     })
 

@@ -1,15 +1,15 @@
 import joi from "joi"
 class CredentialsModel{
-    public username: string
+    public email: string
     public password: string
 
     public constructor(Credentials:CredentialsModel){
-        this.username = Credentials.username
+        this.email = Credentials.email
         this.password = Credentials.password
     }
 
     public static validationScheme= joi.object({
-        username: joi.string().min(4).max(200).required(),
+        email: joi.string().email().min(4).max(250).required(),
         password: joi.string().min(4).max(300).required()
     })
 
