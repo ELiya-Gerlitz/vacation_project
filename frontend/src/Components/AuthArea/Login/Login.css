@@ -1,3 +1,33 @@
 .Login {
-	
+    height: 100vh;
+	background: #e0e5ec;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* text-align: center; */
+    display: grid; 
+    grid-template-columns: repeat(6, 1fr);
+    box-sizing: border-box;
+
+}
+
+.Login h3{
+    text-align: center;
+}
+
+.Login .input{
+    text-align: center;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Login .leftDiv {
+    grid-column: span 4;
+    background-color: blue;
+    height: 100px;
+}
+
+.Login .rightDiv {
+    grid-column: span 2;
+
 }

@@ -11,7 +11,10 @@ import DestinationsNavBar from "../../VacationArea/DestinationNavBar/Destination
 function Layout(): JSX.Element {
     return (
         <div className="Layout">
+            <header>
             <Header/>
+            </header>
+            
             <Banner/>
             <Main/>
             {/* <CardLayout/> */}

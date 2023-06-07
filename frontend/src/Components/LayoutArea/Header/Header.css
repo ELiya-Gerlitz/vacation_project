@@ -1,3 +1,11 @@
+/*Header {
+	display: flex;
+	/* flex-direction: row; */
+	/*justify-content: space-between;*/
+	/* grid-template-columns: repeat(1, 1fr); */
+	/*background-color: #323E54;
+	max-height: 100px;
+}*/
 /*!
 Theme Name: edulab
 Theme URI: http://underscores.me/
@@ -596,7 +604,7 @@ a {
 }
 
 a:visited {
-	color: purple;
+	color: rgb(0, 2, 8);
 }
 
 a:hover, a:focus, a:active {
@@ -618,6 +626,7 @@ a:hover, a:active {
 
 .container {
 	max-width: 1170px;
+	/* max-height: 100px; */
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -680,107 +689,9 @@ a:hover, a:active {
 	margin-left: 0.625em;
 }
 
-/*=================Menu Navigation===============*/
-
-.main-header .container {
-	display: flex;
-	flex: 1;
-	flex-flow: row wrap;
-	justify-content: space-between;
-	padding-top: 1.375em;
-	padding-bottom: 1.375em;
-}
 
 
-.nav-desktop {
-	display: inline-block;
-}
 
-.nav-desktop li, .nav-desktop li a{
-	font-size: 1.8rem;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 600;
-	color: #3a3a3a;
-}
-
-.nav-desktop li {
-	padding: 1.6rem;
-}
-
-.nav-desktop ul ul {
-	position: absolute;
-	display: none;
-	margin: 0;
-}
-
-.menu-list {
-	display: flex;
-}
-
-ul > li {
-	position: relative;
-}
-
-.nav-desktop .sub-menu {
-	top: 100%;
-	left: 0;
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-
-.sub-menu li:hover {
-	background: rgba(0,0,0,0.12);
-}
-
-.menu-list > li > .sub-menu::before {
-	position: absolute;
-	content: "";
-	border: 1px solid #1f4271;
-	top: 0;
-	width: 35%;
-	left: 3%;
-	cursor: pointer;
-}
-
-.sub-menu .sub-menu{
-	top: -1px;
-	left: 100%;
-}
-
-.menu-parent:hover > .sub-menu{
-	display: block;
-	z-index: 999;
-	width: 20rem;
-	padding-left: 0;
-	text-align: left;
-}
-
-#bar, #close {
-	display: none;
-}
-
-.menu-parent::after {
-	content: "";
-	border: solid #3a3a3a;
-  	border-width: 0 3px 3px 0;
-  	display: inline-block;
-  	padding: 3px;
-  	margin-left: 10px;
-  	transform: rotate(45deg);
-  	-webkit-transform: rotate(45deg);
-}
-
-.menu-parent .menu-parent::after {
-	content: "";
-	border: solid #3a3a3a;
-  	border-width: 0 3px 3px 0;
-  	display: inline-block;
-  	padding: 3px;
-  	margin-left: 10px;
-  	transform: rotate(-45deg);
-  	-webkit-transform: rotate(-45deg);
-}
 
 
 
@@ -802,72 +713,10 @@ ul > li {
 	/*color: #000;*/
 }
 
-/*=========Popular courses  && Course Listing Page Css======*/
-/*==========================
-	Course listing Page
-===========================*/
-.course-listing-page .container, .gallery-section .container {
-	padding-top: 4.0625em;
-	padding-bottom: 6.25em;
-}
 
-.gallery-section2 .container {
-	padding-top: 4.0625em;
-	padding-bottom: 3.75em;
-}
 
-.gallery2 {
-	margin-bottom: 4.0625em;
-}
 
-/*#gGrid{
-	overflow: hidden;
-}*/
 
-.course-listing-page .button-group, 
-.gallery-section .button-group, 
-.gallery-section2 .button-group {
-	text-align: center;
-	margin-bottom: 4.375em;
-	position: relative;
-}
-
-.course-listing-page .button-group::after,
-.gallery-section .button-group::after,
-.gallery-section2 .button-group::after {
-	content: "";
-	position: absolute;
-	border: 0.5px solid #d4d4d4;
-	bottom: 0;
-	width: 530px;
-	left: 27.5%;
-}
-
-.course-listing-page .button-group button,
-.gallery-section .button-group button,
-.gallery-section2 .button-group button{
-	/*font-size: 1.4rem;*/
-	/*font-family: 'Raleway', sans-serif;*/
-	/*color: #000;*/
-	background: transparent;
-	border: none;
-	text-transform: uppercase;
-	font-weight: bold;
-	cursor: pointer;
-	position: relative;
-}
-
-.course-listing-page .button-group button:hover::after,
-.gallery-section .button-group button:hover::after,
-.gallery-section2 .button-group button:hover::after{
-	content: "";
-	position: absolute;
-	border: 1px solid #1c3961;
-	bottom: 0;
-	width: 80%;
-	left: 10%;
-	z-index: 999;
-}
 
 
 .recent-course-single .grid {
@@ -1057,7 +906,7 @@ ul > li {
   }
 }
 
-//arrows on first carousel
+/* //arrows on first carousel */
 #sync1.owl-theme {
   position: relative;
   .owl-next, .owl-prev {
@@ -2833,59 +2682,6 @@ RESPONSIVE STYLESHEET
 	}
 
 
-	/*====navigation=====*/
-	.menu-list {
-		flex-direction: column;
-	}	
-
-	.nav-desktop {
-		display: none;
-		width: 250px;
-	}
-
-	.nav-desktop li, .nav-desktop li a {
-		font-size: 1.4rem;
-		font-family: 'Open Sans', sans-serif;
-	}
-
-	.nav-desktop ul ul {
-		position: static;
-	}
-
-	#bar {
-		display: inline-block;
-		font-size: 40px;
-		cursor: pointer;
-	}
-
-	#close {
-		display: none;
-		font-size: 40px;
-		cursor: pointer;
-	}
-
-	.menu-list > li > .sub-menu::before {
-		content: "";
-		border: none;
-	}
-
-	.menu-parent .menu-parent::after {
-		content: "";
-		border: solid #3a3a3a;
-	  	border-width: 0 3px 3px 0;
-	  	display: inline-block;
-	  	padding: 3px;
-	  	margin-left: 10px;
-	  	transform: rotate(45deg);
-	  	-webkit-transform: rotate(45deg);
-	}
-
-	.menu-parent:hover::after,
-	.menu-parent .menu-parent:hover::after {
-		content: "";
-		border: none;
-		display: none;
-	}
 
 	/*========Banner section====*/
 	.banner .container h1 {

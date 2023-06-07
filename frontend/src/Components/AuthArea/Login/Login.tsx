@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import CredentialsModel from "../../../Models/CredentialsModel";
 import authService from "../../../Services/authService";
 import { AuthStore } from "../../Redux/AuthState";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import HeartOnelineDrawn from "../../ElementsArea/HeartOnelineDrawn/HeartOnelineDrawn";
+import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 
 
 function Login(): JSX.Element {
@@ -25,11 +29,24 @@ function Login(): JSX.Element {
     return (
         <div className="Login">
             <h3>Login</h3>
-			 <form onSubmit={handleSubmit(send)}>
-                <input type="text" placeholder="username" {...register('username', CredentialsModel.usernameValidation)} />
-                <input type="password" placeholder="password" {...register('password', CredentialsModel.passwordValidation)} />
-                <button>login</button>
-            </form>
+            <div className="leftDiv">
+
+            </div>
+
+
+            <div className="rightDiv">
+                <form onSubmit={handleSubmit(send)}>
+                    <FloatingLabel  controlId="floatingInput" label="Username" className="mb-3 input">
+                        <Form.Control className="input" type="text" placeholder="username" {...register('username', CredentialsModel.usernameValidation)}/>
+                    </FloatingLabel>
+
+                    <FloatingLabel className="input" controlId="floatingPassword" label="Password">
+                        <Form.Control className="input" type="password" placeholder="Password" {...register('password', CredentialsModel.passwordValidation)} />
+                    </FloatingLabel>
+
+                    <FrameBtn btnString="Login"/>
+                </form> 
+            </div>
         </div>
     );
 }

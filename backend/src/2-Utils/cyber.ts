@@ -4,6 +4,7 @@ import { AuthorizationErrorModel } from "../4-Models/ErrorModel";
 import UserModel from "../4-Models/UserModel";
 import { options } from "joi";
 import crypto from "crypto";
+import RoleModel from "../4-Models/RoleModel";
 
 
 const secretKey= "patzkareshet@!"
@@ -12,25 +13,25 @@ function createToken(user:UserModel):Promise<string>{
 
     delete user.password
 
-    const container={user}
-    const options= {expiresIn : "3h"}
-    const token= jwt.sign(container, secretKey, options)
+    const container = {user}
+    const options = {expiresIn : "3h"}
+    const token = jwt.sign(container, secretKey, options)
     return token
 
 }
 
 
-function isLoggedIn(request:Request):Promise<boolean>{
+function isLoggedIn( request:Request ):Promise<boolean>{
     return new Promise<boolean>((resolve,reject)=>{
         try{
-            const header= request.headers.authorization
+            const header = request.headers.authorization
             if(!header) {
                 console.log("there is no header!")
                 resolve(false)
                 return
             }
             // const token= header.split("")[1] // same as :   const token= header.substring(7)
-            const token= header.substring(7)
+            const token = header.substring(7)
             if(!token){
                 resolve(false)
                 return
@@ -52,7 +53,24 @@ function isLoggedIn(request:Request):Promise<boolean>{
 }
 
 
-const salt = "MakeThingsGoRight";
+async function isAdmin(request: Request): Promise<boolean> {
+    const isLoggedin = await  isLoggedIn(request)
+
+    if(!isLoggedin) return false;
+
+    const header = request.header("authorization");
+    const token = header.substring(7);
+
+    // Extract container from token:
+    const container: any = jwt.decode(token);
+
+    // Extract user: 
+    const user: UserModel = container.user;
+
+    return user.role === RoleModel.Admin;
+}
+
+const salt = "MakeThingsGoRightinJohnBryce!";
 
 function hash(plainText: string): string {
 
@@ -70,5 +88,6 @@ function hash(plainText: string): string {
 export default {
     isLoggedIn,
     createToken,
-    hash
+    hash,
+    isAdmin
 }

@@ -9,8 +9,9 @@ import auth_controller from "./6-Controllers/auth-controller";
 import sanitize from "./3-Middleware/sanitize";
 import expressRateLimit from "express-rate-limit";
 import helmet from "helmet";
+import directory222 from "./1-Assets/images/dir";
 
-const server= express()
+const server = express()
 
 // Defend against DoS attack:
 server.use("/api/", expressRateLimit({
@@ -19,7 +20,7 @@ server.use("/api/", expressRateLimit({
     message: "Are you a hacker?" // When performing more request - return this message
 }));
 
-server.use(helmet());
+// server.use(helmet()); //deters from images to be accessible!!!
 
 server.use(cors()); // Allow any site to access our backend
 // server.use(cors({ origin: "http://localhost:3000" })); // Allow only this site to access our backend
@@ -35,6 +36,9 @@ server.use("/api", vacation_router)
 server.use("*", routeNotFound)
 
 server.use(catchAll)
+
+
+directory222()
 
 
 server.listen(appConfig.port, ()=> console.log(`I am listening to port ${appConfig.port}`))

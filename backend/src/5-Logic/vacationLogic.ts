@@ -41,7 +41,7 @@ async function postNewVacation(vacation :VacationModel):Promise<VacationModel>{
         try{
             // handleFiles(book) no need to delete anything.(!🙄) it is a completely new book added presently.
             const extension = path.extname(vacation.image.name)
-            vacation.imageName= uuid() +extension
+            vacation.imageName = uuid() + extension
             console.log("I am in the if statement in before the post query Logic" + vacation.imageName)
             const pathToKeep="./src/1-Assets/images/" + vacation.imageName
             await vacation.image.mv(pathToKeep)
@@ -78,13 +78,13 @@ async function putVacation(vacation: VacationModel):Promise<VacationModel>{
         //   await fsPromises.unlink(imagePath) //das wirkt auch gut!
            fs.unlinkSync(imagePath)
 
-           const extension= path.extname(vacation.image.name)        
-           vacation.imageName = uuid()+ extension
+           const extension = path.extname(vacation.image.name)        
+           vacation.imageName = uuid() + extension
            await vacation.image.mv("./src/1-Assets/images/" + vacation.imageName)
            delete vacation.image
 
     }else if(!vacation.image){
-        vacation.imageName= bookToUpdate.imageName
+        vacation.imageName = bookToUpdate.imageName
     }
 
     const sql=`
@@ -116,7 +116,7 @@ async function deleteVacation( vacationId: number ):Promise<void>{
     const vacationsArr :OkPacket = await dal.execute(sqlForDeletingImage, [vacationId])
     const vacationToDelete = vacationsArr[0]
     if(!vacationToDelete) throw new ResourceNotFoundErrorModel(vacationId)
-
+    
        // Delete image:
     try{
         const path = "./src/1-Assets/images/" + vacationToDelete.imageName

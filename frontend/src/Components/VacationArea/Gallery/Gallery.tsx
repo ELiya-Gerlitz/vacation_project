@@ -17,6 +17,7 @@ import $ from "jquery";
 import Isotope from "isotope-layout"
 import isotope from "isotope-layout"
 import isotope2 from "../../../Assets/js/isotope.pkgd.min.js"
+import appConfig from "../../../Utils/AppConfig";
 
 
 // Object.assign(global, {
@@ -42,6 +43,13 @@ function Gallery(): JSX.Element {
   
     return (
         <div className="Gallery">
+			         <section className="page-heading">
+					 {/* <img src={appConfig.imgUrl + "d0a3086f-7ef4-4763-b42d-b70e827aa589.jpg"}/> */}
+
+			<div className="container">
+				<h2>gallery</h2>
+			</div>
+		</section>
 {/* <!-- das ist das 2. NavBar --> */}
 <section className="gallery-section2"> 
 	<div className="container">
@@ -55,11 +63,7 @@ function Gallery(): JSX.Element {
 		</div>
 	</div>
 	 {/* <!-- das habe ich hier geschlossen weil das nehmlich flex probleme macht wann dass mehr unten ist.  --> */}
-            <section className="page-heading">
-			<div className="container">
-				<h2>gallery</h2>
-			</div>
-		</section>
+   
 		<section className="gallery-images-section" itemProp="image" itemScope itemType=" http://schema.org/ImageGallery">
 			<div className="gallery-img-wrap">
 				<a href="images/gallery-img1.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">

@@ -4,8 +4,9 @@ import path from "path"
 import vacationLogic from "../5-Logic/vacationLogic"
 import verifyLoggedIn from "../3-Middleware/verify-loggedin"
 import VacationModel from "../4-Models/VacationModel"
+import verifyAdmin from "../3-Middleware/verify-Admin"
 
-const router= express.Router()
+const router = express.Router()
 
 // get All vacations
 router.get("/vacations", async( request: Request, response: Response,next: NextFunction)=>{
@@ -30,9 +31,9 @@ router.get("/vacations/:vacationId([0-9]+)", async(request: Request, response: R
 
 // post ONE vacation
 
-router.post("/vacations", async (request: Request, response: Response, next:NextFunction)=>{
+router.post("/vacations", verifyLoggedIn, verifyAdmin, async (request: Request, response: Response, next:NextFunction)=>{
     try{
-        request.body.image= request.files?.image
+        request.body.image = request.files?.image
         const newVacation = new VacationModel(request.body)
         const addedVacation = await vacationLogic.postNewVacation(newVacation)
         response.status(201).json(addedVacation)
@@ -43,10 +44,10 @@ router.post("/vacations", async (request: Request, response: Response, next:Next
 
 // alter ONE vacation
 
-router.put("/vacations/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
+router.put("/vacations/:vacationId([0-9]+)", verifyLoggedIn, async(request: Request, response: Response,next: NextFunction)=>{
     try{
         request.body.image= request.files?.image
-        request.body.vacationId= +request.params.vacationId
+        request.body.vacationId = +request.params.vacationId
         const vacationToUpdate = new VacationModel(request.body)
         const updatedVacation = await vacationLogic.putVacation(vacationToUpdate)
         response.status(201).json(updatedVacation)
@@ -54,7 +55,7 @@ router.put("/vacations/:vacationId([0-9]+)", async(request: Request, response: R
         next(err)
     }
 })
-router.delete("/vacations/:vacationId", async (request: Request, response: Response,next: NextFunction)=>{
+router.delete("/vacations/:vacationId([0-9]+)", verifyLoggedIn, async (request: Request, response: Response,next: NextFunction)=>{
     try{
         const vacationId= +request.params.vacationId
         await vacationLogic.deleteVacation(vacationId)
@@ -69,7 +70,7 @@ router.delete("/vacations/:vacationId", async (request: Request, response: Respo
 
 router.get("/vacations/images/:imageName", async (request: Request, response: Response,next: NextFunction)=>{
     try{
-            let imagename = request.params?.imageName
+        let imagename= request.params?.imageName
             const file = path.join(__dirname,"..", "1-Assets", "images" , imagename) 
             response.sendFile(file)
     }catch(err:any){
@@ -89,7 +90,7 @@ router.get("/vacation_by_continent/:continent_Id", async (request: Request, resp
 })
 
 // save followers
-router.post("/follow/:userId([0-9]+)/:vacationId([0-9]+)", async (request: Request, response: Response, next:NextFunction)=>{
+router.post("/follow/:userId([0-9]+)/:vacationId([0-9]+)", verifyLoggedIn, async (request: Request, response: Response, next:NextFunction)=>{
     try{
         const userId = +request.params.userId
         const vacationId = +request.params.vacationId

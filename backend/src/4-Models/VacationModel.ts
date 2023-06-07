@@ -1,6 +1,5 @@
 import joi from "joi"
-import UserModel from "./UserModel"
-import fileUpload, { UploadedFile } from "express-fileupload"
+import { UploadedFile } from "express-fileupload"
 
 class VacationModel{
     public vacationId : number
@@ -34,7 +33,7 @@ class VacationModel{
         endingDate: joi.string().min(1).required(),
         price: joi.string().min(1).max(10000).required(),
         image: joi.required(),
-        imageName: joi.string().min(2).max(250).required(),
+        imageName: joi.string().min(2).max(250).optional(),
         continentId: joi.number().required()
     })
 
