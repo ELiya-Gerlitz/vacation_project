@@ -31,8 +31,8 @@ function Login(): JSX.Element {
             <h3>Login</h3>
               <div className="rightDiv">
                 <form onSubmit={handleSubmit(send)}>
-                    <FloatingLabel  controlId="floatingInput" label="Usernme" className="mb-3 input">
-                        <Form.Control className="input" type="text" placeholder="username" {...register('username', CredentialsModel.usernameValidation)}/>
+                    <FloatingLabel  controlId="floatingInput" label="Email" className="mb-3 input">
+                        <Form.Control className="input" type="text" placeholder="email" {...register('email', CredentialsModel.emailValidation)}/>
                     </FloatingLabel>
 
                     <FloatingLabel className="input" controlId="floatingPassword" label="Password">
