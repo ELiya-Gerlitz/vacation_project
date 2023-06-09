@@ -1,6 +1,7 @@
 .form-component-wrapper {
     display: flex;
     height: 100%;
+    border-radius: 50px;
   }
   
   .image-sectionOfForm {
@@ -20,8 +21,7 @@
     background: #e0e5ec;
     flex: 1.33;
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column; /* Add this line to center align content vertically */
+    /* flex-direction: column; Add this line to center align content vertically */
   }
   

@@ -1,7 +1,7 @@
 import axios from "axios";
 import VacationModel from "../Models/VacationModel";
 import appConfig from "../Utils/AppConfig";
-import { VacationActionTypes, VacationStore } from "../Components/Redux/VacationState";
+import { VacationActionTypes, VacationStore } from "../Redux/VacationState";
 
 
 async function getAllVacations( userId : number ):Promise<VacationModel[]>{

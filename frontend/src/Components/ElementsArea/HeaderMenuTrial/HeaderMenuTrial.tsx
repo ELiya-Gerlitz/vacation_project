@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./HeaderMenuTrial.css";
-import { AuthStore } from "../../Redux/AuthState";
+import { AuthStore } from "../../../Redux/AuthState";
 
 function HeaderMenuTrial(): JSX.Element {
 	const navigate = useNavigate()

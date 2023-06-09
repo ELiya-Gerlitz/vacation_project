@@ -2,7 +2,37 @@
 	height: 100vh;
 }
 
-.Register button:hover {
-	color: green;
+.Register {
+    height: 100vh;
+	background: #e0e5ec;
+    display: grid; 
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+}
+
+.Register .input{      
+    text-align: center;
+    width: 300px;
+    line-height: 1.5;
+    font-size: small;
+}
+
+.Register h3{
+margin-top: 40px;
+line-height: 4;
+font-weight: bold;
+text-decoration: overline;
+}
+
+.Register .outerBoxOfInput {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.Register form {
+margin-top: auto;
+margin-bottom: auto;
+display: block;
 }
 

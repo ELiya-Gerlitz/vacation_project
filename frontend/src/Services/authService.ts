@@ -2,7 +2,7 @@ import axios from "axios";
 import UserModel from "../Models/UserModel";
 import appConfig from "../Utils/AppConfig";
 import CredentialsModel from "../Models/CredentialsModel";
-import { AuthActionTypes, AuthStore } from "../Components/Redux/AuthState";
+import { AuthActionTypes, AuthStore } from "../Redux/AuthState";
 
 
 async function register(user: UserModel):Promise<void>{
