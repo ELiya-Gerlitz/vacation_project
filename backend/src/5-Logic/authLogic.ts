@@ -13,7 +13,7 @@ async function register(user:UserModel):Promise<string>{
     const err = user.validate()
     if(!err) throw new ValidationErrorModel(err)
 
-    if (await isEmailTaken(user.email)) throw new ValidationErrorModel(`Username ${user.email} is already taken`);
+    if (await isEmailTaken(user.email)) throw new ValidationErrorModel(`Email is already taken`);
 
     // Hash password:
     user.password = cyber.hash(user.password);

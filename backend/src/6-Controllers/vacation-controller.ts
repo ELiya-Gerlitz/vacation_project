@@ -9,9 +9,10 @@ import verifyAdmin from "../3-Middleware/verify-Admin"
 const router = express.Router()
 
 // get All vacations
-router.get("/vacations", async( request: Request, response: Response,next: NextFunction)=>{
+router.get("/vacations/:userId", async( request: Request, response: Response,next: NextFunction)=>{
     try{
-        const vacations = await vacationLogic.getAllVacations()
+        const userId = +request.params.userId
+        const vacations = await vacationLogic.getAllVacationsWithFollowDetails(userId)
         response.json(vacations)
     }catch(err:any){
         next(err)
@@ -19,7 +20,7 @@ router.get("/vacations", async( request: Request, response: Response,next: NextF
 })
 
 // // get single vacation according to the vacationId
-router.get("/vacations/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
+router.get("/vacations/singleVacation/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
     try{
         const vacationId= +request.params.vacationId
         const singleVacation = await vacationLogic.getOneVacation(vacationId)

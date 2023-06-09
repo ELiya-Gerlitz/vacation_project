@@ -2,7 +2,6 @@ class UserModel{
     public userId: number
     public firstName: string
     public lastName: string
-    // public username: string
     public email: string
     public password: string
 
@@ -17,12 +16,6 @@ public static lastNameValidation = {
     minLength: {value: 4, message: "at least 2 characters required!"},
     maxLength: {value: 100, message: "not over 100 characters!"},
 }
-
-// public static usernameValidation = {
-//     required:{value: true, message: "username required!"},
-//     minLength:{value: 4, message: "username has to be longer than 2 characters!"},
-//     maxLength:{value: 200, message: "too long username!"},
-// }
 
 public static emailValidation = {
     required:{value: true, message: "email required!"},

@@ -39,9 +39,5 @@ server.use("*", routeNotFound)
 
 server.use(catchAll)
 
-
-directory222()
-
-
 server.listen(appConfig.port, ()=> console.log(`I am listening to port ${appConfig.port}`))
 console.log("I am app")

@@ -8,6 +8,9 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import HeartOnelineDrawn from "../../ElementsArea/HeartOnelineDrawn/HeartOnelineDrawn";
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
+import FormLayout from "../../ElementsArea/formLayout/formLayout";
+import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
+
 
 
 function Login(): JSX.Element {
@@ -21,28 +24,31 @@ function Login(): JSX.Element {
             authService.login(data)
                 .then(() => { 
                     alert("successfully logged in")
-                    navigate("/home") })
+                    navigate("/destinations") })
                 .catch(err => {alert(err)
                 console.log(err)})
         }
 
     return (
-        <div className="Login">
-            <h3>Login</h3>
-              <div className="rightDiv">
-                <form onSubmit={handleSubmit(send)}>
-                    <FloatingLabel  controlId="floatingInput" label="Email" className="mb-3 input">
-                        <Form.Control className="input" type="text" placeholder="email" {...register('email', CredentialsModel.emailValidation)}/>
-                    </FloatingLabel>
-
-                    <FloatingLabel className="input" controlId="floatingPassword" label="Password">
-                        <Form.Control className="input" type="password" placeholder="Password" {...register('password', CredentialsModel.passwordValidation)} />
-                    </FloatingLabel>
-
-                    <FrameBtn btnString="Login"/>
-                </form> 
-            </div>
-        </div>
+        <FormLayout
+        imageSrc={surfing}
+        formContent={
+          <div className="Login">
+              <h3>Login</h3>
+              <form onSubmit={handleSubmit(send)}>
+                <FloatingLabel controlId="floatingInput" label="Email" className="mb-3 input">
+                  <Form.Control className="input" type="text" placeholder="email" {...register('email', CredentialsModel.emailValidation)} />
+                </FloatingLabel>
+  
+                <FloatingLabel className="input" controlId="floatingPassword" label="Password">
+                  <Form.Control className="input" type="password" placeholder="Password" {...register('password', CredentialsModel.passwordValidation)} />
+                </FloatingLabel>
+  
+                <FrameBtn btnString="Login" />
+              </form>
+          </div>
+        }
+      />
     );
 }
 

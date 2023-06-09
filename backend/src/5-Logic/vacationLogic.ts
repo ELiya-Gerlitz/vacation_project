@@ -10,16 +10,32 @@ import VacationModel from "../4-Models/VacationModel";
 // import handleFiles from "../2-Utils/handleFiles";
 
 
-async function getAllVacations():Promise<VacationModel[]>{
-    const sql=`
-        SELECT v.vacationId, v.destination, v.description, DATE_FORMAT(v.startingDate, '%d.%m.%Y') AS startingDate, 
-        DATE_FORMAT(v.endingDate, '%d.%m.%Y') AS endingDate , v.price, v.imageName, c.continentName
-        FROM vacations AS v JOIN continents AS c
-        ON v.continentId = c.continentId
-    `
-    const vacations = await dal.execute(sql)
-    return vacations
+async function getAllVacationsWithFollowDetails(userId: number): Promise<VacationModel[]> {
+    const sql = `
+    SELECT DISTINCT
+	V.*,
+	EXISTS(SELECT * FROM followers WHERE vacationId = F.vacationId AND userId = ?) AS isFollowing,
+	COUNT(F.userId) AS followersCount
+    FROM vacations as V LEFT JOIN followers as F
+    ON V.vacationId = F.vacationId
+    GROUP BY vacationId
+    ORDER BY startingDate DESC
+    `;
+
+    const vacations = await dal.execute(sql, [userId]);
+    return vacations;
 }
+
+// async function getAllVacations():Promise<VacationModel[]>{
+//     const sql=`
+//         SELECT v.vacationId, v.destination, v.description, DATE_FORMAT(v.startingDate, '%d.%m.%Y') AS startingDate, 
+//         DATE_FORMAT(v.endingDate, '%d.%m.%Y') AS endingDate , v.price, v.imageName, c.continentName
+//         FROM vacations AS v JOIN continents AS c
+//         ON v.continentId = c.continentId
+//     `
+//     const vacations = await dal.execute(sql)
+//     return vacations
+// }
 
 async function getOneVacation(vacationId :number):Promise<VacationModel>{
     const sql= `
@@ -133,26 +149,6 @@ async function deleteVacation( vacationId: number ):Promise<void>{
     if(info.affectedRows===0) throw new ResourceNotFoundErrorModel(vacationId)
 }
 
-// //Brauche ich das überhaupt? Ja! Für den <select> Tag in den UpdateBook.
-// async function getAllGenres():Promise<GenreModel[]>{
-//     const sql=`
-//     SELECT * FROM genre
-//     `
-//     const genres :OkPacket= await dal.execute(sql)
-//     return genres
-// }
-
-// async function getOneGenre(id: number):Promise<GenreModel>{
-//     const sql=`
-//     SELECT * FROM genre
-//     WHERE genreId = ?
-//     `
-//     const genreNames : OkPacket = await dal.execute(sql, [id])
-//     const genreName = genreNames[0]
-//     if(!genreName) throw new ResourceNotFoundErrorModel(id)
-//     return genreName
-// }
-
 async function getVacationsByContinentName(continent_Id : string):Promise<VacationModel[]>{
     const sql = `
     SELECT * FROM vacations
@@ -206,7 +202,8 @@ async function unfollow( userId: number, vacationId :number ):Promise<void>{
     
 
 export default {
-    getAllVacations,
+    getAllVacationsWithFollowDetails,
+    // getAllVacations,
     getOneVacation,
     postNewVacation,
     putVacation,

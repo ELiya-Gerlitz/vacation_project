@@ -8,6 +8,8 @@ class VacationModel{
     public image : FileList
     public imageName : string
     public continentId : number
+    public isFollowing : boolean
+    public followersCount : number
 
 
 }
