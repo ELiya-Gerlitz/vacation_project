@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import VacationService from "../../../Services/VacationService";
 import "./DestinationsNavBar.css";
 import VacationModel from "../../../Models/VacationModel";
 import appConfig from "../../../Utils/AppConfig";
+import Card from "../../ElementsArea/Card/Card";
+import { AuthStore } from "../../../Redux/AuthState";
 
 function DestinationsNavBar(): JSX.Element {
 	const [destinationsFiltered, setDestinationsFiltered] = useState<VacationModel[]>()
@@ -17,8 +19,32 @@ const handleClick = (continentId : string)=> {    //the continent is a string fo
 	})
     .catch((err:any)=>console.log(err))
 }  
+
+
+
+
+
+
+const userIdLoggedIn = AuthStore.getState().user.userId
+const [vacations, setVacations] = useState<VacationModel[]>()
+
+useEffect(()=>{
+	VacationService.getAllVacations(userIdLoggedIn)
+	.then(vacations => {
+		setVacations(vacations)
+	})
+	.catch(err=> console.log(err))
+},[])
     return (
         <div className="DestinationsNavBar gallery-section2">
+
+
+                <div className="cardInserter">
+               {vacations && vacations.map(v=> <span key={v.vacationId}><Card cardContents={v}/></span>)}
+                </div>
+
+
+			
 		<section className="page-heading">
 			<div className="container">
 				<h2>Destinations</h2>

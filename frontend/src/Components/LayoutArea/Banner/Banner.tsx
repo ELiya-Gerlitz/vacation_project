@@ -17,6 +17,9 @@ function Banner(): JSX.Element {
 			</div>
 			 <div id="owl-four-nav" className="owl-nav"></div>
 		{/* <!-- <div className="banner"> */}
+		<div className="bufferZone">
+
+		</div>
         </div>
     );
 }

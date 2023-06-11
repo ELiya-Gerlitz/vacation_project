@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 import FormLayout from "../../ElementsArea/formLayout/formLayout";
 import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
+import skiing from "../../../Assets/images/skii.jpg"
 
 
 function Register(): JSX.Element {
@@ -26,10 +27,17 @@ function Register(): JSX.Element {
                 .catch(err => console.log(err))
             }
     }
+
+   const pic = [
+    skiing,
+    surfing
+]
+const num = Math.floor(Math.random()* pic.length)
+
    
-    return (
+       return (
         <FormLayout
-        imageSrc={surfing}
+        imageSrc={pic[num]}
         formContent={
         <div className="Register">
             <form onSubmit={handleSubmit(send)}>

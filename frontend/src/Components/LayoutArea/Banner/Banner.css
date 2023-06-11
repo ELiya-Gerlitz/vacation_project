@@ -23,32 +23,17 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	margin-top: 5em;
+	color: #fff;
+
 }
 
 .banner .container h3 {
 	font-weight: normal;
 	/*font-size: 2rem;*/
-}
+	color: #fff;
 
-/*==Banner Owl Carousel===*/
-#owl-four-nav {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
 }
-
-.banner .owl-nav .owl-prev, .banner .owl-nav .owl-next{
-	/*font-size: 4rem;*/
-	font-weight: bold;
-	background: transparent;
-	border: none;
-	/*color: #fff;*/
-	cursor: pointer;
-}
-
-.banner #owl-four-nav {
-	position: absolute;
-	top: 40%;
-	left: 0;
-	z-index: 9;
+.bufferZone {
+	height: 40px;
+	background-color: aliceblue;
 }

@@ -10,6 +10,7 @@ import HeartOnelineDrawn from "../../ElementsArea/HeartOnelineDrawn/HeartOneline
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 import FormLayout from "../../ElementsArea/formLayout/formLayout";
 import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
+import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 
 
 
@@ -30,9 +31,16 @@ function Login(): JSX.Element {
             }
         }
 
+        
+   const pic = [
+    snowBoard,
+    surfing
+]
+const num = Math.floor(Math.random()* pic.length)
+
     return (
         <FormLayout
-        imageSrc={surfing}
+        imageSrc={pic[num]}
         formContent={
           <div className="Login">
               <form onSubmit={handleSubmit(send)}>

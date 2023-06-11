@@ -1,3 +1,15 @@
 .Home {
+	height: 100vh;
+	text-align: center;
+	margin-top: 4em;
 	
 }
+
+.Home h2{
+	font-weight: bold;
+
+}
+/* .Home .cardInserter{
+	height: 50%;
+    width: 50%;
+} */

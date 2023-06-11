@@ -6,61 +6,73 @@
 	/*background-color: #323E54;
 	max-height: 100px;
 }*/
-/*!
-Theme Name: edulab
-Theme URI: http://underscores.me/
-Author: Underscores.me
-Author URI: http://underscores.me/
-Description: Description
-Version: 1.0.0
-License: GNU General Public License v2 or later
-License URI: LICENSE
-Text Domain: edulab
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+/* .Header{
+	background-color: #003053;
+} */
 
-This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share what you've learned with others.
+.nav ul {
+	list-style: none;
+	background-color: #444;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+  }
+  .nav li {
+	font-family: 'Oswald', sans-serif;
+	font-size: 1.2em;
+	line-height: 40px;
+	height: 40px;
+	border-bottom: 1px solid #888;
+  }
+   
+  .nav a {
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	transition: .3s background-color;
+  }
+   
+  .nav a:hover , li:hover{
+	background-color: #005f5f;
+	cursor: pointer;
+  }
+   
+  .nav a.active {
+	background-color: #fff;
+	color: #444;
+	cursor: default;
+  }
+   
+  @media screen and (min-width: 600px) {
+	.nav li {
+	  width: 120px;
+	  border-bottom: none;
+	  height: 50px;
+	  line-height: 50px;
+	  font-size: 1.4em;
+	}
+   
+	/* Option 1 - Display Inline */
+	.nav li {
+	  display: inline-block;
+	  margin-right: -4px;
+	}
+   
+	/* Options 2 - Float
+	.nav li {
+	  float: left;
+	}
+	.nav ul {
+	  overflow: auto;
+	  width: 600px;
+	  margin: 0 auto;
+	}
+	.nav {
+	  background-color: #444;
+	}
+	*/
+  }
 
-edulab is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
-Underscores is distributed under the terms of the GNU GPL v2 or later.
-
-Normalizing styles have been helped along thanks to the fine work of
-Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
-*/
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-# Normalize
-# Typography
-# Elements
-# Forms
-# Navigation
-	## Links
-	## Menus
-# Accessibility
-# Alignments
-# Clearings
-# Widgets
-# Content
-	## Posts and pages
-	## Comments
-# Infinite scroll
-# Media
-	## Captions
-	## Galleries
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-# Normalize
---------------------------------------------------------------*/
-/* normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
-
-/* Document
-	 ========================================================================== */
-
-/**
- * 1. Correct the line height in all browsers.
- * 2. Prevent adjustments of font size after orientation changes in iOS.
- */
 
  html {
 	font-size: 62.5%;
@@ -634,7 +646,7 @@ a:hover, a:active {
 /*======Page Header=============*/
 
 .top-header {
-	/*background: #1c3961;*/
+	background: #1c3961;
 }
 
 .top-header a {

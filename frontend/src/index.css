@@ -1,0 +1,13 @@
+form {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: block;
+    animation-name: example;
+    animation-duration: 4s;
+    position: relative;
+    }
+    
+    @keyframes example {
+        0%   { left:500px; top:0px;}
+        100%  { left:0px; top:0px;}
+      }
