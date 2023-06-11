@@ -1,0 +1,306 @@
+	/*===Footer Links Section============*/
+
+	.page-footer .footer-first-section .container {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		grid-gap: 40px;
+	}
+
+	.page-footer .footer-first-section .container .box-wrap {
+		width: 100%;
+	}
+
+	.footer-first-section .container .box-wrap header h1 {
+		font-size: 2.5em;
+	}
+
+	.footer-first-section .container .box-wrap p,
+	.footer-first-section .container .box-wrap h4,
+	.footer-first-section .container .box-wrap ul li a
+	 {
+		font-size: 1.7em;
+	}
+
+	.footer-first-section .container .box-wrap ul li a {
+		margin-left: 15px;
+	}
+
+	.footer-first-section .container .box-wrap ul li {
+		margin-bottom: 25px;
+	}
+
+	.footer-first-section .recent-course-wrap {
+		justify-content: unset;
+	}
+
+	.footer-first-section .recent-course-wrap .course-name {
+		margin-left: 15px;
+	}
+
+	.footer-first-section .container .box-wrap .quick-contact textarea {
+		margin-top: 35px;
+		margin-bottom: 35px;
+	}
+
+	/*==Footer Line Part=====*/
+	.page-footer .footer-second-section .footer-line {
+		display: none;
+	}
+
+	.page-footer .footer-second-section .social-list {
+		width: 100%;
+	}
+
+	.page-footer .footer-second-section .social-list li {
+		margin-right: 11%;
+	}
+
+	.page-footer .footer-second-section .social-list li a svg {
+		font-size: 30px;
+	}
+
+	.page-footer .footer-last-section {
+		margin-top: 20px;
+	}
+
+
+
+
+
+	
+	/*==footere=============*/
+
+	.page-footer .footer-second-section .social-list li {
+		margin-right: 15%;
+	}
+
+	.page-footer .footer-second-section .social-list li:first-child {
+		margin-left: 40px;
+		margin-bottom: 30px;
+	}
+
+	.page-footer .footer-second-section .social-list li:nth-child(4){
+		margin-left: 26%;
+	}
+
+	/*=======Page Footer================*/
+
+.page-footer .footer-first-section .container {
+	padding-top: 3.75em;
+	padding-bottom: 4.6875em;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.page-footer .footer-first-section .container .box-wrap {
+	width: 23.077%;
+}
+
+.footer-first-section .box-wrap header {
+	position: relative;
+	padding-bottom: 1.25em;
+	margin-bottom: 1.875em;
+}
+
+.footer-first-section .box-wrap header h1 {
+	/*font-size: 1.8rem;*/
+	/*font-family: 'Raleway', sans-serif;*/
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+.footer-first-section .box-wrap header::after {
+	position: absolute;
+	content: "";
+	border: 1px solid #fff;
+	bottom: 0;
+	width: 13%;
+}
+
+.footer-first-section .box-wrap p {
+	/*font-size: 1.4rem;*/
+	/*font-family: 'Raleway', sans-serif;*/
+	margin-bottom: 1.857em;
+}
+
+.footer-first-section .box-wrap h4 {
+	border-top: 1px solid #fff;
+	padding-top: 1.1428em;
+	padding-bottom: 1.1428em;
+	font-weight: normal;
+	/*font-size: 1.4rem;*/
+}
+
+.footer-first-section .box-wrap h4 svg {
+	margin-right: 10px;
+}
+
+.footer-first-section .box-wrap ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.footer-first-section .box-wrap ul li {
+	margin-bottom: 1em;
+}
+
+.footer-first-section .box-wrap ul li:before {
+	content: "";
+	border: solid #fff;
+  	border-width: 0 2px 2px 0;
+  	display: inline-block;
+  	padding: 3px;
+  	margin-right: 7px;
+  	transform: rotate(-45deg);
+  	-webkit-transform: rotate(-45deg);
+}
+
+
+.footer-first-section .recent-course-wrap {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	/*font-family: 'Raleway', sans-serif;*/
+	border-bottom: 1px solid #fff;
+	margin-bottom: 1.25em;
+}
+
+.footer-first-section .recent-course-wrap img {
+	border: none;
+	border-radius: 5px;
+	height: 60px;
+}
+
+.footer-first-section .recent-course-wrap .course-name h3 {
+	/*font-size: 1.6rem;*/
+}
+
+.footer-first-section .recent-course-wrap .course-name p {
+	/*font-size: 1.4rem;*/
+}
+
+.footer-first-section .recent-course-wrap .course-name p span {
+	text-decoration: line-through;
+	margin-right: 10px;
+}
+
+.footer-first-section .quick-contact input {
+	/*background: #000;*/
+	/*color: #fff;*/
+	/*font-size: 1.4rem;*/
+	padding: 1em;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.footer-first-section .quick-contact textarea {
+	/*background: #000;*/
+	/*color: #fff;*/
+	/*font-size: 1.4rem;*/
+	padding: 1em;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.footer-first-section .quick-contact button {
+	width: 100%;
+	/*background: #fff;*/
+	/*color: #000;*/
+	/*font-size: 1.4rem;*/
+	padding: 1.6rem;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+}
+/*=====footer-second-section===*/
+
+.footer-second-section .container {
+	display: flex;
+	flex: 1;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.footer-second-section .footer-line {
+	border: 1px solid #fff;
+	width: 40%;
+}
+
+.page-footer .footer-second-section .social-list {
+	width: 19%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.page-footer .footer-second-section .social-list li:first-child {
+	margin-left: 20px;
+}
+
+.page-footer .footer-second-section .social-list li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+/*======footer-last-section====*/
+
+.footer-last-section .container {
+	padding-top: 2.1875em;
+	padding-bottom: 2.4375em;
+	text-align: center;
+}
+
+.footer-last-section .container p span {
+	padding-right: 1em;
+	padding-left: 1em;
+}
+
+
+
+
+		/*====What other say=============*/
+		.what-other-say .container .wrap-others-say {
+			width: 600px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+	
+		/*=====Lates New Section====*/
+		.news-detail {
+			top: 35%;
+		}
+	
+		/*==Footer Line Part=====*/
+		.page-footer .footer-second-section .footer-line {
+			width: 30%;
+		}
+	
+		.footer-second-section .footer-line:first-child {
+			margin-left: 0;
+			margin-right: 2em;
+		}
+	
+		.footer-second-section .footer-line:last-child {
+			margin-right: 0;
+			margin-left: 2em;
+		}
+	
+		.page-footer .footer-second-section .social-list {
+			width: 30%;
+		}
+			/*==Footer Line Part=====*/
+	.page-footer .footer-second-section .footer-line {
+		width: 38%;
+	}
+
+	.page-footer .footer-second-section .social-list {
+		width: 23%;
+	}
+	

@@ -5,10 +5,11 @@ import VacationModel from "../../../Models/VacationModel";
 import appConfig from "../../../Utils/AppConfig";
 import Card from "../../ElementsArea/Card/Card";
 import { AuthStore } from "../../../Redux/AuthState";
+import Card3D from "../../ElementsArea/Card3D/Card3D";
+import ToggleButton from "../../ElementsArea/ToggleButton/ToggleButton";
 
 function DestinationsNavBar(): JSX.Element {
 	const [destinationsFiltered, setDestinationsFiltered] = useState<VacationModel[]>()
-
 
 const handleClick = (continentId : string)=> {    //the continent is a string for including the "all" fetching.
     VacationService.getVacationsByContinentId(continentId)
@@ -19,11 +20,6 @@ const handleClick = (continentId : string)=> {    //the continent is a string fo
 	})
     .catch((err:any)=>console.log(err))
 }  
-
-
-
-
-
 
 const userIdLoggedIn = AuthStore.getState().user.userId
 const [vacations, setVacations] = useState<VacationModel[]>()
@@ -37,14 +33,13 @@ useEffect(()=>{
 },[])
     return (
         <div className="DestinationsNavBar gallery-section2">
-
-
-                <div className="cardInserter">
-               {vacations && vacations.map(v=> <span key={v.vacationId}><Card cardContents={v}/></span>)}
-                </div>
-
-
-			
+			<br></br>
+			<br></br>
+			<br></br>
+<ToggleButton/>
+				<section className="articles">
+               {vacations && vacations.map(v=><Card3D key={v.vacationId} cardContents={v} />)}
+			   </section>			
 		<section className="page-heading">
 			<div className="container">
 				<h2>Destinations</h2>
@@ -62,7 +57,7 @@ useEffect(()=>{
 					<button className="button" data-filter=".antarctica"  onClick={()=>handleClick("6")}>Antarctica</button>
 				</div>
 			</div>
-			<div>
+			<div className="real-destination-area">
 				{destinationsFiltered && destinationsFiltered.map(d=> <span key={d.vacationId}>{d.destination}{d.isFollowing }<img src={appConfig.imgUrl + d.imageName} alt="vacationImg"/></span>)}
 			</div>
         </div>

@@ -1,0 +1,19 @@
+.toggle-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-button .heart {
+  margin-right: 8px;
+}
+
+.toggle-button.following .heart {
+  color: pink;
+}
+
+.toggle-button.not-following .heart {
+  color: grey;
+}

@@ -1,6 +1,5 @@
 import Gallery from "../../VacationArea/Gallery/Gallery";
 import Banner from "../Banner/Banner";
-import CardLayout from "../../VacationArea/CardLayout/CardLayout";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -17,7 +16,6 @@ function Layout(): JSX.Element {
             
             <Banner/>
             <Main/>
-            {/* <CardLayout/> */}
             
             <Footer/>
         </div>

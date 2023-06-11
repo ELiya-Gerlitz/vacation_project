@@ -5,14 +5,6 @@ function Footer(): JSX.Element {
     return (
         <div className="Footer">
 
-{/* <!-- Latest News CLosed --> */}
-		<section className="query-section">
-			<div className="container">
-				<p>Any Queries? Ask us a question at<a href="tel:+9779813639131"><i className="fas fa-phone"></i> +977 9813639131</a></p>
-			</div>
-		</section>
-		{/* <!-- End of Query Section --> */}
-
 <footer className="page-footer" itemProp="footer" itemScope itemType="http://schema.org/WPFooter">
 			<div className="footer-first-section">
 				<div className="container">

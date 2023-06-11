@@ -1,0 +1,9 @@
+.real-destination-area {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.cardInserter {
+    width: 100%;
+}
+

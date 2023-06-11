@@ -1,13 +1,24 @@
+html, body {
+  background-color: rgb(185, 209, 255);
+}
 form {
     margin-top: auto;
     margin-bottom: auto;
     display: block;
-    animation-name: example;
+    animation-name: slideInFromRight;
     animation-duration: 4s;
     position: relative;
     }
     
-    @keyframes example {
+    @keyframes slideInFromRight {
         0%   { left:500px; top:0px;}
         100%  { left:0px; top:0px;}
       }
+
+
+
+html {  /* wichtig !!!!!!!*/
+	font-size: 62.5%;
+	line-height: 1.15; /* 1 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+}

@@ -1,3 +1,215 @@
-.About {
+	/*====Popular Courses======*/
+	.learn-desining-banner {
+		top: 50% !important;
+	}
+
+	/*==Why Us Section========*/
+
+	.whyUs-section .container {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.whyUs-section .container .featured-points {
+		width: 100%;
+	}
+
+	.whyUs-section .container .whyus-wrap {
+		width: 100%;
+	}
+
+	/*===Upcomming Events====*/
+	.events-section .event-wrap {
+		margin-left: 10px;
+	}
+
+	/*===What other say============*/
+	.what-other-say .container {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.what-other-say .container .wrap-others-say {
+		margin-right: 0;
+		margin-left: 0;
+		padding-right: 1em;
+		padding-left: 1em;
+		width: 100%;
+	}
+
+
+	/*===================================
+		Blog Page
+	=====================================*/
+
+	.page-content .container .grid-container{
+		grid-template-columns: repeat(1,1fr);
+		grid-gap: 30px;
+	}
+
+	/*=====================================
+		Contact Page
+	======================================*/
+
+	.contact-page-section .people-info-wrap form span{
+		flex-flow: column wrap;
+	}
+
+	.contact-page-section .people-info-wrap form span .name,
+	 .contact-page-section .people-info-wrap form span .email {
+	 	width: 100%;
+	 }
+
+	.contact-page-section .people-info-wrap form span .name {
+		margin-bottom: 0.9375em;
+	}
+
+	/*=====================================
+		About Page
+	======================================*/
+	.team-members .developer-grid {
+		grid-template-columns: repeat(1, 1fr);
+		width: 270px;
+	}
+
+
+
+
 	
+/*==testimonial======*/
+
+.what-other-say .container {
+	padding-top: 60px;
+	padding-bottom: 70px;
+	text-align: center;
+	color: #fff;
 }
+
+.what-other-say .container .owl-carousel{
+	margin-top: 50px;
+}
+
+.article-subtitle{
+	font-size: 3rem;
+	color: #12a84e;
+}
+
+.what-other-say .container .head {
+	font-size: 3.5rem;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	line-height: 1.9em;
+	position: relative;
+}
+
+.what-other-say .container .head::after {
+	position: absolute;
+	content: '';
+	border: 2.5px solid #12a84e;
+	width: 90px;
+	left: 46%;
+	bottom: 0;
+}
+
+
+.what-other-say .container .customer-item {
+	width: 83%;
+	background: #000;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 10px;
+}
+
+.what-other-say .container .customer-item .border {
+	border: 1px solid #fff;
+	padding: 34px 65px 45px 65px;
+}
+
+.what-other-say .container .customer-item .customer-img, 
+.what-other-say .container .customer-item .rateYo{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.what-other-say .container .customer-item .rateYo {
+	margin-top: 10px;
+}
+
+.what-other-say .container .customer-item .customer-img {
+	width: 90px;
+	margin-bottom: 14px;
+}
+
+.what-other-say .container .customer-item figcaption {
+	font-size: 1.6rem;
+}
+
+.what-other-say .container .customer-item .customer-review {
+	margin-top: 1.875em;
+	font-size: 1.6rem;
+}
+
+.what-other-say .owl-theme .owl-nav {
+	position: absolute;
+	top: 45%;
+	font-size: 2.4rem;
+	color: #fff;
+	width: 100%;
+	margin-top: 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.what-other-say .owl-carousel .owl-nav button.owl-prev,
+.what-other-say .owl-nav button.owl-next {
+	border: 2px solid #fff;
+	padding: 0.2rem 1.4rem !important;
+}
+
+.what-other-say .owl-carousel .owl-nav button.owl-prev:hover,
+.what-other-say .owl-nav button.owl-next:hover {
+	background: #12a84e;
+}
+
+
+
+.what-other-say .wrap-others-say #carousel .flex-active-slide {
+    height: 220px;
+    width: 150px !important;
+}
+
+#carousel .flex-active-slide .hidden {
+	display: block;
+}
+
+#carousel {
+	margin-bottom: 0;
+}
+
+#carousel .flex-viewport {
+	overflow-y: visible !important;
+}
+
+.hidden {
+	display: none;
+}
+	.about-upper-section .who-we-are {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.about-upper-section .our-story {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.team-members .developer-grid {
+		grid-template-columns: repeat(2, 1fr);
+		width: 570px;
+	}
+
+
+

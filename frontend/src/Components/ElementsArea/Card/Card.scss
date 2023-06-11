@@ -55,6 +55,10 @@ $firaSans: "Fira Sans", sans-serif;
 //   background-color: #f0f8e1;
 // }
 
+.Card {
+  width: 30%;
+}
+
 .card-hover {
   $root: &;
   width: 360px;
@@ -62,6 +66,7 @@ $firaSans: "Fira Sans", sans-serif;
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+  // margin-right: -200px;
 
   &:has(#{$root}__link:hover) {
     #{$root}__extra {

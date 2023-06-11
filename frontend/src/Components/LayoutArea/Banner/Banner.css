@@ -37,3 +37,17 @@
 	height: 40px;
 	background-color: aliceblue;
 }
+	/*====Banner=======================*/
+
+	.banner .container h1 {
+		font-size: 3.5rem;
+		margin-top: 2em;
+	}
+
+	.banner .container h3 {
+		font-size: 1.8rem;
+	}
+
+	.banner .container h1 {
+		margin-top: 3em;
+	}

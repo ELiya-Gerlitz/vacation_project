@@ -6,7 +6,6 @@ import authService from "../../../Services/authService";
 import { AuthStore } from "../../../Redux/AuthState";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import HeartOnelineDrawn from "../../ElementsArea/HeartOnelineDrawn/HeartOnelineDrawn";
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 import FormLayout from "../../ElementsArea/formLayout/formLayout";
 import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
