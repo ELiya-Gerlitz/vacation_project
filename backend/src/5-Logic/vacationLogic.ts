@@ -19,7 +19,7 @@ async function getAllVacationsWithFollowDetails(userId: number): Promise<Vacatio
     FROM vacations as V LEFT JOIN followers as F
     ON V.vacationId = F.vacationId
     GROUP BY vacationId
-    ORDER BY startingDate DESC
+    ORDER BY vacationId ASC
     `;
 
     const vacations = await dal.execute(sql, [userId]);

@@ -5,7 +5,7 @@ import appConfig from "../../../Utils/AppConfig";
 import ToggleButton from "../ToggleButton/ToggleButton";
 
 interface CardContents{
-  cardContents : VacationModel
+  vacationModel : VacationModel
   userId : number
 }
    
@@ -17,12 +17,12 @@ function Card3D( props : CardContents): JSX.Element {
                 <div className="article-wrapper">
                   <figure>
                           <div className="toggleController">
-                              <ToggleButton userId={props.userId} vacationId={props.cardContents.vacationId}/>
+                              <ToggleButton userId={props.userId} vacationModel={props.vacationModel} />
                           </div>  
-                    <img src={appConfig.imgUrl + props.cardContents.imageName} alt="" />
+                    <img src={appConfig.imgUrl + props.vacationModel.imageName} alt="" />
                   </figure>
                   <div className="article-body">
-                    <h2>This is some title</h2>
+                    <h2>This is some title &nbsp;{props.vacationModel.vacationId}&nbsp;{props.vacationModel.destination}</h2>
                     <p>
                       Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
                     </p>
