@@ -22,7 +22,7 @@ function Card( props : CardContents ): JSX.Element {
                       <h3 className="card-hover__title">
                         Make your <span>{props.cardContents.destination}</span> You are following Yes/No  {props.cardContents.isFollowing ? <span>💗</span>  : <span>🤍</span>}   <div className={props.cardContents.isFollowing ? "active" : ""}></div>
                       </h3>
-                      <ToggleButton/>
+                      {/* <ToggleButton/> */}
                       <p className="card-hover__text"></p>
                       <a href="#" className="card-hover__link">
                           <span> How Many Folloers follow this vacation {props.cardContents.followersCount}</span>

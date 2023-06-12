@@ -31,7 +31,7 @@ async function register(user:UserModel):Promise<string>{
     return token
 }
 
-async function login(credentials: CredentialsModel):Promise<string>{
+async function login( credentials: CredentialsModel ):Promise<string>{
 
     const err = credentials.validate()
     if(err) throw new ValidationErrorModel(err)

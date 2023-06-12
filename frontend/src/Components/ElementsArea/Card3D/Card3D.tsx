@@ -6,6 +6,7 @@ import ToggleButton from "../ToggleButton/ToggleButton";
 
 interface CardContents{
   cardContents : VacationModel
+  userId : number
 }
    
 
@@ -16,7 +17,7 @@ function Card3D( props : CardContents): JSX.Element {
                 <div className="article-wrapper">
                   <figure>
                           <div className="toggleController">
-                              <ToggleButton/>
+                              <ToggleButton userId={props.userId} vacationId={props.cardContents.vacationId}/>
                           </div>  
                     <img src={appConfig.imgUrl + props.cardContents.imageName} alt="" />
                   </figure>

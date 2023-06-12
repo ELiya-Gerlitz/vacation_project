@@ -5,9 +5,6 @@ function MenuHeader(): JSX.Element {
     return (
         <div className="MenuHeader">
 
-
-
-
 <div className="main-header">
 				<div className="container">
 					<div className="logo-wrap" itemProp="logo">

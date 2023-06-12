@@ -36,9 +36,8 @@ useEffect(()=>{
 			<br></br>
 			<br></br>
 			<br></br>
-<ToggleButton/>
 				<section className="articles">
-               {vacations && vacations.map(v=><Card3D key={v.vacationId} cardContents={v} />)}
+               {vacations && vacations.map(v=><Card3D key={v.vacationId} cardContents={v} userId={userIdLoggedIn} />)}
 			   </section>			
 		<section className="page-heading">
 			<div className="container">
