@@ -3,7 +3,6 @@ import VacationModel from "../../../Models/VacationModel";
 import "./Card.css";
 import "./Card.scss";
 import appConfig from "../../../Utils/AppConfig";
-import Heart from "../Heart/Heart";
 import ToggleButton from "../ToggleButton/ToggleButton";
 
 interface CardContents{
@@ -16,7 +15,6 @@ function Card( props : CardContents ): JSX.Element {
         <br></br>
         <br></br>
         <br></br>
-        <Heart/>
         <div className="card-hover">
               <div className="card-hover__content">
                       <h3 className="card-hover__title">

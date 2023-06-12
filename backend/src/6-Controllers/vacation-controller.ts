@@ -91,7 +91,7 @@ router.get("/vacation_by_continent/:continent_Id", async (request: Request, resp
 })
 
 // save followers
-router.post("/follow/:userId([0-9]+)/:vacationId([0-9]+)",  async (request: Request, response: Response, next:NextFunction)=>{
+router.post("/follow/:userId([0-9]+)/:vacationId([0-9]+)", async (request: Request, response: Response, next:NextFunction)=>{
     try{
         const userId = +request.params.userId
         const vacationId = +request.params.vacationId

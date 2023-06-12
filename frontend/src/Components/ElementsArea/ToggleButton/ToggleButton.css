@@ -17,3 +17,8 @@
 .toggle-button.not-following .heart {
   color: grey;
 }
+.toggle-button {
+  background-color: aliceblue;
+  border-radius: 13px;
+  /* opacity: 50%; */
+}

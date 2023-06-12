@@ -26,22 +26,22 @@ export interface AuthActions{
     payload?:  string
 }
 
-export function AuthReducer(currentState=new AuthState(), action: AuthActions):AuthState{
+export function AuthReducer(currentState = new AuthState(), action: AuthActions):AuthState{
     const newState= {...currentState}
     switch(action.type){
         case AuthActionTypes.Register:
         case AuthActionTypes.Login:
-            newState.token= action.payload
+            newState.token = action.payload
             const container: {user: UserModel} = jwtDecode(newState.token)
             newState.user = container.user
             sessionStorage.setItem("token", newState.token)
-
-            break
+            break;
            
         case AuthActionTypes.Logout:
             newState.token = null
             newState.user = null
             sessionStorage.removeItem("token")
+            break;
     }
 
     return newState 
