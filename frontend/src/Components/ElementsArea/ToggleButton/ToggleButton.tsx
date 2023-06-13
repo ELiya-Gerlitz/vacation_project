@@ -26,7 +26,7 @@ function ToggleButton( props : DataInterface ): JSX.Element {
               VacationService.unfollow(props.userId, props.vacationModel.vacationId)
               .then(()=> {
                 "successfully updated unfollow!"
-                setFollowersCount((props.vacationModel.followersCount) -1)
+                setFollowersCount((props.vacationModel.followersCount))
               })
               .catch(err => console.log(err))
       }else {

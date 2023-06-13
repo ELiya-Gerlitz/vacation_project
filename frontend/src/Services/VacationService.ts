@@ -31,19 +31,19 @@ async function getAllVacations( userId : number ):Promise<VacationModel[]>{
     
 async function follow(userId :number, vacationId: number): Promise<void> {
     console.log(userId, vacationId)
-    const headers = { authorization: "Bearer " + AuthStore.getState().token}
-    console.log(headers.authorization)
+    // const headers = { authorization: "Bearer " + AuthStore.getState().token}
+    // console.log(headers.authorization)
 
-    const response = await axios.post<any>(appConfig.followURL + userId + "/" + vacationId, {headers})
+    const response = await axios.post<any>(appConfig.followURL + userId + "/" + vacationId)
  
     console.log("I have arrived just before the Redux follow")
     VacationStore.dispatch({type: VacationActionTypes.Follow, payload: {vacationId}})
 }
 
 async function unfollow(userId :number, vacationId: number): Promise<void> {
-    const headers = { authorization: "Bearer " + AuthStore.getState().token}
+    // const headers = { authorization: "Bearer " + AuthStore.getState().token}
 
-    const response = await axios.delete<void>(appConfig.unfollowURL + userId + "/" + vacationId, {headers})
+    const response = await axios.delete<void>(appConfig.unfollowURL + userId + "/" + vacationId)
 
     console.log("I have arrived just before the Redux unfollow")
     VacationStore.dispatch({type: VacationActionTypes.Unfollow, payload: {vacationId}})
