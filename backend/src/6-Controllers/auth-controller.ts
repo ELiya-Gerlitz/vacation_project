@@ -18,7 +18,7 @@ router.post("/auth/register", async(request:Request, response: Response, next:Ne
 router.post("/auth/login", async(request:Request, response: Response, next:NextFunction)=>{
     try{
         const credentials = new CredentialsModel(request.body)
-        console.log(credentials)
+        console.log(credentials.email, credentials.password)
         const token = await authLogic.login(credentials)                 
         response.json(token)
     }catch(err:any){
