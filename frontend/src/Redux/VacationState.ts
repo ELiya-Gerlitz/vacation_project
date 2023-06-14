@@ -46,30 +46,19 @@ export function VacationReducer( currentState= new VacationState(), action: Vaca
     //     break;
 
     case VacationActionTypes.Follow:
-      // let vacationIndex = newState.vacations.findIndex( v => v.vacationId === action.payload.vacationId)
       let vacationToUpdateFollow = newState.vacations.find( v => v.vacationId === action.payload.vacationId)
       if (vacationToUpdateFollow) {
-        vacationToUpdateFollow.isFollowing = true
-        vacationToUpdateFollow.followersCount = vacationToUpdateFollow.followersCount +1
-        // newState.vacations[vacationIndex].isFollowing = true
-        // newState.vacations[vacationIndex].followersCount = (newState.vacations[vacationIndex].followersCount) +1
-        console.log("is Following is updated in Redux as `true`")
+            vacationToUpdateFollow.isFollowing = true
+            vacationToUpdateFollow.followersCount = vacationToUpdateFollow.followersCount +1
       }
         break;
 
         case VacationActionTypes.Unfollow:
-          console.log("action payload" + action.payload)
-          console.log("I am in the Redux in Unfollow")
-          console.log(newState.vacations)
-            //  let vacIndex = newState.vacations.findIndex( v => v.vacationId === action.payload.vacationId)
              let vacationToUnfollow = newState.vacations.find( v => v.vacationId === action.payload.vacationId)
-             vacationToUnfollow.isFollowing =  false
-             vacationToUnfollow.followersCount = vacationToUnfollow.followersCount -1
-            // if (vacIndex > -1) {
-            //   newState.vacations[vacIndex].isFollowing = false
-            //   newState.vacations[vacIndex].followersCount = (newState.vacations[vacIndex].followersCount) -1
-              console.log("is Following is updated in Redux as `false`")
-            // }
+             if(vacationToUnfollow){
+                  vacationToUnfollow.isFollowing =  false
+                  vacationToUnfollow.followersCount = vacationToUnfollow.followersCount -1
+             }
               break;
    }
 

@@ -7,6 +7,7 @@ import Card from "../../ElementsArea/Card/Card";
 import { AuthStore } from "../../../Redux/AuthState";
 import Card3D from "../../ElementsArea/Card3D/Card3D";
 import ToggleButton from "../../ElementsArea/ToggleButton/ToggleButton";
+import DestinationFilters from "../DestinationFilters/DestinationFilters";
 
 function DestinationsNavBar(): JSX.Element {
 	const [destinationsFiltered, setDestinationsFiltered] = useState<VacationModel[]>()
@@ -33,6 +34,7 @@ useEffect(()=>{
 },[])
     return (
         <div className="DestinationsNavBar gallery-section2">
+			<DestinationFilters/>
 			<br></br>
 			<br></br>
 			<br></br>

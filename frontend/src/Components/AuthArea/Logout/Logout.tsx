@@ -7,7 +7,7 @@ function Logout(): JSX.Element {
 
 const navigate= useNavigate()
 
-// useEffect(()=>{
+useEffect(()=>{
 
     authService.logout()
     .then(()=>{
@@ -15,7 +15,7 @@ const navigate= useNavigate()
         navigate("/home")
     })
     .catch(err=>console.log(err))
-// },[])
+},[])
       
     return  null
 }

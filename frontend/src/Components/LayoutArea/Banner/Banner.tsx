@@ -15,8 +15,6 @@ function Banner(): JSX.Element {
 				<h1>welcome to vacation pro</h1>
 				<h3>With our advanced search feature you can now find the trips for you...</h3>
 			</div>
-			 <div id="owl-four-nav" className="owl-nav"></div>
-		{/* <!-- <div className="banner"> */}
 		<div className="bufferZone">
 
 		</div>

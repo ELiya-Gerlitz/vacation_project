@@ -25,6 +25,39 @@ async function getAllVacationsWithFollowDetails(userId: number): Promise<Vacatio
     const vacations = await dal.execute(sql, [userId]);
     return vacations;
 }
+    async function allVacationsByIsFollowing( userId :number):Promise<VacationModel[]>{
+        const sql = `
+        SELECT DISTINCT
+        V.*,
+        EXISTS(SELECT * FROM followers WHERE vacationId = F.vacationId AND userId = ?) AS isFollowing,
+        COUNT(F.userId) AS followersCount
+        FROM vacations as V LEFT JOIN followers as F
+        ON V.vacationId = F.vacationId
+        WHERE F.userId = ? AND F.vacationId > 0
+        GROUP BY vacationId
+        ORDER BY vacationId ASC
+     
+        `;
+
+        const vacations = await dal.execute(sql, [userId, userId]);
+        return vacations;
+
+    }
+
+
+
+   
+     
+    // SELECT DISTINCT
+    // V.*,
+    // EXISTS(SELECT * FROM followers WHERE vacationId = F.vacationId AND userId = 15) AS isFollowing,
+    // COUNT(F.userId) AS followersCount
+    // FROM vacations as V LEFT JOIN followers as F
+    // ON V.vacationId = F.vacationId
+    // WHERE F.userId = 15 AND F.vacationId > 0
+    // GROUP BY vacationId
+    // ORDER BY vacationId ASC;
+
 
 // async function getAllVacations():Promise<VacationModel[]>{
 //     const sql=`
@@ -203,6 +236,7 @@ async function unfollow( userId: number, vacationId :number ):Promise<void>{
 
 export default {
     getAllVacationsWithFollowDetails,
+    allVacationsByIsFollowing,
     // getAllVacations,
     getOneVacation,
     postNewVacation,

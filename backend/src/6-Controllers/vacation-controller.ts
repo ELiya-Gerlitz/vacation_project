@@ -19,6 +19,17 @@ router.get("/vacations/:userId", async( request: Request, response: Response,nex
     }
 })
 
+// // get allVacations arr [] according to isFollowing
+router.get("/vacation_by_isFollowing/:userId([0-9]+)", async (request: Request, response: Response,next: NextFunction)=>{
+    try{
+            let userId= +request.params?.userId
+            const vacations = await vacationLogic.allVacationsByIsFollowing(userId)
+            response.json(vacations)
+    }catch(err:any){
+        next(err)
+    }
+})
+
 // // get single vacation according to the vacationId
 router.get("/vacations/singleVacation/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
     try{
@@ -89,6 +100,7 @@ router.get("/vacation_by_continent/:continent_Id", async (request: Request, resp
         next(err)
     }
 })
+
 
 // save followers
 router.post("/follow/:userId([0-9]+)/:vacationId([0-9]+)", verifyLoggedIn, async (request: Request, response: Response, next:NextFunction)=>{
