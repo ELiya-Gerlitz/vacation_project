@@ -20,7 +20,7 @@ async function addVacation(vacation : VacationModel): Promise<void> {
     newVacation.isFollowing = false
     newVacation.followersCount = 0 
     console.log(newVacation)
-    // VacationStore.dispatch({type: , payload: newBook})
+    VacationStore.dispatch({type: VacationActionTypes.AddVacation, payload: newVacation})
 }
 
 export default {

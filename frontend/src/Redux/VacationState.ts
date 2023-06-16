@@ -7,11 +7,11 @@ export class VacationState {
 
 export enum VacationActionTypes {
     FetchAllVacations,
-    AddVacation,
     // UpdateVacation,
     // DeleteVacation,
     Follow,
-    Unfollow
+    Unfollow,
+    AddVacation,
 
 }
 
@@ -26,10 +26,6 @@ export function VacationReducer( currentState= new VacationState(), action: Vaca
 
     case VacationActionTypes.FetchAllVacations:
         newState.vacations = action.payload
-        break;
-
-    case VacationActionTypes.AddVacation:
-        newState.vacations.push(action.payload)
         break;
 
     // case VacationActionTypes.UpdateVacation:
@@ -61,6 +57,11 @@ export function VacationReducer( currentState= new VacationState(), action: Vaca
                   vacationToUnfollow.followersCount = vacationToUnfollow.followersCount -1
              }
               break;
+
+
+        case VacationActionTypes.AddVacation:
+            newState.vacations.push(action.payload)
+            break;
    }
 
    return newState
