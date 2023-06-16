@@ -8,6 +8,7 @@ import About from "../About/About";
 import DestinationsNavBar from "../../VacationArea/DestinationNavBar/DestinationsNavBar";
 import Logout from "../../AuthArea/Logout/Logout";
 import DestinationFilters from "../../VacationArea/DestinationFilters/DestinationFilters";
+import AddVacation from "../../AdminArea/AddVacation/AddVacation";
 // import DestinationFilters from "../../VacationArea/DestinationFilters/DestinationFilters";
 
 function Routing(): JSX.Element {
@@ -21,8 +22,8 @@ function Routing(): JSX.Element {
                 <Route path="/auth/login" element={<Login/>} />
                 <Route path="/about" element={<About/>} />
                 <Route path="/logout" element={<Logout/>} />
-                <Route path="/destinations" element={<DestinationFilters/>
-} />
+                <Route path="/destinations" element={<DestinationFilters/>} />
+                <Route path="/Admin/add-vacation" element={<AddVacation/>} />
             </Routes>
         </div>
     );
