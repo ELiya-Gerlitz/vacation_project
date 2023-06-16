@@ -12,7 +12,7 @@ async function register(user: UserModel):Promise<void>{
         AuthStore.dispatch({type: AuthActionTypes.Register, payload: token})
 }
 
-async function login(credentials: CredentialsModel):Promise<void>{
+async function login( credentials: CredentialsModel ):Promise<void>{
     const response = await axios.post<string>(appConfig.loginURL, credentials)
     const token = response.data
     AuthStore.dispatch({type: AuthActionTypes.Login, payload: token})

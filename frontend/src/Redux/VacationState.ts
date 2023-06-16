@@ -7,11 +7,12 @@ export class VacationState {
 
 export enum VacationActionTypes {
     FetchAllVacations,
-    AddVacation,
-    UpdateVacation,
-    DeleteVacation,
+    // AddVacation,
+    // UpdateVacation,
+    // DeleteVacation,
     Follow,
     Unfollow
+
 }
 
 export interface VacationActions {

@@ -1,3 +1,10 @@
 .DestinationFilters {
-	
+    margin-top: 20px
+}
+
+
+
+.DestinationFilters .filterImg {
+    width: 12rem;
+    cursor: pointer;
 }

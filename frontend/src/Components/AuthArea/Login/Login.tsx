@@ -24,7 +24,8 @@ function Login(): JSX.Element {
               authService.login(data)
               .then(() => { 
                   alert("successfully logged in")
-                  navigate("/destinations") })
+                  navigate("/destinations") 
+                })
               .catch(err => {alert(err)
               console.log(err)})
             }

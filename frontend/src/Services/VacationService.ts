@@ -8,13 +8,29 @@ import { AuthStore } from "../Redux/AuthState";
 async function getAllVacations( userId : number ):Promise<VacationModel[]>{
     let vacations = VacationStore.getState().vacations;
     if (vacations.length === 0) {
-    const response = await axios.get<VacationModel[]>(appConfig.getAllVacations + userId)
+    const response = await axios.get<VacationModel[]>(appConfig.VacationsURL + userId)
     vacations = response.data
     VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: vacations });
 }
     return vacations
 }
+ async function filterByisFollowing():Promise<VacationModel[]>{
+    let allVacationsUnfiltered = VacationStore.getState().vacations;
+    // console.log(allVacationsUnfiltered)
+    if(allVacationsUnfiltered.length === 0) {
+        console.log("empty")
+        allVacationsUnfiltered = await getAllVacations (AuthStore.getState().user.userId)
+        VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: allVacationsUnfiltered });
+    }
+    const filteredVacations = VacationStore.getState().vacations.filter( v => v.isFollowing === true)
+    console.log("I am in the Service"+filteredVacations + "great")
+    return filteredVacations
+    
+    // const filteredVacations = VacationStore.getState().vacations.filter(v => v.isFollowing === true)
+    // return filteredVacations
+}
 
+// Missing Redux
     async function getSingleVacation( vacationId : number ):Promise<VacationModel[]>{
         const response = await axios.get<VacationModel[]>(appConfig.getSingleVacation + vacationId)
         const vacations = response.data
@@ -41,6 +57,7 @@ async function unfollow(userId :number, vacationId: number): Promise<void> {
 
 export default {
     getAllVacations,
+    filterByisFollowing,
     getVacationsByContinentId,
     getSingleVacation,
     follow,
