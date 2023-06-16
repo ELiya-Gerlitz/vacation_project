@@ -7,7 +7,7 @@ import RoleModel from "../4-Models/RoleModel";
 
 const secretKey= "patzkareshet@!"
 
-function createToken(user:UserModel):Promise<string>{
+function createToken( user:UserModel ):Promise<string>{
 
     delete user.password
 

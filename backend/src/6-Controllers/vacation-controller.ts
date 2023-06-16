@@ -19,17 +19,6 @@ router.get("/vacations/:userId", async( request: Request, response: Response,nex
     }
 })
 
-// // get allVacations arr [] according to isFollowing
-router.get("/vacation_by_isFollowing/:userId([0-9]+)", async (request: Request, response: Response,next: NextFunction)=>{
-    try{
-            let userId= +request.params?.userId
-            const vacations = await vacationLogic.allVacationsByIsFollowing(userId)
-            response.json(vacations)
-    }catch(err:any){
-        next(err)
-    }
-})
-
 // // get single vacation according to the vacationId
 router.get("/vacations/singleVacation/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
     try{
@@ -43,11 +32,12 @@ router.get("/vacations/singleVacation/:vacationId([0-9]+)", async(request: Reque
 
 // post ONE vacation
 
-router.post("/vacations", verifyLoggedIn, verifyAdmin, async (request: Request, response: Response, next:NextFunction)=>{
+router.post("/vacations", async (request: Request, response: Response, next:NextFunction)=>{
     try{
         request.body.image = request.files?.image
         const newVacation = new VacationModel(request.body)
         const addedVacation = await vacationLogic.postNewVacation(newVacation)
+        console.log(addedVacation)
         response.status(201).json(addedVacation)
     }catch(err:any){
         next(err)

@@ -7,7 +7,7 @@ export class VacationState {
 
 export enum VacationActionTypes {
     FetchAllVacations,
-    // AddVacation,
+    AddVacation,
     // UpdateVacation,
     // DeleteVacation,
     Follow,
@@ -28,9 +28,9 @@ export function VacationReducer( currentState= new VacationState(), action: Vaca
         newState.vacations = action.payload
         break;
 
-    // case VacationActionTypes.AddVacation:
-    //     newState.vacations.push(action.payload)
-    //     break;
+    case VacationActionTypes.AddVacation:
+        newState.vacations.push(action.payload)
+        break;
 
     // case VacationActionTypes.UpdateVacation:
     //     let updatedVacationIndex = newState.vacations.findIndex(v=>v.vacationId === action.payload.vacationId)  //new details about one vacation

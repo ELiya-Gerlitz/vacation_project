@@ -32,10 +32,13 @@ async function register(user:UserModel):Promise<string>{
 }
 
 async function login( credentials: CredentialsModel ):Promise<string>{
-
+// try{
     const err = credentials.validate()
     if(err) throw new ValidationErrorModel(err)
-
+// }catch(err){
+//     console.log(err)
+// }
+   
      // get all users and see whether the userName && password exist.
      const sql =`
      SELECT * FROM users
