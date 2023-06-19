@@ -26,7 +26,7 @@ class VacationModel{
      }
      public static priceValidation = {
         required:{value: true, message: "price required!"},
-        min:{value: 4, message: "price has to cost more than 4 $!"},
+        min:{value: 0, message: "price has to cost more than 4 $!"},
         max:{value: 10000, message: "too high price!"},
     }
     

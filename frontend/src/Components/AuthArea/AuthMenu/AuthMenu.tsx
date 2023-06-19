@@ -1,12 +1,10 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./AuthMenu.css";
 import UserModel from "../../../Models/UserModel";
 import { useEffect, useState } from "react";
 import { AuthStore } from "../../../Redux/AuthState";
-import Logout from "../Logout/Logout";
 
 function AuthMenu(): JSX.Element {
- const navigate= useNavigate()
  const [user, setUser]=useState<UserModel>()
 
     useEffect(()=>{

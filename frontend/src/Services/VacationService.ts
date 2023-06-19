@@ -9,6 +9,7 @@ import ContinentModel from "../Models/ContinentModel";
 async function getAllVacations( userId : number ):Promise<VacationModel[]>{
     let vacations = VacationStore.getState().vacations;
     if (vacations.length === 0) {
+        alert("vacations.length === 0")
     const response = await axios.get<VacationModel[]>(appConfig.VacationsURL + userId)
     vacations = response.data
     VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: vacations });

@@ -4,6 +4,8 @@ class UserModel{
     public lastName: string
     public email: string
     public password: string
+    public role: string
+
 
 public static firstNameValidation = {
     required: {value: true, message: "firstName is required"},

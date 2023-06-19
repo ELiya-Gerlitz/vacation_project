@@ -3,10 +3,12 @@ import Zug from "../../../Assets/images/Zug.jpg"
 import VacationModel from "../../../Models/VacationModel";
 import appConfig from "../../../Utils/AppConfig";
 import ToggleButton from "../ToggleButton/ToggleButton";
+import UserModel from "../../../Models/UserModel";
+import ToggleButtonAdmin from "../ToggleButtonAdmin/ToggleButtonAdmin";
 
 interface CardContents{
   vacationModel : VacationModel
-  userId : number
+  user : UserModel
 }
    
 
@@ -17,7 +19,8 @@ function Card3D( props : CardContents): JSX.Element {
                 <div className="article-wrapper">
                   <figure>
                           <div className="toggleController">
-                              <ToggleButton userId={props.userId} vacationModel={props.vacationModel} />
+                            {props.user.role === "Admin"? <ToggleButtonAdmin userId={props.user.userId} vacationModel={props.vacationModel} /> : <ToggleButton userId={props.user.userId} vacationModel={props.vacationModel} />}
+                              {/* <ToggleButton userId={props.user.userId} vacationModel={props.vacationModel} /> */}
                           </div>  
                     <img src={appConfig.imgUrl + props.vacationModel.imageName} alt="" />
                   </figure>

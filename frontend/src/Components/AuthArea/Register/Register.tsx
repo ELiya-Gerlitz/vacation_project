@@ -43,6 +43,14 @@ const num = Math.floor(Math.random()* pic.length)
             <form onSubmit={handleSubmit(send)}>
             <h3>VACATION PRO Register</h3>
 
+            <FloatingLabel controlId="floatingInput" label="First Name" className="mb-3 input outerBoxOfInput">
+                  <Form.Control className="input" type="text" placeholder="First Name" {...register('firstName', UserModel.firstNameValidation)} />
+                </FloatingLabel>
+
+                <FloatingLabel controlId="floatingInput" label="Last Name" className="mb-3 input outerBoxOfInput">
+                  <Form.Control className="input" type="text" placeholder="Last Name" {...register('lastName', UserModel.lastNameValidation)} />
+                </FloatingLabel>
+
             <FloatingLabel controlId="floatingInput" label="Email" className="mb-3 input outerBoxOfInput">
                   <Form.Control className="input" type="email" placeholder="email" {...register('email', UserModel.emailValidation)} />
                 </FloatingLabel>

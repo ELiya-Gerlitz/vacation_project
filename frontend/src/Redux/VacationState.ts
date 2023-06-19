@@ -26,6 +26,7 @@ export function VacationReducer( currentState= new VacationState(), action: Vaca
 
     case VacationActionTypes.FetchAllVacations:
         newState.vacations = action.payload
+        alert("vacations inserted to store!")
         break;
 
     // case VacationActionTypes.UpdateVacation:

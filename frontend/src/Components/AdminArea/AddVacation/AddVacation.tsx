@@ -12,6 +12,7 @@ import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import ContinentModel from "../../../Models/ContinentModel";
+import { VacationStore } from "../../../Redux/VacationState";
 
 
 function AddVacation(): JSX.Element {
@@ -22,6 +23,7 @@ function AddVacation(): JSX.Element {
 
 
     useEffect(()=> {
+        alert(VacationStore.getState().vacations + "StoreGetState")
 VacationService.getAllContinents()
 .then((continents)=> {
 setContinents(continents)
@@ -31,7 +33,7 @@ setContinents(continents)
 
     const send= (data:VacationModel)=>{
         AdminService.addVacation(data)
-        .then(()=>{
+        .then(()=> {
             alert("vacation successfully added!")
             navigate("/home")
         })

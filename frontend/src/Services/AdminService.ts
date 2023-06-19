@@ -6,6 +6,8 @@ import { VacationActionTypes, VacationStore } from "../Redux/VacationState";
 
 
 async function addVacation(vacation : VacationModel): Promise<void> {
+console.log(VacationStore.getState().vacations)
+
     const myForm = new FormData()
     myForm.append("destination", vacation.destination)
     myForm.append("description", vacation.description)

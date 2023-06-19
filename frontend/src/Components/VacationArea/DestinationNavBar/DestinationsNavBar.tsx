@@ -22,11 +22,12 @@ const handleClick = (continentId : string)=> {    //the continent is a string fo
     .catch((err:any)=>console.log(err))
 }  
 
-const userIdLoggedIn = AuthStore.getState().user.userId
+// const userIdLoggedIn = AuthStore.getState().user.userId
+const userFromRedux = AuthStore.getState().user
 const [vacations, setVacations] = useState<VacationModel[]>()
 
 useEffect(()=>{
-	VacationService.getAllVacations(userIdLoggedIn)
+	VacationService.getAllVacations(userFromRedux.userId)
 	.then(vacations => {
 		setVacations(vacations)
 	})
@@ -39,7 +40,8 @@ useEffect(()=>{
 			<br></br>
 			<br></br>
 				<section className="articles">
-               {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} userId={userIdLoggedIn} />)}
+               {/* {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} userId={userIdLoggedIn} />)} */}
+               {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
 			   </section>			
 		<section className="page-heading">
 			<div className="container">

@@ -7,12 +7,13 @@ import VacationModel from "../../../Models/VacationModel";
 import { AuthStore } from "../../../Redux/AuthState";
 
 function DestinationFilters(): JSX.Element {
-    const userIdLoggedIn = AuthStore.getState().user.userId
+    // const userIdLoggedIn = AuthStore.getState().user.userId
+    const userFomRedux = AuthStore.getState().user
     const [vacations, setVacations] = useState<VacationModel[]>()
     const [filteredByIsFollowing, setFilteredByIsFollowing] = useState<VacationModel[]>()
 
 useEffect(()=>{
-	VacationService.getAllVacations(userIdLoggedIn)
+	VacationService.getAllVacations(userFomRedux.userId)
 	.then(vacations => {
 		setVacations(vacations)
 	})
@@ -34,8 +35,8 @@ alert("Hi!")
             <br></br>
             <br></br>
                 <section className="articles">
-                    {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} userId={userIdLoggedIn} />)}
-                    {filteredByIsFollowing && filteredByIsFollowing.map(v=><Card3D key={v.vacationId} vacationModel={v} userId={userIdLoggedIn} />)}
+                    {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFomRedux} />)}
+                    {filteredByIsFollowing && filteredByIsFollowing.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFomRedux} />)}
                 </section>		
 
         </div>
