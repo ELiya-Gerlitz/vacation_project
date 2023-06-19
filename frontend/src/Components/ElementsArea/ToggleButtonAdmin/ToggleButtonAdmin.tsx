@@ -40,15 +40,6 @@ const handleDelete = ()=> {
 
             {/* Delete btn ********************/}            
             <div className="flexer">
-                {/* <button className="toggle-button" onClick={handleDelete}>
-                        <lord-icon
-                            src="https://cdn.lordicon.com/qjwkduhc.json"
-                            trigger="hover"
-                            colors="primary:#c7166f,secondary:#848484,tertiary:#3080e8"
-                            >
-                        </lord-icon>
-                    <span className="text">Delete</span>
-                </button> */}
                 <ModalExample vacationId={props.vacationModel.vacationId}/>
             </div>
 

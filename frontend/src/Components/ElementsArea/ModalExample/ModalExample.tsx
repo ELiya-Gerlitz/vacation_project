@@ -42,12 +42,19 @@ function ModalExample( props : ModalInterface ): JSX.Element {
                     <span className="text">Delete</span>
                 </button>
 
-                <Modal show={show} onHide={handleClose}>
+     <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
             
-            <Modal.Body>Are you sure you want to delete the vacation?</Modal.Body>
+            <Modal.Body>Are you sure you want to delete the vacation?
+                <br>
+                </br>
+                <br>
+                </br>
+
+                It will be deleted permanently.
+            </Modal.Body>
 
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>

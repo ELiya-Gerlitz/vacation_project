@@ -9,7 +9,9 @@ import FormLayout from "../../ElementsArea/formLayout/formLayout";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
-import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
+import kite_surf from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
+import carrebean from "../../../Assets/images/Caribbean-All-inclusive-Family-Resorts.jpg"
+import parachute from "../../../Assets/images/parachute_colorful.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import ContinentModel from "../../../Models/ContinentModel";
 import { VacationStore } from "../../../Redux/VacationState";
@@ -23,13 +25,13 @@ function AddVacation(): JSX.Element {
 
 
     useEffect(()=> {
-        alert(VacationStore.getState().vacations + "StoreGetState")
-VacationService.getAllContinents()
-.then((continents)=> {
-setContinents(continents)
-})
-.catch(err=> console.log(err))
-    },[])
+            alert(VacationStore.getState().vacations + "StoreGetState")
+            VacationService.getAllContinents()
+            .then((continents)=> {
+            setContinents(continents)
+            })
+            .catch(err=> console.log(err))
+        },[])
 
     const send= (data:VacationModel)=>{
         AdminService.addVacation(data)

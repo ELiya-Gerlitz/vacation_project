@@ -20,7 +20,6 @@ function Card3D( props : CardContents): JSX.Element {
                   <figure>
                           <div className="toggleController">
                             {props.user.role === "Admin"? <ToggleButtonAdmin userId={props.user.userId} vacationModel={props.vacationModel} /> : <ToggleButton userId={props.user.userId} vacationModel={props.vacationModel} />}
-                              {/* <ToggleButton userId={props.user.userId} vacationModel={props.vacationModel} /> */}
                           </div>  
                     <img src={appConfig.imgUrl + props.vacationModel.imageName} alt="" />
                   </figure>

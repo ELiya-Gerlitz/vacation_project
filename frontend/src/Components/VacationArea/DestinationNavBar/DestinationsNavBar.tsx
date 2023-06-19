@@ -3,7 +3,6 @@ import VacationService from "../../../Services/VacationService";
 import "./DestinationsNavBar.css";
 import VacationModel from "../../../Models/VacationModel";
 import appConfig from "../../../Utils/AppConfig";
-import Card from "../../ElementsArea/Card/Card";
 import { AuthStore } from "../../../Redux/AuthState";
 import Card3D from "../../ElementsArea/Card3D/Card3D";
 import DestinationFilters from "../DestinationFilters/DestinationFilters";
@@ -32,6 +31,7 @@ useEffect(()=>{
 },[])
     return (
         <div className="DestinationsNavBar gallery-section2">
+			{userFromRedux?.role === "Admin" ? <button className="add-btn">add new Vacation!</button>: ""}
 			<DestinationFilters/>
 			<br></br>
 			<br></br>

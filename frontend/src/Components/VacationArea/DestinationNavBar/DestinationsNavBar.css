@@ -10,3 +10,9 @@
     margin-top: 20px
 }
 
+.DestinationsNavBar .add-btn {
+height: 200px;
+width: 100px;
+background-color: chartreuse;
+}
+

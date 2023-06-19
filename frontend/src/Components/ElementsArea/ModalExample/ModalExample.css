@@ -1,29 +1,34 @@
-.ModalExample {
-	
+.ModalExample .btn-secondary{
+	font-size: 30px;
 }
 .modal-content  {
     display: inline-block;
- background: rgb(170, 170, 221);    
- width: 200px;
+    background: rgb(202, 218, 230);  width: 250px;
+ height: 350px;
 
 }
 .modal-content> .modal-body{
-    background: rgb(169, 169, 240); 
+    background: rgb(202, 218, 230); 
     margin: 10px;   
     border-radius: 5px;
+    font-size: 16px;
 
 }
 .modal-content> .modal-header{
     background: rgb(17, 17, 39); 
     margin: 10px;   
     border-radius: 5px;
+    color: aliceblue;
+    text-align: center;
 
 }
 
 .modal-content> .modal-footer{
     background: rgb(17, 17, 39); 
-    margin: 10px;   
+    margin-left: 10px;   
+    margin-right: 10px;   
     border-radius: 5px;
+    margin-top: 70px;   
 
 }
 
