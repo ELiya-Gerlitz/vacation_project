@@ -26,6 +26,13 @@ console.log(VacationStore.getState().vacations)
     VacationStore.dispatch({type: VacationActionTypes.AddVacation, payload: newVacation})
 }
 
+
+async function deleteVacation( vacationId: number): Promise<void> {
+    await axios.delete<void>(appConfig.VacationsURL + vacationId, { headers: { authorization: "Bearer " + AuthStore.getState().token } })
+    VacationStore.dispatch({type: VacationActionTypes.DeleteVacation, payload: vacationId})
+}
+
 export default {
-    addVacation
+    addVacation,
+    deleteVacation
 }

@@ -8,7 +8,7 @@ export class VacationState {
 export enum VacationActionTypes {
     FetchAllVacations,
     // UpdateVacation,
-    // DeleteVacation,
+    DeleteVacation,
     Follow,
     Unfollow,
     AddVacation,
@@ -26,7 +26,7 @@ export function VacationReducer( currentState= new VacationState(), action: Vaca
 
     case VacationActionTypes.FetchAllVacations:
         newState.vacations = action.payload
-        alert("vacations inserted to store!")
+        // alert("vacations inserted to store!")
         break;
 
     // case VacationActionTypes.UpdateVacation:
@@ -36,12 +36,12 @@ export function VacationReducer( currentState= new VacationState(), action: Vaca
     //     }
     //     break;
 
-    // case VacationActionTypes.DeleteVacation:
-    //     let indexToDelete = newState.vacations.findIndex(v=> v.vacationId === action.payload)        
-    //     if(indexToDelete > -1){
-    //         newState.vacations.splice(indexToDelete, 1)
-    //     }
-    //     break;
+    case VacationActionTypes.DeleteVacation:
+        let indexToDelete = newState.vacations.findIndex(v=> v.vacationId === action.payload)        
+        if(indexToDelete > -1){
+            newState.vacations.splice(indexToDelete, 1)
+        }
+        break;
 
     case VacationActionTypes.Follow:
       let vacationToUpdateFollow = newState.vacations.find( v => v.vacationId === action.payload.vacationId)

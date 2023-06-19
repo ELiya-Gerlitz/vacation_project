@@ -6,7 +6,6 @@ import appConfig from "../../../Utils/AppConfig";
 import Card from "../../ElementsArea/Card/Card";
 import { AuthStore } from "../../../Redux/AuthState";
 import Card3D from "../../ElementsArea/Card3D/Card3D";
-import ToggleButton from "../../ElementsArea/ToggleButton/ToggleButton";
 import DestinationFilters from "../DestinationFilters/DestinationFilters";
 
 function DestinationsNavBar(): JSX.Element {
@@ -16,13 +15,11 @@ const handleClick = (continentId : string)=> {    //the continent is a string fo
     VacationService.getVacationsByContinentId(continentId)
     .then((destinationsFiltered)=>{
 		console.log(destinationsFiltered)
-		// console.log(destinationsFiltered.map(m=>m.isFollowing))
 		setDestinationsFiltered(destinationsFiltered)
 	})
     .catch((err:any)=>console.log(err))
 }  
 
-// const userIdLoggedIn = AuthStore.getState().user.userId
 const userFromRedux = AuthStore.getState().user
 const [vacations, setVacations] = useState<VacationModel[]>()
 
