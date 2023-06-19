@@ -1,59 +1,34 @@
-.AddVacation .large {
-	font-size: 13px;
-    padding-top: -5px;
-    /* text-align: center; */
-    /* padding-left: -200px; */
-}
-
-
-.AddVacation {
-    height: 100vh;
-	background: #e0e5ec;
-    display: grid; 
-    box-sizing: border-box;
-    justify-content: center;
-    text-align: center;
-    
-}
-
-.AddVacation .input{      
-    width: 300px;
-    line-height: 1.5;
-    font-size: small;
-}
-
-.AddVacation  .inputDate {
-    width: 300px;
-    line-height: 1.5;
-    font-size: small;
-    border-radius: 0.5rem;
-    height: 30px;
-    border: none;
-}
-
 
 .AddVacation h3{
-margin-top: 40px;
-line-height: 4;
-font-weight: bold;
-text-decoration: overline;
+  margin-top: 40px;
+  line-height: 4;
+  font-weight: bold;
+  text-decoration: overline;
+  }
+  
+.AddVacation form {
+  display: flex;
+  flex-direction: column;
 }
 
-.AddVacation .outerBoxOfInput {
-    margin-left: 3%;
-    margin-right: 3%;
-    
-}
-.insideText {
-    margin-left: auto ;
-    margin-right: auto ;
-    display: block;
-}
-.AddVacation .justifyLefy {
-    text-align: left;
-    padding-left: 20px;
-    font-size: 13px;
+.AddVacation .input,
+.AddVacation .inputDate,
+.AddVacation .insideText,
+.AddVacation .imageInput {
+  width: 300px;
+  height: 30px;
 }
 
+.AddVacation .insideText {
+  height: 100px;
+}
 
+.AddVacation .imageInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.AddVacation label {
+  margin-bottom: 5px;
+}

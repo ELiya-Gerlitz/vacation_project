@@ -72,38 +72,38 @@ setContinents(continents)
                 </FloatingLabel>
   
     {/* startingDate */}
-    <br></br>
-    <div className="justifyLefy">
-    <label htmlFor="startDate">starting date</label>
-    </div>
-    <br></br>
+
+    {/* <div className="justifyLefy"> */}
+    <label htmlFor="startDate" className="justifyLefy">starting date</label>
+    {/* </div> */}
+
     <input type="date" className="inputDate"  {...register('startingDate')} required></input>
-    <br></br>
+
 
     {/* endingDate */}
-    <div  className="justifyLefy">
-    <label htmlFor="endingDate">ending date</label>
-    </div>
-    <br></br>
+    {/* <div  className="justifyLefy"> */}
+    <label htmlFor="endingDate" className="justifyLefy">ending date</label>
+    {/* </div> */}
     <input type="date" className="inputDate" {...register('endingDate')} required></input>
     <br></br>
-    <br></br>
-
+    
       {/* price */}
                 <FloatingLabel controlId="floatingInput" label="price" className="mb-3 input outerBoxOfInput" >
                   <Form.Control className="input" type="number" placeholder="price" {...register('price')} />
                 </FloatingLabel>
 
       {/* select continent*/}
-                <FloatingLabel controlId="floatingSelect" label="selects a continent">
+                <FloatingLabel controlId="floatingSelect" label="selects a continent" className="input">
                     <Form.Select aria-label="Floating label select example" defaultValue="" {...register("continentId")}>
                         <option>Open this select menu</option>
                        {continents && continents.map(c=><option key={c.continentId} value={c.continentId}>{c.continentName}</option> )}
                     </Form.Select>
                 </FloatingLabel>
+                <br></br>
 
-
+                <div className="imageInput">
                 <input accept="image/*" type="file" onChange={imageChange} {...register("image")}/>
+                </div>
 
                      {/* {selectedImage &&  (<div ><p>{URL.createObjectURL(selectedImage)}</p></div>)}    // This (URL.createObjectURL) sets it as a url- string, rather than a File... */}
           {selectedImage &&  <div ><img src={URL.createObjectURL(selectedImage)} alt="PreviewImage"/></div>}

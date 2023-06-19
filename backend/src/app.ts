@@ -30,7 +30,7 @@ server.use(express.json())
 
 server.use(sanitize);
 
-server.use(fileUpload())
+server.use(fileUpload()) 
 
 server.use("/api", auth_controller)
 server.use("/api", vacation_router)
