@@ -3,6 +3,7 @@ import VacationModel from "../../../Models/VacationModel";
 import "./ToggleButtonAdmin.css";
 import VacationService from "../../../Services/VacationService";
 import AdminService from "../../../Services/AdminService";
+import ModalExample from "../ModalExample/ModalExample";
 
 interface DataInterface {
     vacationModel : VacationModel
@@ -39,7 +40,7 @@ const handleDelete = ()=> {
 
             {/* Delete btn ********************/}            
             <div className="flexer">
-                <button className="toggle-button" onClick={handleDelete}>
+                {/* <button className="toggle-button" onClick={handleDelete}>
                         <lord-icon
                             src="https://cdn.lordicon.com/qjwkduhc.json"
                             trigger="hover"
@@ -47,7 +48,8 @@ const handleDelete = ()=> {
                             >
                         </lord-icon>
                     <span className="text">Delete</span>
-                </button>
+                </button> */}
+                <ModalExample vacationId={props.vacationModel.vacationId}/>
             </div>
 
         </div>
