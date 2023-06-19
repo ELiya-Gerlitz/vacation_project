@@ -1,5 +1,8 @@
-.AddVacation {
-	
+.AddVacation .large {
+	font-size: 13px;
+    padding-top: -5px;
+    /* text-align: center; */
+    /* padding-left: -200px; */
 }
 
 
@@ -10,14 +13,24 @@
     box-sizing: border-box;
     justify-content: center;
     text-align: center;
+    
 }
 
 .AddVacation .input{      
-    text-align: center;
     width: 300px;
     line-height: 1.5;
     font-size: small;
 }
+
+.AddVacation  .inputDate {
+    width: 300px;
+    line-height: 1.5;
+    font-size: small;
+    border-radius: 0.5rem;
+    height: 30px;
+    border: none;
+}
+
 
 .AddVacation h3{
 margin-top: 40px;
@@ -29,4 +42,18 @@ text-decoration: overline;
 .AddVacation .outerBoxOfInput {
     margin-left: 3%;
     margin-right: 3%;
+    
 }
+.insideText {
+    margin-left: auto ;
+    margin-right: auto ;
+    display: block;
+}
+.AddVacation .justifyLefy {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 13px;
+}
+
+
+

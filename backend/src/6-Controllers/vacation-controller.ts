@@ -115,5 +115,15 @@ router.delete("/unfollow/:userId([0-9]+)/:vacationId([0-9]+)",verifyLoggedIn,  a
     }
 })
 
+router.get("/continents", async( request: Request, response: Response,next: NextFunction)=>{
+    try{
+        const continent = await vacationLogic.getAllContinents()
+        response.json(continent)
+    }catch(err:any){
+        next(err)
+    }
+})
+
+
 
 export default router

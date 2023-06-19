@@ -14,7 +14,7 @@ class VacationModel{
 
     public static destinationValidation = {
         required:{value: true, message: "destination required!"},
-        minLength:{value: 4, message: "emaildestination has to be longer than 2 characters!"},
+        minLength:{value: 4, message: "destination has to be longer than 2 characters!"},
         maxLength:{value: 200, message: "too long destination!"},
     }
     
@@ -26,8 +26,8 @@ class VacationModel{
      }
      public static priceValidation = {
         required:{value: true, message: "price required!"},
-        min:{value: 4, message: "price has to cost more than 2 $!"},
-        max:{value: 200, message: "too high price!"},
+        min:{value: 4, message: "price has to cost more than 4 $!"},
+        max:{value: 10000, message: "too high price!"},
     }
     
 }

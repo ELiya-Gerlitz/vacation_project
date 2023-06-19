@@ -7,6 +7,7 @@ import fsPromises from "fs/promises"
 import path from "path";
 import {v4 as uuid} from "uuid"
 import VacationModel from "../4-Models/VacationModel";
+import ContinentModel from "../4-Models/ContinentModel";
 // import handleFiles from "../2-Utils/handleFiles";
 
 
@@ -198,6 +199,15 @@ async function unfollow( userId: number, vacationId :number ):Promise<void>{
         const info :OkPacket = await dal.execute(sql, [userId, vacationId])
         if(info.affectedRows===0) throw new ResourceNotFoundErrorModel(vacationId)
     }
+
+
+    async function getAllContinents(): Promise<ContinentModel[]> {
+        const sql = `
+        SELECT * FROM continents
+        `;
+        const vacations = await dal.execute(sql);
+        return vacations;
+    }
     
 
 export default {
@@ -209,5 +219,6 @@ export default {
     getVacationsByContinentName,
     deleteVacation,
     follow,
-    unfollow
+    unfollow,
+    getAllContinents
 }
