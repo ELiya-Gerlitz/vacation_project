@@ -115,8 +115,8 @@ function EditVacation(): JSX.Element {
 
       {/* select continent*/}
                 <FloatingLabel controlId="floatingSelect" label="selects a continent" className="input">
-                    <Form.Select aria-label="Floating label select example" defaultValue={vacation && vacation.continentId} {...register("continentId")}>
-                        <option>Open this select menu</option>
+                    <Form.Select aria-label="Floating label select example"  {...register("continentId")}>
+                        {/* <option>Open this select menu</option> */}
                        {continents && continents.map(c=><option key={c.continentId} value={c.continentId}>{c.continentName}</option> )}
                     </Form.Select>
                 </FloatingLabel>
