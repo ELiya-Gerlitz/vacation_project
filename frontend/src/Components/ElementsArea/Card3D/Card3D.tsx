@@ -24,9 +24,9 @@ function Card3D( props : CardContents): JSX.Element {
                     <img src={appConfig.imgUrl + props.vacationModel.imageName} alt="" />
                   </figure>
                   <div className="article-body">
-                    <h2>This is some title &nbsp;{props.vacationModel.vacationId}&nbsp;{props.vacationModel.destination}</h2>
+                    <h2>This is some title &nbsp;{props.vacationModel.vacationId}&nbsp;{props.vacationModel.destination.substring(0, 10)}</h2>
                     <p>
-                      Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
+                      {props.vacationModel.description} | {props.vacationModel.startingDate}
                     </p>
                     <a href="#" className="read-more">
                       Read more <span className="sr-only">about this is some title</span>

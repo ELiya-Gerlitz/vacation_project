@@ -14,7 +14,6 @@ import carrebean from "../../../Assets/images/Caribbean-All-inclusive-Family-Res
 import parachute from "../../../Assets/images/parachute_colorful.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import ContinentModel from "../../../Models/ContinentModel";
-import { VacationStore } from "../../../Redux/VacationState";
 
 
 function AddVacation(): JSX.Element {
@@ -22,10 +21,12 @@ function AddVacation(): JSX.Element {
     const [continents, setContinents] = useState<ContinentModel[]>()
     const navigate= useNavigate()
     const [selectedImage, setSelectedImage] = useState();
+    const [startingDate, setStartingDate] = useState('');
+    const [endingDate, setEndingDate] = useState('');
 
 
     useEffect(()=> {
-            alert(VacationStore.getState().vacations + "StoreGetState")
+            // alert(VacationStore.getState().vacations + "StoreGetState")
             VacationService.getAllContinents()
             .then((continents)=> {
             setContinents(continents)
@@ -33,13 +34,29 @@ function AddVacation(): JSX.Element {
             .catch(err=> console.log(err))
         },[])
 
+        const handleStartingDateChange = (e : any) => {
+            setStartingDate(e.target.value);
+          };
+
+        const handleEndingDateChange = (e : any) => {
+            setEndingDate(e.target.value);
+          };
+
+   
     const send= (data:VacationModel)=>{
+  // eslint-disable-next-line no-restricted-globals
+        event.preventDefault()
+        if (startingDate && endingDate && startingDate <= endingDate) {
         AdminService.addVacation(data)
         .then(()=> {
             alert("vacation successfully added!")
             navigate("/home")
         })
         .catch(err=> console.log(err))
+    }else{
+        alert("Ending Date can't precede starting date!")
+
+    }
 }
     // This function will be triggered when the file field changes
     const imageChange = (e:any) => {
@@ -77,23 +94,19 @@ function AddVacation(): JSX.Element {
   
     {/* startingDate */}
 
-    {/* <div className="justifyLefy"> */}
     <label htmlFor="startDate" className="justifyLefy">starting date</label>
-    {/* </div> */}
 
-    <input type="date" className="inputDate"  {...register('startingDate')} required></input>
+    <input type="date" className="inputDate"  {...register('startingDate')} required  min={new Date().toISOString().split('T')[0]}  onChange={handleStartingDateChange} ></input>
 
 
     {/* endingDate */}
-    {/* <div  className="justifyLefy"> */}
     <label htmlFor="endingDate" className="justifyLefy">ending date</label>
-    {/* </div> */}
-    <input type="date" className="inputDate" {...register('endingDate')} required></input>
+    <input type="date" className="inputDate" {...register('endingDate')} required  onChange={handleEndingDateChange}></input>
     <br></br>
     
       {/* price */}
                 <FloatingLabel controlId="floatingInput" label="price" className="mb-3 input outerBoxOfInput" >
-                  <Form.Control className="input" type="number" placeholder="price" {...register('price')} />
+                  <Form.Control className="input" type="number" placeholder="price" {...register('price', VacationModel.priceValidation)} />
                 </FloatingLabel>
 
       {/* select continent*/}

@@ -12,6 +12,7 @@ class VacationModel{
     // extra Fields
     public isFollowing : boolean
     public followersCount : number
+    public continentName : string
 
 
     public static destinationValidation = {
@@ -28,10 +29,10 @@ class VacationModel{
      }
      public static priceValidation = {
         required:{value: true, message: "price required!"},
-        min:{value: 0, message: "price has to cost more than 4 $!"},
+        min:{value: 0, message: "price can't be negative!"},
         max:{value: 10000, message: "too high price!"},
     }
-    
+   
 }
 
 export default VacationModel

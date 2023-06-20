@@ -12,10 +12,8 @@ import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ContinentModel from "../../../Models/ContinentModel";
-import { VacationStore } from "../../../Redux/VacationState";
 import VacationService from "../../../Services/VacationService";
 import AdminService from "../../../Services/AdminService";
-
 
 
 function EditVacation(): JSX.Element {
@@ -25,6 +23,8 @@ function EditVacation(): JSX.Element {
     const params = useParams()
     const [selectedImage, setSelectedImage] = useState();
     const [vacation, setVacation] = useState<VacationModel>()
+    const [startingDate, setStartingDate] = useState('');
+    const [endingDate, setEndingDate] = useState('');
 
     
     useEffect(()=>{
@@ -55,14 +55,30 @@ function EditVacation(): JSX.Element {
         .catch(err=> console.log(err))
     },[])
 
+    const handleStartingDateChange = (e : any) => {
+      setStartingDate(e.target.value);
+    };
+
+  const handleEndingDateChange = (e : any) => {
+      setEndingDate(e.target.value);
+    };
+
+
     const send= ( data : VacationModel )=> {
+      // eslint-disable-next-line no-restricted-globals
+      event.preventDefault()
+      if (startingDate && endingDate && startingDate <= endingDate) {
         AdminService.updateVacation (data)
         .then(()=> {
             alert("vacation successfully added!")
             navigate("/home")
         })
         .catch(err=> console.log(err))
+}else{
+  alert("Ending Date can't precede starting date!")
+
 }
+    }
 
   // This function will be triggered when the file field changes
   const imageChange = (e:any) => {
@@ -101,22 +117,24 @@ function EditVacation(): JSX.Element {
                 </FloatingLabel>
     {/* startingDate */}
                 <label htmlFor="startDate" className="justifyLefy">starting date</label>
-                <input type="date" className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate' , { valueAsDate: true })} required></input>
+                {/* <input type="Date | string"  className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate' , { valueAsDate: true })} required></input> */}
+                <input type="Date | string"  className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate' , { valueAsDate: true })} required onChange={handleStartingDateChange}></input>
 
     {/* endingDate */}
                 <label htmlFor="endingDate" className="justifyLefy">ending date</label>
-                <input type="date" className="inputDate" {...register('endingDate', { valueAsDate: true })} required></input>
+                {/* <input type="Date | string" className="inputDate" {...register('endingDate', { valueAsDate: true })} required></input> */}
+                <input type="Date | string" className="inputDate" {...register('endingDate', { valueAsDate: true })} required onChange={handleEndingDateChange}></input>
                 <br></br>
     
       {/* price */}
                 <FloatingLabel controlId="floatingInput" label="price" className="mb-3 input outerBoxOfInput" >
-                  <Form.Control className="input" type="number" placeholder="price" {...register('price')} />
+                  <Form.Control className="input" type="number" placeholder="price" {...register('price', VacationModel.priceValidation)} />
                 </FloatingLabel>
 
       {/* select continent*/}
-                <FloatingLabel controlId="floatingSelect" label="selects a continent" className="input">
-                    <Form.Select aria-label="Floating label select example"  {...register("continentId")}>
-                        {/* <option>Open this select menu</option> */}
+                <FloatingLabel controlId="floatingSelect" label="Selects a continent" className="input">
+                    <Form.Select aria-label="Floating label select example" {...register("continentId")}>
+                     {/* <option defaultValue={vacation?.continentId}>{vacation?.continentName}</option>  */}
                        {continents && continents.map(c=><option key={c.continentId} value={c.continentId}>{c.continentName}</option> )}
                     </Form.Select>
                 </FloatingLabel>
@@ -126,15 +144,12 @@ function EditVacation(): JSX.Element {
                 <input accept="image/*" type="file" onChange={imageChange} {...register("image")}/>
                 </div>
 
-                     {/* {selectedImage &&  (<div ><p>{URL.createObjectURL(selectedImage)}</p></div>)}    // This (URL.createObjectURL) sets it as a url- string, rather than a File... */}
-          {selectedImage &&  <div ><img src={URL.createObjectURL(selectedImage)} alt="PreviewImage"/></div>}
-
+                {/* {selectedImage &&  (<div ><p>{URL.createObjectURL(selectedImage)}</p></div>)}    // This (URL.createObjectURL) sets it as a url- string, rather than a File... */}
+                {selectedImage &&  <div ><img src={URL.createObjectURL(selectedImage)} alt="PreviewImage"/></div>}
+             
                 <FrameBtn btnString="Update Vacation" />
-
             </form>
-        
     </div>
-
 }/>
     );
 }
