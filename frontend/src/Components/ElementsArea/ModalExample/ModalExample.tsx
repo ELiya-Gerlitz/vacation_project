@@ -23,6 +23,7 @@ function ModalExample( props : ModalInterface ): JSX.Element {
         await AdminService.deleteVacation(vacationId)
         handleClose()
         console.log(`vacation ${vacationId} was successfully deleted!`)
+        alert("successfully deleted!")
         navigate("/home")
     }catch(err:any){
         alert(err)

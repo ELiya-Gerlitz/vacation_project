@@ -5,6 +5,7 @@ import Card3D from "../../ElementsArea/Card3D/Card3D";
 import { useState, useEffect } from "react";
 import VacationModel from "../../../Models/VacationModel";
 import { AuthStore } from "../../../Redux/AuthState";
+import { VacationStore } from "../../../Redux/VacationState";
 
 function DestinationFilters(): JSX.Element {
     // const userIdLoggedIn = AuthStore.getState().user.userId
@@ -16,6 +17,7 @@ useEffect(()=>{
 	VacationService.getAllVacations(userFromRedux.userId)
 	.then(vacations => {
 		setVacations(vacations)
+        VacationStore.subscribe(() => {setVacations(vacations)})
 	})
 	.catch(err=> console.log(err))
 },[])
@@ -29,15 +31,12 @@ alert("Hi!")
     return (
         <div className="DestinationFilters">
 
-                    <button onClick={handleFollowed}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
-                    {userFromRedux?.role === "Admin" ? <NavLink to={"/Admin/add-vacation"}> <button className="add-btn" >add new Vacation!</button></NavLink>: ""}
-
-            <br></br>
-            <br></br>
-            <br></br>
+            {/* <button onClick={handleFollowed}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button> */}
+            {userFromRedux?.role === "Admin" ? <NavLink to={"/Admin/add-vacation"}> <button className="add-btn" >add new Vacation!</button></NavLink>: ""}
+         
                 <section className="articles">
                     {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
-                    {filteredByIsFollowing && filteredByIsFollowing.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
+                    {/* {filteredByIsFollowing && filteredByIsFollowing.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)} */}
                 </section>		
 
         </div>

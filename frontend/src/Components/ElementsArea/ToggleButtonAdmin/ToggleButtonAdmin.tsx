@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
 import VacationModel from "../../../Models/VacationModel";
 import "./ToggleButtonAdmin.css";
-import VacationService from "../../../Services/VacationService";
-import AdminService from "../../../Services/AdminService";
 import ModalExample from "../ModalExample/ModalExample";
+import { useNavigate } from "react-router-dom";
 
 interface DataInterface {
     vacationModel : VacationModel
@@ -11,18 +9,13 @@ interface DataInterface {
    }
 
 function ToggleButtonAdmin( props : DataInterface): JSX.Element {
+    const navigate = useNavigate()
       
     const handleEdit = ()=> {
-       
-            
+       const vacationId = props.vacationModel.vacationId
+       navigate("/Admin/update-vacation/" + vacationId)
     }
 
-const handleDelete = ()=> {
-    AdminService.deleteVacation(props.vacationModel.vacationId)
-    .then(()=> alert("successfully deleted!"))
-    .catch(err=> console.log(err))
-    
-}
     return (
         <div className="ToggleButtonAdmin">
             {/* Edit btn ********************/}

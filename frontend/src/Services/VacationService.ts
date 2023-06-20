@@ -32,12 +32,12 @@ async function getAllVacations( userId : number ):Promise<VacationModel[]>{
     // return filteredVacations
 }
 
-// Missing Redux
-    async function getSingleVacation( vacationId : number ):Promise<VacationModel[]>{
-        const response = await axios.get<VacationModel[]>(appConfig.getSingleVacation + vacationId)
-        const vacations = response.data
-        return vacations
-        }
+// // Missing Redux
+//     async function getSingleVacation( vacationId : number ):Promise<VacationModel[]>{
+//         const response = await axios.get<VacationModel[]>(appConfig.getSingleVacation + vacationId)
+//         const vacations = response.data
+//         return vacations
+//         }
 
 
     async function getVacationsByContinentId(continentId : string):Promise<VacationModel[]>{
@@ -73,7 +73,7 @@ export default {
     getAllVacations,
     filterByisFollowing,
     getVacationsByContinentId,
-    getSingleVacation,
+    // getSingleVacation,
     follow,
     unfollow,
     getAllContinents

@@ -1,0 +1,39 @@
+.EditVacation {
+	
+}
+
+
+
+.EditVacation  h3{
+    margin-top: 40px;
+    line-height: 4;
+    font-weight: bold;
+    text-decoration: overline;
+    }
+    
+  .EditVacation form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .EditVacation .input,
+  .EditVacation .inputDate,
+  .EditVacation .insideText,
+  .EditVacation .imageInput {
+    width: 300px;
+    height: 30px;
+  }
+  
+  .EditVacation .insideText {
+    height: 100px;
+  }
+  
+  .EditVacation .imageInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .EditVacation label {
+    margin-bottom: 5px;
+  }

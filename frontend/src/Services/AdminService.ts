@@ -26,13 +26,45 @@ console.log(VacationStore.getState().vacations)
     VacationStore.dispatch({type: VacationActionTypes.AddVacation, payload: newVacation})
 }
 
+async function updateVacation( vacation: VacationModel): Promise<void> {
+
+    const myForm = new FormData()
+    myForm.append("destination", vacation.destination)
+    myForm.append("description", vacation.description)
+    myForm.append("startingDate", vacation.startingDate)
+    myForm.append("endingDate", vacation.endingDate)
+    myForm.append("price", vacation.price.toString())
+    myForm.append("image", vacation.image[0])
+    myForm.append("continentId", vacation.continentId.toString())
+
+    const response = await axios.put<VacationModel>(appConfig.VacationsURL + vacation.vacationId, myForm, {headers: {authorization: "Bearer " + AuthStore.getState().token } })
+    const updatedVacation = response.data
+    VacationStore.dispatch({type: VacationActionTypes.UpdateVacation, payload: updatedVacation})
+}
+
 
 async function deleteVacation( vacationId: number): Promise<void> {
     await axios.delete<void>(appConfig.VacationsURL + vacationId, { headers: { authorization: "Bearer " + AuthStore.getState().token } })
     VacationStore.dispatch({type: VacationActionTypes.DeleteVacation, payload: vacationId})
 }
 
+
+async function getSingleVacation( vacationId : number ): Promise<VacationModel> {
+
+    let vacation = VacationStore.getState().vacations
+    let vacationSpecific = vacation.find(v =>v.vacationId === vacationId)
+    if(!vacationSpecific){
+        alert("empty")
+    const response = await axios.get<VacationModel>(appConfig.VacationsURL + vacationId)
+    vacationSpecific = response.data
+    }
+    return vacationSpecific
+}
+
+
 export default {
     addVacation,
-    deleteVacation
+    deleteVacation,
+    updateVacation,
+    getSingleVacation
 }

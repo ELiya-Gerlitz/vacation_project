@@ -86,10 +86,9 @@ async function putVacation(vacation: VacationModel):Promise<VacationModel>{
     const err= vacation.validate()
     if(err) throw new ValidationErrorModel(err)
 
-    // const vacationToUpdate = await getOneBook(book.bookId)         
-    const bookToUpdate = await getOneVacation(vacation.vacationId)         
+    const vacationToUpdate = await getOneVacation(vacation.vacationId)         
         if(vacation.image){
-           const imagePath = "./src/1-Assets/images/" + bookToUpdate.imageName
+           const imagePath = "./src/1-Assets/images/" + vacationToUpdate.imageName
 
         //   await fsPromises.unlink(imagePath) //das wirkt auch gut!
            fs.unlinkSync(imagePath)
@@ -100,7 +99,7 @@ async function putVacation(vacation: VacationModel):Promise<VacationModel>{
            delete vacation.image
 
     }else if(!vacation.image){
-        vacation.imageName = bookToUpdate.imageName
+        vacation.imageName = vacationToUpdate.imageName
     }
 
     const sql=`
