@@ -96,7 +96,8 @@ function AddVacation(): JSX.Element {
 
     <label htmlFor="startDate" className="justifyLefy">starting date</label>
 
-    <input type="date" className="inputDate"  {...register('startingDate')} required  min={new Date().toISOString().split('T')[0]}  onChange={handleStartingDateChange} ></input>
+    <input type="date" className="inputDate"  {...register('startingDate')} required  min={new Date().toISOString().split('T')[0]}  onChange={handleStartingDateChange} ></input> 
+    {/* min={new Date().toISOString().split('T')[0]} = Get a date as a string, using the ISO standard:, and the min indicates that the minimal date shuld be the current date. */}
 
 
     {/* endingDate */}

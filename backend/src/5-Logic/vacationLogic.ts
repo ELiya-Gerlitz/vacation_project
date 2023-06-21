@@ -27,25 +27,8 @@ async function getAllVacationsWithFollowDetails(userId: number): Promise<Vacatio
     return vacations;
 }
 
-// async function getAllVacations():Promise<VacationModel[]>{
-//     const sql=`
-//         SELECT v.vacationId, v.destination, v.description, DATE_FORMAT(v.startingDate, '%d.%m.%Y') AS startingDate, 
-//         DATE_FORMAT(v.endingDate, '%d.%m.%Y') AS endingDate , v.price, v.imageName, c.continentName
-//         FROM vacations AS v JOIN continents AS c
-//         ON v.continentId = c.continentId
-//     `
-//     const vacations = await dal.execute(sql)
-//     return vacations
-// }
-
 async function getOneVacation(vacationId :number):Promise<VacationModel>{
-    // const sql= `
-    //     SELECT v.*, c.continentName
-    //     FROM vacations AS v JOIN continents AS c
-    //     ON v.continentId = c.continentId
-    //     WHERE v.vacationId = ?
-    // `
-
+ 
     const sql= `
     SELECT v.vacationId, v.destination, v.description, DATE_FORMAT(v.startingDate, '%d.%m.%Y') as startingDate,  DATE_FORMAT(v.endingDate, '%d.%m.%Y') as endingDate, v.price, v.imageName, v.continentId, c.continentName
     FROM vacations AS v JOIN continents AS c
@@ -218,7 +201,6 @@ async function unfollow( userId: number, vacationId :number ):Promise<void>{
 
 export default {
     getAllVacationsWithFollowDetails,
-    // getAllVacations,
     getOneVacation,
     postNewVacation,
     putVacation,

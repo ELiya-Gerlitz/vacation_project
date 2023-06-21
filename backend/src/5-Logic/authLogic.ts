@@ -44,10 +44,11 @@ async function login( credentials: CredentialsModel ):Promise<string>{
      SELECT * FROM users
      WHERE email = ? AND password = ?
      `
-     const values = [credentials.email, credentials.password = cyber.hash(credentials.password)]
+     const hashedPassword = cyber.hash(credentials.password)
+     const values = [credentials.email, hashedPassword]
      const passwordUsernameExist:OkPacket = await dal.execute(sql, values)
  
-     if(passwordUsernameExist.fieldCount <= 0) throw new ValidationErrorModel("Please register!")
+     if(passwordUsernameExist.fieldCount <= 0) throw new ValidationErrorModel("Please register!") 
 
     const token = cyber.createToken(passwordUsernameExist[0])
     return token

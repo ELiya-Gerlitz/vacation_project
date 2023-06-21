@@ -12,6 +12,9 @@ class VacationModel{
     public imageName : string
     public continentId : number
 
+    // virtual field
+    public isFollowing : boolean
+
     public constructor(vacation : VacationModel){
         this.vacationId = vacation.vacationId
         this.destination = vacation.destination
@@ -22,6 +25,7 @@ class VacationModel{
         this.image = vacation.image
         this.imageName = vacation.imageName
         this.continentId = vacation.continentId
+        this.isFollowing = vacation.isFollowing
 
     }
 
@@ -34,7 +38,8 @@ class VacationModel{
         price: joi.string().min(1).max(10000).required(),
         image: joi.required(),
         imageName: joi.string().min(2).max(250).optional(),
-        continentId: joi.number().required()
+        continentId: joi.number().required(),
+        isFollowing: joi.boolean().optional()
     })
 
     public validate():string{

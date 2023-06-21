@@ -21,12 +21,11 @@ export interface VacationActions {
 }
 
 export function VacationReducer( currentState= new VacationState(), action: VacationActions):VacationState {
-   const newState= {...currentState}
+   const newState = {...currentState}
    switch (action.type){
 
     case VacationActionTypes.FetchAllVacations:
         newState.vacations = action.payload
-        // alert("vacations inserted to store!")
         break;
 
     case VacationActionTypes.UpdateVacation:

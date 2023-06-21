@@ -26,7 +26,6 @@ function EditVacation(): JSX.Element {
     const [startingDate, setStartingDate] = useState('');
     const [endingDate, setEndingDate] = useState('');
 
-    
     useEffect(()=>{
         const vacationId = + params.vacationId
         AdminService.getSingleVacation(vacationId)
@@ -66,7 +65,7 @@ function EditVacation(): JSX.Element {
 
     const send= ( data : VacationModel )=> {
       // eslint-disable-next-line no-restricted-globals
-      event.preventDefault()
+      // event.preventDefault()   
       if (startingDate && endingDate && startingDate <= endingDate) {
         AdminService.updateVacation (data)
         .then(()=> {
@@ -76,7 +75,6 @@ function EditVacation(): JSX.Element {
         .catch(err=> console.log(err))
 }else{
   alert("Ending Date can't precede starting date!")
-
 }
     }
 
@@ -118,12 +116,12 @@ function EditVacation(): JSX.Element {
     {/* startingDate */}
                 <label htmlFor="startDate" className="justifyLefy">starting date</label>
                 {/* <input type="Date | string"  className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate' , { valueAsDate: true })} required></input> */}
-                <input type="Date | string"  className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate' , { valueAsDate: true })} required onChange={handleStartingDateChange}></input>
+                <input type="date"  className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate')} required onChange={handleStartingDateChange}></input>
 
     {/* endingDate */}
                 <label htmlFor="endingDate" className="justifyLefy">ending date</label>
                 {/* <input type="Date | string" className="inputDate" {...register('endingDate', { valueAsDate: true })} required></input> */}
-                <input type="Date | string" className="inputDate" {...register('endingDate', { valueAsDate: true })} required onChange={handleEndingDateChange}></input>
+                <input type="date" className="inputDate" {...register('endingDate')} required onChange={handleEndingDateChange}></input>
                 <br></br>
     
       {/* price */}
@@ -140,6 +138,7 @@ function EditVacation(): JSX.Element {
                 </FloatingLabel>
                 <br></br>
 
+  {/*change image*/}
                 <div className="imageInput">
                 <input accept="image/*" type="file" onChange={imageChange} {...register("image")}/>
                 </div>

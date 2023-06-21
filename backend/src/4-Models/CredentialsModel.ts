@@ -3,7 +3,7 @@ class CredentialsModel{
     public email: string
     public password: string
 
-    public constructor(Credentials:CredentialsModel){
+    public constructor( Credentials:CredentialsModel){
         this.email = Credentials.email
         this.password = Credentials.password
     }

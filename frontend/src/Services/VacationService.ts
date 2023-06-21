@@ -16,28 +16,21 @@ async function getAllVacations( userId : number ):Promise<VacationModel[]>{
 }
     return vacations
 }
- async function filterByisFollowing():Promise<VacationModel[]>{
-    let allVacationsUnfiltered = VacationStore.getState().vacations;
-    // console.log(allVacationsUnfiltered)
-    if(allVacationsUnfiltered.length === 0) {
-        console.log("empty")
-        allVacationsUnfiltered = await getAllVacations (AuthStore.getState().user.userId)
-        VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: allVacationsUnfiltered });
-    }
-    const filteredVacations = VacationStore.getState().vacations.filter( v => v.isFollowing === true)
-    console.log("I am in the Service"+filteredVacations + "great")
-    return filteredVacations
-    
-    // const filteredVacations = VacationStore.getState().vacations.filter(v => v.isFollowing === true)
-    // return filteredVacations
-}
+//  async function filterByisFollowing():Promise<VacationModel[]>{
+//     let allVacationsUnfiltered = VacationStore.getState().vacations;
+//     // console.log(allVacationsUnfiltered)
+//     if(allVacationsUnfiltered.length === 0) {
+//         console.log("empty")
+//         allVacationsUnfiltered = await getAllVacations(AuthStore.getState().user.userId)
+//         VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: allVacationsUnfiltered });
+//     }
+//     const filteredVacations = VacationStore.getState().vacations.filter( v => v.isFollowing === true)
+//     console.log("I am in the Service"+filteredVacations + "great")
+//     return filteredVacations
+//     // const filteredVacations = VacationStore.getState().vacations.filter(v => v.isFollowing === true)
+//     // return filteredVacations
+// }
 
-// // Missing Redux
-//     async function getSingleVacation( vacationId : number ):Promise<VacationModel[]>{
-//         const response = await axios.get<VacationModel[]>(appConfig.getSingleVacation + vacationId)
-//         const vacations = response.data
-//         return vacations
-//         }
 
 
     async function getVacationsByContinentId(continentId : string):Promise<VacationModel[]>{
@@ -71,9 +64,7 @@ const continents = response.data
 
 export default {
     getAllVacations,
-    filterByisFollowing,
     getVacationsByContinentId,
-    // getSingleVacation,
     follow,
     unfollow,
     getAllContinents
