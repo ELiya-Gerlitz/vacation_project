@@ -37,14 +37,14 @@ async function updateVacation( vacation: VacationModel): Promise<void> {
     myForm.append("image", vacation.image[0])
     myForm.append("continentId", vacation.continentId.toString())
 
-    const response = await axios.put<VacationModel>(appConfig.VacationsURL + vacation.vacationId, myForm, {headers: {authorization: "Bearer " + AuthStore.getState().token } })
+    const response = await axios.put<VacationModel>(appConfig.VacationsURL + vacation.vacationId, myForm)
     const updatedVacation = response.data
     VacationStore.dispatch({type: VacationActionTypes.UpdateVacation, payload: updatedVacation})
 }
 
 
 async function deleteVacation( vacationId: number): Promise<void> {
-    await axios.delete<void>(appConfig.VacationsURL + vacationId, { headers: { authorization: "Bearer " + AuthStore.getState().token } })
+    await axios.delete<void>(appConfig.VacationsURL + vacationId)
     VacationStore.dispatch({type: VacationActionTypes.DeleteVacation, payload: vacationId})
 }
 

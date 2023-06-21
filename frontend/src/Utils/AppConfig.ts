@@ -8,8 +8,11 @@ class AppConfig{
     public followURL = "http://localhost:3001/api/follow/"
     public unfollowURL = "http://localhost:3001/api/unfollow/"
     public continentsURL = "http://localhost:3001/api/continents/"
+
+    // filtering routes for safety's sake.
     public filterByisFollowingURL = "http://localhost:3001/api/vacation_by_isFollowing/"
-    // public vacByIsFollowingURL = "http://localhost:3001/api/vacation_by_isFollowing/:userId([0-9]+)/"
+    public filterByUnstartedURL = "http://localhost:3001/api/vacation_by_unstarted/"
+    public filterByActiveVacationsURL = "http://localhost:3001/api/vacation_by_activeVacations/"
 
 }
 const appConfig = new AppConfig()

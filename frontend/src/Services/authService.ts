@@ -6,7 +6,6 @@ import { AuthActionTypes, AuthStore } from "../Redux/AuthState";
 
 
 async function register(user: UserModel):Promise<void>{
-    // if(AuthStore.getState().user.username === user.username){alert("username is already taken!")}
         const response = await axios.post<string>(appConfig.registerURL, user)
         const token = response.data
         AuthStore.dispatch({type: AuthActionTypes.Register, payload: token})

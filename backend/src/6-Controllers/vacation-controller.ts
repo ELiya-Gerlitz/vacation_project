@@ -9,7 +9,7 @@ import verifyAdmin from "../3-Middleware/verify-Admin"
 const router = express.Router()
 
 // get All vacations
-router.get("/vacations/:userId", async( request: Request, response: Response,next: NextFunction)=>{
+router.get("/vacations/:userId", verifyLoggedIn, async( request: Request, response: Response,next: NextFunction)=>{
     try{
         const userId = +request.params.userId
         const vacations = await vacationLogic.getAllVacationsWithFollowDetails(userId)
@@ -20,7 +20,7 @@ router.get("/vacations/:userId", async( request: Request, response: Response,nex
 })
 
 // // get single vacation according to the vacationId
-router.get("/vacations/singleVacation/:vacationId([0-9]+)", async(request: Request, response: Response,next: NextFunction)=>{
+router.get("/vacations/singleVacation/:vacationId([0-9]+)", verifyLoggedIn, async(request: Request, response: Response,next: NextFunction)=>{
     try{
         const vacationId= +request.params.vacationId
         const singleVacation = await vacationLogic.getOneVacation(vacationId)
@@ -32,7 +32,7 @@ router.get("/vacations/singleVacation/:vacationId([0-9]+)", async(request: Reque
 
 // post ONE vacation
 
-router.post("/vacations", async (request: Request, response: Response, next:NextFunction)=>{
+router.post("/vacations", verifyAdmin, async (request: Request, response: Response, next:NextFunction)=>{
     try{
         request.body.image = request.files?.image
         const newVacation = new VacationModel(request.body)
@@ -46,7 +46,7 @@ router.post("/vacations", async (request: Request, response: Response, next:Next
 
 // alter ONE vacation
 
-router.put("/vacations/:vacationId([0-9]+)", verifyLoggedIn, async(request: Request, response: Response,next: NextFunction)=>{
+router.put("/vacations/:vacationId([0-9]+)", verifyAdmin, async(request: Request, response: Response,next: NextFunction)=>{
     try{
         request.body.image= request.files?.image
         request.body.vacationId = +request.params.vacationId
@@ -57,7 +57,7 @@ router.put("/vacations/:vacationId([0-9]+)", verifyLoggedIn, async(request: Requ
         next(err)
     }
 })
-router.delete("/vacations/:vacationId([0-9]+)", verifyLoggedIn, async (request: Request, response: Response,next: NextFunction)=>{
+router.delete("/vacations/:vacationId([0-9]+)", verifyAdmin, async (request: Request, response: Response,next: NextFunction)=>{
     try{
         const vacationId= +request.params.vacationId
         await vacationLogic.deleteVacation(vacationId)

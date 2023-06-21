@@ -2,45 +2,26 @@ import axios from "axios";
 import VacationModel from "../Models/VacationModel";
 import appConfig from "../Utils/AppConfig";
 import { VacationActionTypes, VacationStore } from "../Redux/VacationState";
-import { AuthStore } from "../Redux/AuthState";
 import ContinentModel from "../Models/ContinentModel";
 
 
 async function getAllVacations( userId : number ):Promise<VacationModel[]>{
     let vacations = VacationStore.getState().vacations;
     if (vacations.length === 0) {
-        // alert("vacations.length === 0")
     const response = await axios.get<VacationModel[]>(appConfig.VacationsURL + userId)
     vacations = response.data
     VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: vacations });
 }
     return vacations
 }
-//  async function filterByisFollowing():Promise<VacationModel[]>{
-//     let allVacationsUnfiltered = VacationStore.getState().vacations;
-//     // console.log(allVacationsUnfiltered)
-//     if(allVacationsUnfiltered.length === 0) {
-//         console.log("empty")
-//         allVacationsUnfiltered = await getAllVacations(AuthStore.getState().user.userId)
-//         VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: allVacationsUnfiltered });
-//     }
-//     const filteredVacations = VacationStore.getState().vacations.filter( v => v.isFollowing === true)
-//     console.log("I am in the Service"+filteredVacations + "great")
-//     return filteredVacations
-//     // const filteredVacations = VacationStore.getState().vacations.filter(v => v.isFollowing === true)
-//     // return filteredVacations
-// }
-
-
-
-    async function getVacationsByContinentId(continentId : string):Promise<VacationModel[]>{
+    async function getVacationsByContinentId( continentId : string):Promise<VacationModel[]>{
         const response = await axios.get<VacationModel[]>(appConfig.getVacByContinentId + continentId)
         const vacations = response.data
         return vacations
     }
 
     
-async function follow(userId :number, vacationId: number): Promise<void> {
+async function follow( userId :number, vacationId: number): Promise<void> {
     await axios.post<any>(appConfig.followURL + userId + "/" + vacationId)
     VacationStore.dispatch({type: VacationActionTypes.Follow, payload: {vacationId}})
 }
