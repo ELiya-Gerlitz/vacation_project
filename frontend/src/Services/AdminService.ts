@@ -20,7 +20,7 @@ console.log(VacationStore.getState().vacations)
     const response = await axios.post<VacationModel>(appConfig.VacationsURL, myForm)
     const newVacation = response.data
 
-    newVacation.isFollowing = false
+    newVacation.isFollowing = 0
     newVacation.followersCount = 0 
     console.log(newVacation)
     VacationStore.dispatch({type: VacationActionTypes.AddVacation, payload: newVacation})
@@ -50,15 +50,17 @@ async function deleteVacation( vacationId: number): Promise<void> {
 
 
 async function getSingleVacation( vacationId : number ): Promise<VacationModel> {
-
-    let vacation = VacationStore.getState().vacations
-    let vacationSpecific = vacation.find(v =>v.vacationId === vacationId)
-    if(!vacationSpecific){
-        alert("empty")
-    const response = await axios.get<VacationModel>(appConfig.VacationsURL + vacationId)
-    vacationSpecific = response.data
+    let vacations = VacationStore.getState().vacations
+    if(vacations.length > 0){
+        let specificVacation = vacations.find(v =>v.vacationId === vacationId)
+        return specificVacation
     }
-    return vacationSpecific
+    else{
+        alert("empty")
+    const response = await axios.get<VacationModel>(appConfig.getSingleVacation + vacationId)
+    let specificVacation = response.data
+    return specificVacation
+    }
 }
 
 

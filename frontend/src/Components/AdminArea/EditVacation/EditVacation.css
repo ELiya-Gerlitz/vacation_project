@@ -1,9 +1,3 @@
-.EditVacation {
-	
-}
-
-
-
 .EditVacation  h3{
     margin-top: 40px;
     line-height: 4;
@@ -19,21 +13,46 @@
   .EditVacation .input,
   .EditVacation .inputDate,
   .EditVacation .insideText,
-  .EditVacation .imageInput {
+  .EditVacation .imageInput 
+  {
     width: 300px;
     height: 30px;
   }
-  
-  .EditVacation .insideText {
-    height: 100px;
-  }
-  
-  .EditVacation .imageInput {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
   .EditVacation label {
     margin-bottom: 5px;
   }
+
+  .EditVacation {
+    text-align: center;
+  }
+  
+  .EditVacation .imageInput {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .EditVacation img {
+    width: 110px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    opacity: 50%;
+  }
+  
+  .EditVacation input[type="file"] {
+    position: absolute;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 100;
+  }
+  .EditVacation .btnWrapper {
+    display: inline-block;
+  }  
+
+  .EditVacation input[type="date"] {
+    border: 0.3px solid rgb(209, 209, 209);
+    border-radius: 3.5px;
+     /* border-color: grey; */
+  }
+

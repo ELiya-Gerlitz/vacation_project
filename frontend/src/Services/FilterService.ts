@@ -7,7 +7,7 @@ import appConfig from "../Utils/AppConfig";
 async function filterByisFollowing(userId : number):Promise<VacationModel[]>{
     let allVacationsUnfiltered = VacationStore.getState().vacations;
     if(allVacationsUnfiltered.length > 0) {
-       let filteredVacations = allVacationsUnfiltered.filter(v=>v.isFollowing === true)
+       let filteredVacations = allVacationsUnfiltered.filter(v=> v.isFollowing === 1)
        console.log("I am in the filtering from the redux FilterService")
        console.log(filteredVacations)
        return filteredVacations

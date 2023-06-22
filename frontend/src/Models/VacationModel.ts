@@ -10,7 +10,7 @@ class VacationModel{
     public continentId : number
 
     // extra Fields
-    public isFollowing : boolean
+    public isFollowing : number
     public followersCount : number
     public continentName : string
 

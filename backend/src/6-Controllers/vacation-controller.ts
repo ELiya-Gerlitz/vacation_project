@@ -48,7 +48,7 @@ router.post("/vacations", verifyAdmin, async (request: Request, response: Respon
 
 router.put("/vacations/:vacationId([0-9]+)", verifyAdmin, async(request: Request, response: Response,next: NextFunction)=>{
     try{
-        request.body.image= request.files?.image
+        request.body.image = request.files?.image
         request.body.vacationId = +request.params.vacationId
         const vacationToUpdate = new VacationModel(request.body)
         const updatedVacation = await vacationLogic.putVacation(vacationToUpdate)

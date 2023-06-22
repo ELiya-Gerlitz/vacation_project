@@ -14,6 +14,8 @@ import { useForm } from "react-hook-form";
 import ContinentModel from "../../../Models/ContinentModel";
 import VacationService from "../../../Services/VacationService";
 import AdminService from "../../../Services/AdminService";
+import appConfig from "../../../Utils/AppConfig";
+import dateFormatting from "../../../Services/dateFormatting";
 
 
 function EditVacation(): JSX.Element {
@@ -21,32 +23,34 @@ function EditVacation(): JSX.Element {
     const [continents, setContinents] = useState<ContinentModel[]>()
     const navigate = useNavigate()
     const params = useParams()
-    const [selectedImage, setSelectedImage] = useState();
+    const [selectedImage, setSelectedImage] = useState()
     const [vacation, setVacation] = useState<VacationModel>()
-    const [startingDate, setStartingDate] = useState('');
-    const [endingDate, setEndingDate] = useState('');
+    const [startingDate, setStartingDate] = useState("")
+    const [endingDate, setEndingDate] = useState("")
+
+
+    function formatDate(dateString :string):string {
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
 
     useEffect(()=>{
         const vacationId = + params.vacationId
         AdminService.getSingleVacation(vacationId)
         .then((vacation)=>{
+          
+            setValue("startingDate", formatDate(vacation.startingDate))
+            // setValue("endingDate", formatDate(vacation.endingDate))
             setValue("vacationId", vacation.vacationId)
-            setValue("destination", vacation.destination)
-            setValue("description", vacation.description)
-            setValue("startingDate", new Date(vacation.startingDate).toISOString().split('T')[0])
-            setValue("endingDate", new Date(vacation.endingDate).toISOString().split('T')[0])
-            setValue("price", vacation.price)
-            setValue("image", vacation.image)
-            setValue("continentId", vacation.continentId)
             setVacation(vacation)
-            console.log(vacation.vacationId)
-            console.log(vacation.imageName)
         })
         .catch((err:any)=>{console.log(err)})
     },[])
 
     useEffect(()=> {
-
         VacationService.getAllContinents()
         .then((continents)=> {
         setContinents(continents)
@@ -54,22 +58,11 @@ function EditVacation(): JSX.Element {
         .catch(err=> console.log(err))
     },[])
 
-    const handleStartingDateChange = (e : any) => {
-      setStartingDate(e.target.value);
-    };
-
-  const handleEndingDateChange = (e : any) => {
-      setEndingDate(e.target.value);
-    };
-
-
-    const send= ( data : VacationModel )=> {
-      // eslint-disable-next-line no-restricted-globals
-      // event.preventDefault()   
+ const send = ( data : VacationModel )=> { 
       if (startingDate && endingDate && startingDate <= endingDate) {
-        AdminService.updateVacation (data)
+        AdminService.updateVacation(data)
         .then(()=> {
-            alert("vacation successfully added!")
+            alert("vacation successfully updated!")
             navigate("/home")
         })
         .catch(err=> console.log(err))
@@ -98,7 +91,7 @@ function EditVacation(): JSX.Element {
                 <input hidden type="number" {...register("vacationId")}/>
     {/* destination */}
                 <FloatingLabel controlId="floatingInput" label="destination" className="mb-3 input outerBoxOfInput">
-                  <Form.Control className="input" type="text" placeholder="email" {...register('destination', VacationModel.destinationValidation)} />
+                  <Form.Control className="input" type="text" placeholder="email" defaultValue={vacation &&  vacation.destination} {...register('destination', VacationModel.destinationValidation)} />
                 </FloatingLabel>
     
     {/* description */}
@@ -110,43 +103,45 @@ function EditVacation(): JSX.Element {
                     size="lg"
                     className="insideText"
                     {...register('description', VacationModel.descriptionValidation)} 
-                   
+                    defaultValue={vacation &&  vacation?.description}
                     />
                 </FloatingLabel>
     {/* startingDate */}
                 <label htmlFor="startDate" className="justifyLefy">starting date</label>
                 {/* <input type="Date | string"  className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate' , { valueAsDate: true })} required></input> */}
-                <input type="date"  className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate')} required onChange={handleStartingDateChange}></input>
+                <input type="date" className="inputDate" defaultValue={vacation &&  formatDate(vacation?.startingDate)}  {...register('startingDate')} required onChange={(e :any) => setStartingDate(e.target.value)}></input>
 
     {/* endingDate */}
                 <label htmlFor="endingDate" className="justifyLefy">ending date</label>
                 {/* <input type="Date | string" className="inputDate" {...register('endingDate', { valueAsDate: true })} required></input> */}
-                <input type="date" className="inputDate" {...register('endingDate')} required onChange={handleEndingDateChange}></input>
+                <input type="date" className="inputDate" defaultValue={vacation &&  formatDate(vacation?.endingDate)}  {...register('endingDate')} required onChange={(e:any) => setEndingDate(e.target.value)}></input>
                 <br></br>
     
       {/* price */}
                 <FloatingLabel controlId="floatingInput" label="price" className="mb-3 input outerBoxOfInput" >
-                  <Form.Control className="input" type="number" placeholder="price" {...register('price', VacationModel.priceValidation)} />
+                  <Form.Control className="input" type="number" defaultValue={vacation &&  vacation.price} placeholder="price" {...register('price', VacationModel.priceValidation)} />
                 </FloatingLabel>
 
       {/* select continent*/}
                 <FloatingLabel controlId="floatingSelect" label="Selects a continent" className="input">
                     <Form.Select aria-label="Floating label select example" {...register("continentId")}>
-                     {/* <option defaultValue={vacation?.continentId}>{vacation?.continentName}</option>  */}
-                       {continents && continents.map(c=><option key={c.continentId} value={c.continentId}>{c.continentName}</option> )}
+                     <option defaultValue={vacation?.continentId}>{vacation?.continentName}</option> 
+                       {continents && continents.map(c=><option key={c.continentId} value={c.continentId} >{c.continentName}</option> )}
                     </Form.Select>
                 </FloatingLabel>
                 <br></br>
 
   {/*change image*/}
                 <div className="imageInput">
-                <input accept="image/*" type="file" onChange={imageChange} {...register("image")}/>
+                <img src={vacation && appConfig.imgUrl + vacation?.imageName}/>
+                <input accept="image/*" type="file" onChange={imageChange} {...register("image")} defaultValue={vacation?.imageName}/>
                 </div>
 
                 {/* {selectedImage &&  (<div ><p>{URL.createObjectURL(selectedImage)}</p></div>)}    // This (URL.createObjectURL) sets it as a url- string, rather than a File... */}
                 {selectedImage &&  <div ><img src={URL.createObjectURL(selectedImage)} alt="PreviewImage"/></div>}
-             
+             <div className="btnWrapper">
                 <FrameBtn btnString="Update Vacation" />
+            </div>
             </form>
     </div>
 }/>

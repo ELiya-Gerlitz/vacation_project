@@ -46,7 +46,7 @@ export function VacationReducer( currentState= new VacationState(), action: Vaca
     case VacationActionTypes.Follow:
       let vacationToUpdateFollow = newState.vacations.find( v => v.vacationId === action.payload.vacationId)
       if (vacationToUpdateFollow) {
-            vacationToUpdateFollow.isFollowing = true
+            vacationToUpdateFollow.isFollowing = 1
             vacationToUpdateFollow.followersCount = vacationToUpdateFollow.followersCount +1
       }
         break;
@@ -54,7 +54,7 @@ export function VacationReducer( currentState= new VacationState(), action: Vaca
         case VacationActionTypes.Unfollow:
              let vacationToUnfollow = newState.vacations.find( v => v.vacationId === action.payload.vacationId)
              if(vacationToUnfollow){
-                  vacationToUnfollow.isFollowing =  false
+                  vacationToUnfollow.isFollowing =  0
                   vacationToUnfollow.followersCount = vacationToUnfollow.followersCount -1
              }
               break;

@@ -21,12 +21,11 @@ function AddVacation(): JSX.Element {
     const [continents, setContinents] = useState<ContinentModel[]>()
     const navigate= useNavigate()
     const [selectedImage, setSelectedImage] = useState();
-    const [startingDate, setStartingDate] = useState('');
-    const [endingDate, setEndingDate] = useState('');
+    const [startingDate, setStartingDate] = useState();
+    const [endingDate, setEndingDate] = useState();
 
 
     useEffect(()=> {
-            // alert(VacationStore.getState().vacations + "StoreGetState")
             VacationService.getAllContinents()
             .then((continents)=> {
             setContinents(continents)
@@ -96,13 +95,13 @@ function AddVacation(): JSX.Element {
 
     <label htmlFor="startDate" className="justifyLefy">starting date</label>
 
-    <input type="date" className="inputDate"  {...register('startingDate')} required  min={new Date().toISOString().split('T')[0]}  onChange={handleStartingDateChange} ></input> 
+    <input type="date" className="inputDate"  {...register('startingDate')} required  min={new Date().toISOString().split('T')[0]} onChange={handleStartingDateChange}></input> 
     {/* min={new Date().toISOString().split('T')[0]} = Get a date as a string, using the ISO standard:, and the min indicates that the minimal date shuld be the current date. */}
 
 
     {/* endingDate */}
     <label htmlFor="endingDate" className="justifyLefy">ending date</label>
-    <input type="date" className="inputDate" {...register('endingDate')} required  onChange={handleEndingDateChange}></input>
+    <input type="date" className="inputDate" {...register('endingDate')} required onChange={handleEndingDateChange}></input>
     <br></br>
     
       {/* price */}

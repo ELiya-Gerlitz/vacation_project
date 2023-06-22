@@ -9,7 +9,6 @@ import { VacationStore } from "../../../Redux/VacationState";
 import FilterService from "../../../Services/FilterService";
 
 function DestinationFilters(): JSX.Element {
-    // const userIdLoggedIn = AuthStore.getState().user.userId
     const userFromRedux = AuthStore.getState().user
     const [vacations, setVacations] = useState<VacationModel[]>([])
     // const [filteredByIsFollowing, setFilteredByIsFollowing] = useState<VacationModel[]>()

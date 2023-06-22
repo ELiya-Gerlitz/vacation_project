@@ -11,18 +11,19 @@ interface DataInterface {
 
 function ToggleButton( props : DataInterface ): JSX.Element {
   
-  const [heartColor, setHeartColor] = useState<boolean>();
+  const [heartColor, setHeartColor] = useState<number>();
   const [followersCount, setFollowersCount] = useState<number>()
 
   useEffect(()=> {
     setFollowersCount(props.vacationModel.followersCount)
+    setHeartColor(props.vacationModel.isFollowing)
   },[])
   
   // toggle the Follow button + update the db.
   const handleToggle = () => {
     try{
       if(props.vacationModel.isFollowing) {
-        setHeartColor(props.vacationModel.isFollowing = false)
+        setHeartColor(props.vacationModel.isFollowing = 0)
               VacationService.unfollow(props.userId, props.vacationModel.vacationId)
               .then(()=> {
                 "successfully updated unfollow!"
@@ -30,7 +31,7 @@ function ToggleButton( props : DataInterface ): JSX.Element {
               })
               .catch(err => console.log(err))
       }else {
-        setHeartColor(props.vacationModel.isFollowing = true)
+        setHeartColor(props.vacationModel.isFollowing = 1)
         VacationService.follow(props.userId, props.vacationModel.vacationId)
           .then(()=> {
               "successfully updated follow!"

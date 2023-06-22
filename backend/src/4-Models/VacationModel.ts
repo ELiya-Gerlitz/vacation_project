@@ -13,7 +13,7 @@ class VacationModel{
     public continentId : number
 
     // virtual field
-    public isFollowing : boolean
+    public isFollowing : number
 
     public constructor(vacation : VacationModel){
         this.vacationId = vacation.vacationId
@@ -36,10 +36,10 @@ class VacationModel{
         startingDate: joi.string().min(1).required(),
         endingDate: joi.string().min(1).required(),
         price: joi.string().min(1).max(10000).required(),
-        image: joi.required(),
+        image: joi.optional(),
         imageName: joi.string().min(2).max(250).optional(),
         continentId: joi.number().required(),
-        isFollowing: joi.boolean().optional()
+        isFollowing: joi.number().optional().min(0).max(1)
     })
 
     public validate():string{
