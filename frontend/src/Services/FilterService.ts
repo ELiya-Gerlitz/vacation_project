@@ -23,6 +23,9 @@ async function filterUnstarted(userId : number):Promise<VacationModel[]>{
     let allVacationsUnfiltered = VacationStore.getState().vacations;
     if(allVacationsUnfiltered.length > 0) {
        let filteredVacations = allVacationsUnfiltered.filter( v => new Date(v.startingDate) > new Date())
+       console.log(filteredVacations)
+    // eslint-disable-next-line no-restricted-globals
+// console.log(new Date(v.startingDate) )
        return filteredVacations
     }else{
         alert("empty")

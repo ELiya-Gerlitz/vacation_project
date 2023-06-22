@@ -14,7 +14,7 @@ import ContinentModel from "../4-Models/ContinentModel";
 async function getAllVacationsWithFollowDetails(userId: number): Promise<VacationModel[]> {
     const sql = `
     SELECT DISTINCT
-	v.vacationId, v.destination, v.description, DATE_FORMAT(v.startingDate, '%d.%m.%Y') as startingDate,  DATE_FORMAT(v.endingDate, '%d.%m.%Y') as endingDate, v.price, v.imageName, v.continentId, 
+    v.*,
 	EXISTS(SELECT * FROM followers WHERE vacationId = F.vacationId AND userId = ?) AS isFollowing,
 	COUNT(F.userId) AS followersCount
     FROM vacations as V LEFT JOIN followers as F
@@ -30,7 +30,7 @@ async function getAllVacationsWithFollowDetails(userId: number): Promise<Vacatio
 async function getOneVacation(vacationId :number):Promise<VacationModel>{
  
     const sql= `
-    SELECT v.vacationId, v.destination, v.description, DATE_FORMAT(v.startingDate, '%d.%m.%Y') as startingDate,  DATE_FORMAT(v.endingDate, '%d.%m.%Y') as endingDate, v.price, v.imageName, v.continentId, c.continentName
+    SELECT v.*
     FROM vacations AS v JOIN continents AS c
     ON v.continentId = c.continentId
     WHERE v.vacationId = ?

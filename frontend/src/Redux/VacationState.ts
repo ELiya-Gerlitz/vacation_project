@@ -12,7 +12,6 @@ export enum VacationActionTypes {
     Follow,
     Unfollow,
     AddVacation,
-
 }
 
 export interface VacationActions {
@@ -20,7 +19,7 @@ export interface VacationActions {
     payload: any
 }
 
-export function VacationReducer( currentState= new VacationState(), action: VacationActions):VacationState {
+export function VacationReducer( currentState = new VacationState(), action: VacationActions):VacationState {
    const newState = {...currentState}
    switch (action.type){
 

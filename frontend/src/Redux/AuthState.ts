@@ -1,6 +1,8 @@
 import {createStore} from "redux"
 import jwtDecode from "jwt-decode";
 import UserModel from "../Models/UserModel";
+import { VacationActionTypes, VacationStore } from "./VacationState";
+
 
 export class AuthState{
     public token: string = null
@@ -18,11 +20,11 @@ export class AuthState{
 export enum AuthActionTypes{
     Register,
     Login,
-    Logout
+    Logout,
 }
 
 export interface AuthActions{
-    type: AuthActionTypes
+    type: AuthActionTypes | VacationActionTypes
     payload?:  string
 }
 
@@ -40,6 +42,8 @@ export function AuthReducer(currentState = new AuthState(), action: AuthActions)
         case AuthActionTypes.Logout:
             newState.token = null
             newState.user = null
+            // reset the vacation Store for the next user
+            VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: [] });
             sessionStorage.removeItem("token")
             break;
     }

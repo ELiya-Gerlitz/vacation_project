@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./Logout.css";
 import { useEffect } from "react";
 import authService from "../../../Services/authService";
+import { VacationStore } from "../../../Redux/VacationState";
 
 function Logout(): JSX.Element {
 

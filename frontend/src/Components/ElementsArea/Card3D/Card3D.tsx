@@ -10,7 +10,6 @@ interface CardContents{
   vacationModel : VacationModel
   user : UserModel
 }
-   
 
 function Card3D( props : CardContents): JSX.Element {
     return (
@@ -24,9 +23,12 @@ function Card3D( props : CardContents): JSX.Element {
                     <img src={appConfig.imgUrl + props.vacationModel.imageName} alt="" />
                   </figure>
                   <div className="article-body">
-                    <h2>This is some title &nbsp;{props.vacationModel.vacationId}&nbsp;{props.vacationModel.destination.substring(0, 10)}</h2>
+                    <h2>This is some title &nbsp;{props.vacationModel.vacationId}&nbsp;{props.vacationModel.destination}</h2>
                     <p>
-                      {props.vacationModel.description} | {props.vacationModel.startingDate}
+                      {props.vacationModel.description} | {new Date(props.vacationModel.startingDate).toLocaleDateString()} 
+                    </p>
+                    <p>
+                    {props.vacationModel.description} | {new Date(props.vacationModel.endingDate).toLocaleDateString()} 
                     </p>
                     <a href="#" className="read-more">
                       Read more <span className="sr-only">about this is some title</span>
