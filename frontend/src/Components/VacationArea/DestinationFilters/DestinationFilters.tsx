@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import VacationModel from "../../../Models/VacationModel";
 import { AuthStore } from "../../../Redux/AuthState";
 import { VacationStore } from "../../../Redux/VacationState";
-// import "./PaginationPattern.css";
 import * as React from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
@@ -28,7 +27,7 @@ const itemsPerPage = 6;
 const indexOfLastItem = currentPage * itemsPerPage;
 const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 const currentItems = vacations.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(vacations.length / itemsPerPage);
+const totalPages = Math.ceil(vacations.length / itemsPerPage);
 
 
     const handlePageChange = (event: React.ChangeEvent<unknown>, pageNumber: number) => {
@@ -39,19 +38,16 @@ useEffect(()=>{
     VacationService.getAllVacations(userFromRedux.userId)
 	.then(vacations => {
 		setVacations(vacations)
-        
-        const unsubscribe = VacationStore.subscribe(() => {
-           const updatedVacations= VacationStore.getState().vacations
-            setVacations(updatedVacations)
+        // const unsubscribe = VacationStore.subscribe(() => {
+        //    const updatedVacations= VacationStore.getState().vacations
+        //     setVacations(updatedVacations)
         })
-        return ()=> {
-            unsubscribe()
-        }
-	})
+        // return ()=> {
+        //     unsubscribe()
+        // }
+	// })
 	.catch(err=> console.log(err))
-
-   
-},[userFromRedux, vacations])
+},[])
 
 const handleAllVacations = ()=> {
     VacationService.getAllVacations(userFromRedux.userId)
@@ -65,7 +61,7 @@ const handleAllVacations = ()=> {
 const handleFollowed = async () => {
    FilterService.filterByisFollowing( userFromRedux.userId )
         .then((filteredFollowedVacations)=>{
-        console.log(filteredFollowedVacations)
+        console.log("filtered vacations"+ filteredFollowedVacations)
         setVacations(filteredFollowedVacations)
         alert("here are the vacations!" + filteredFollowedVacations)
     })
@@ -76,6 +72,7 @@ const handleUnstarted = async  ()=> {
 
     FilterService.filterUnstarted(userFromRedux.userId )
     .then((filteredUnstarted)=>{
+        console.log("unstarted" +filteredUnstarted)
         setVacations(filteredUnstarted)
     })
     .catch()
@@ -84,6 +81,7 @@ const handleUnstarted = async  ()=> {
 const handleActive =()=> {
     FilterService.filterActiveVacations(userFromRedux.userId)
     .then((filteredActive)=>{
+        console.log("active" +filteredActive)
         setVacations(filteredActive)
     })
     .catch()
@@ -101,9 +99,8 @@ const handleActive =()=> {
             
          
                 <section className="articles">
-                    {currentItems.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
+                    {vacations && currentItems.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
                     {/* {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)} */}
-                    {/* {filteredByIsFollowing && filteredByIsFollowing.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)} */}
                 </section>	
 
                 <Stack spacing={2}>
