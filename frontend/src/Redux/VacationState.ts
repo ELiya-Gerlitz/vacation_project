@@ -25,7 +25,6 @@ export function VacationReducer( currentState = new VacationState(), action: Vac
 
     case VacationActionTypes.FetchAllVacations:
         newState.vacations = action.payload
-        alert("Redux is full!")
         break;
 
     case VacationActionTypes.UpdateVacation:

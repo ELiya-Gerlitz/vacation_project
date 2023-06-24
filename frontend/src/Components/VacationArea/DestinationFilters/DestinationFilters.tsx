@@ -10,7 +10,7 @@ import * as React from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import FilterService from "../../../Services/FilterService";
-// import PaginationPattern from "../../../Utils/PaginationPattern/PaginationPattern";
+import RoleEnum from "../../../Models/RolesEnum";
 
 
 function DestinationFilters(): JSX.Element {
@@ -19,7 +19,7 @@ function DestinationFilters(): JSX.Element {
     // const [filteredByIsFollowing, setFilteredByIsFollowing] = useState<VacationModel[]>()
 
 // state variables ***********************************************
-    const [currentPage, setCurrentPage] = useState(1);
+const [currentPage, setCurrentPage] = useState(1);
 const itemsPerPage = 6;
 
 // rendering Logic *************************************************
@@ -31,6 +31,13 @@ const totalPages = Math.ceil(vacations.length / itemsPerPage);
 
 
     const handlePageChange = (event: React.ChangeEvent<unknown>, pageNumber: number) => {
+                // ********************************************************
+            const element = document.getElementById('section-1');
+            if (element) {
+            // 👇 Will scroll smoothly to the top of the next section
+            element.scrollIntoView({ behavior: 'smooth' });
+            }
+
         setCurrentPage(pageNumber);
       }
 
@@ -53,6 +60,8 @@ const handleAllVacations = ()=> {
     VacationService.getAllVacations(userFromRedux.userId)
 	.then(vacations => {
 		setVacations(vacations)
+        setCurrentPage(1)
+
         VacationStore.subscribe(() => {setVacations(vacations)})
 	})
 	.catch(err=> console.log(err))
@@ -61,8 +70,9 @@ const handleAllVacations = ()=> {
 const handleFollowed = async () => {
    FilterService.filterByisFollowing( userFromRedux.userId )
         .then((filteredFollowedVacations)=>{
-        console.log("filtered vacations"+ filteredFollowedVacations)
+        // console.log("filtered vacations"+ filteredFollowedVacations)
         setVacations(filteredFollowedVacations)
+        setCurrentPage(1)
         alert("here are the vacations!" + filteredFollowedVacations)
     })
         .catch(err=>console.log(err))
@@ -72,8 +82,9 @@ const handleUnstarted = async  ()=> {
 
     FilterService.filterUnstarted(userFromRedux.userId )
     .then((filteredUnstarted)=>{
-        console.log("unstarted" +filteredUnstarted)
+        // console.log("unstarted" +filteredUnstarted)
         setVacations(filteredUnstarted)
+        setCurrentPage(1)
     })
     .catch()
 }
@@ -81,23 +92,24 @@ const handleUnstarted = async  ()=> {
 const handleActive =()=> {
     FilterService.filterActiveVacations(userFromRedux.userId)
     .then((filteredActive)=>{
-        console.log("active" +filteredActive)
+        // console.log("active" +filteredActive)
         setVacations(filteredActive)
+        setCurrentPage(1)
     })
     .catch()
 }
+
     return (
         <div className="DestinationFilters">
-
-<span>all</span> <button onClick={()=>handleAllVacations()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
-            <span>followed</span> <button onClick={()=>handleFollowed()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
+  <div style={{height : "20px"}} id="section-1"></div>
+           <span>all</span> <button onClick={()=>handleAllVacations()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
+           <span>followed</span> <button onClick={()=>handleFollowed()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
            <span>unstarted</span> <button onClick={()=>handleUnstarted()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
            <span>active </span><button onClick={()=>handleActive()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button> 
 
-            {userFromRedux?.role === "Admin" ? <NavLink to={"/Admin/add-vacation"}> <button className="add-btn" >add new Vacation!</button></NavLink>: ""}
+            {userFromRedux?.role === RoleEnum.Admin ? <NavLink to={"/Admin/add-vacation"}> <button className="add-btn" >add new Vacation!</button></NavLink>: ""}
 
-            
-         
+          
                 <section className="articles">
                     {vacations && currentItems.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
                     {/* {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)} */}
