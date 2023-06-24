@@ -1,5 +1,6 @@
 import "./Footer.css";
 import uxImage from "../../../Assets/images/ui-ux.jpg"
+import PaginationPattern from "../../../Utils/PaginationPattern/PaginationPattern";
 
 function Footer(): JSX.Element {
     return (

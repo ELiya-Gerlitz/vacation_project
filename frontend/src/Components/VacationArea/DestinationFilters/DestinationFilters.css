@@ -12,3 +12,8 @@
 .DestinationFilters  .articles {
     margin-top: 40px;
 }
+
+.DestinationFilters  .handlePageChange {
+justify-content: center;
+display: flex;
+}

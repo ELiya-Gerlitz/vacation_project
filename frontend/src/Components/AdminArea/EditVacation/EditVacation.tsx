@@ -15,7 +15,8 @@ import ContinentModel from "../../../Models/ContinentModel";
 import VacationService from "../../../Services/VacationService";
 import AdminService from "../../../Services/AdminService";
 import appConfig from "../../../Utils/AppConfig";
-import dateFormatting from "../../../Services/dateFormatting";
+import dateFormatting from "../../../Utils/dateFormatting";
+import { event } from "jquery";
 
 
 function EditVacation(): JSX.Element {
@@ -41,10 +42,15 @@ function EditVacation(): JSX.Element {
         const vacationId = + params.vacationId
         AdminService.getSingleVacation(vacationId)
         .then((vacation)=>{
-          
-            setValue("startingDate", formatDate(vacation.startingDate))
-            // setValue("endingDate", formatDate(vacation.endingDate))
             setValue("vacationId", vacation.vacationId)
+            setValue("destination", vacation.destination)
+            setValue("description", vacation.description) 
+            setValue("startingDate", formatDate(vacation.startingDate))  
+            setValue("endingDate", formatDate(vacation.endingDate))
+            setValue("price", vacation.price)
+            setValue("imageName", vacation.imageName)
+            setValue("continentId", vacation.continentId)
+            setValue("continentName", vacation.continentName)
             setVacation(vacation)
         })
         .catch((err:any)=>{console.log(err)})
@@ -59,11 +65,11 @@ function EditVacation(): JSX.Element {
     },[])
 
  const send = ( data : VacationModel )=> { 
-      if (startingDate && endingDate && startingDate <= endingDate) {
+      if(startingDate <= endingDate) {
         AdminService.updateVacation(data)
         .then(()=> {
             alert("vacation successfully updated!")
-            navigate("/home")
+            navigate("/destinations")
         })
         .catch(err=> console.log(err))
 }else{
@@ -74,7 +80,7 @@ function EditVacation(): JSX.Element {
   // This function will be triggered when the file field changes
   const imageChange = (e:any) => {
     if (e.target.files && e.target.files.length > 0) {
-      setSelectedImage(e.target.files.value[0]);
+      setSelectedImage(e.target.files[0]);
     }
   };
 
@@ -91,7 +97,7 @@ function EditVacation(): JSX.Element {
                 <input hidden type="number" {...register("vacationId")}/>
     {/* destination */}
                 <FloatingLabel controlId="floatingInput" label="destination" className="mb-3 input outerBoxOfInput">
-                  <Form.Control className="input" type="text" placeholder="email" defaultValue={vacation &&  vacation.destination} {...register('destination', VacationModel.destinationValidation)} />
+                  <Form.Control className="input" type="text" placeholder="email" {...register('destination', VacationModel.destinationValidation)} />
                 </FloatingLabel>
     
     {/* description */}
@@ -102,24 +108,23 @@ function EditVacation(): JSX.Element {
                     style={{ height: '100px'}}
                     size="lg"
                     className="insideText"
-                    {...register('description', VacationModel.descriptionValidation)} 
-                    defaultValue={vacation &&  vacation?.description}
+                    {...register('description', VacationModel.descriptionValidation)}
                     />
                 </FloatingLabel>
     {/* startingDate */}
                 <label htmlFor="startDate" className="justifyLefy">starting date</label>
                 {/* <input type="Date | string"  className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate' , { valueAsDate: true })} required></input> */}
-                <input type="date" className="inputDate" defaultValue={vacation &&  formatDate(vacation?.startingDate)}  {...register('startingDate')} required onChange={(e :any) => setStartingDate(e.target.value)}></input>
+                <input type="date" className="inputDate" {...register('startingDate')} required onChange={(e :any) => setStartingDate(e.target.value)}></input>
 
     {/* endingDate */}
                 <label htmlFor="endingDate" className="justifyLefy">ending date</label>
                 {/* <input type="Date | string" className="inputDate" {...register('endingDate', { valueAsDate: true })} required></input> */}
-                <input type="date" className="inputDate" defaultValue={vacation &&  formatDate(vacation?.endingDate)}  {...register('endingDate')} required onChange={(e:any) => setEndingDate(e.target.value)}></input>
+                <input type="date" className="inputDate" {...register('endingDate')} required onChange={(e:any) => setEndingDate(e.target.value)}></input>
                 <br></br>
     
       {/* price */}
                 <FloatingLabel controlId="floatingInput" label="price" className="mb-3 input outerBoxOfInput" >
-                  <Form.Control className="input" type="number" defaultValue={vacation &&  vacation.price} placeholder="price" {...register('price', VacationModel.priceValidation)} />
+                  <Form.Control className="input" type="number"  placeholder="price" {...register('price', VacationModel.priceValidation)} />
                 </FloatingLabel>
 
       {/* select continent*/}
