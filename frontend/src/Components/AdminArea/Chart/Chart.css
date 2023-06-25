@@ -3,8 +3,15 @@
 }
 
 .ReportsCanvas  svg {
-
+/* 
     width: 200%;
-    height: 200%;
+    height: 200%; */
 
 }
+
+
+/* .ReportsCanvas  .vertical {
+    transform: rotate(-90 ,515);
+    color: red;
+
+} */

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Chart from "../Chart/Chart";
 import "./ReportsImplementation.css";
 import VacationService from '../../../Services/VacationService';
 import { AuthStore } from '../../../Redux/AuthState';
 import VacationModel from '../../../Models/VacationModel';
+import Chart from '../Chart/Chart';
 
 function ReportsImplementation(): JSX.Element {
     const [vacations , setVacations] = useState<VacationModel[]>([])
@@ -20,6 +20,7 @@ function ReportsImplementation(): JSX.Element {
 
     return (
         <div className="ReportsImplementation">
+            <h3></h3>
   <Chart vacations={vacations} />			
         </div>
     );
