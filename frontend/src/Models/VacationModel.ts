@@ -25,7 +25,7 @@ class VacationModel{
      public static descriptionValidation = {
             required:{value: true, message: "description required!"},
             minLength:{value: 4, message: "description has to be longer than 2 characters!"},
-            maxLength:{value: 250, message: "too long description!"},
+            maxLength:{value: 700, message: "too long description!"},
      }
      public static priceValidation = {
         required:{value: true, message: "price required!"},

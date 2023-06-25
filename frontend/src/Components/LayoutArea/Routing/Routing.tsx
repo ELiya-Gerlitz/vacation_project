@@ -5,12 +5,12 @@ import Gallery from "../../VacationArea/Gallery/Gallery";
 import Register from "../../AuthArea/Register/Register";
 import Login from "../../AuthArea/Login/Login";
 import About from "../About/About";
-import DestinationsNavBar from "../../VacationArea/DestinationNavBar/DestinationsNavBar";
 import Logout from "../../AuthArea/Logout/Logout";
 import DestinationFilters from "../../VacationArea/DestinationFilters/DestinationFilters";
 import AddVacation from "../../AdminArea/AddVacation/AddVacation";
 import EditVacation from "../../AdminArea/EditVacation/EditVacation";
-// import DestinationFilters from "../../VacationArea/DestinationFilters/DestinationFilters";
+import ReportsImplementation from "../../AdminArea/ReportsImplementation/ReportsImplementation";
+// import Reports from "../../AdminArea/Reports/Reports";
 
 function Routing(): JSX.Element {
     return (
@@ -26,6 +26,7 @@ function Routing(): JSX.Element {
                 <Route path="/destinations" element={<DestinationFilters/>} />
                 <Route path="/Admin/add-vacation" element={<AddVacation/>} />
                 <Route path="/Admin/update-vacation/:vacationId" element={<EditVacation/>} />
+                <Route path="/Admin/reports" element={<ReportsImplementation/>} />
             </Routes>
         </div>
     );
