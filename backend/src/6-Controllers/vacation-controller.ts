@@ -12,9 +12,8 @@ const router = express.Router()
 // get All vacations
 router.get("/vacations/", verifyLoggedIn, async( request: Request, response: Response,next: NextFunction)=>{
     try{
-        const userId = cyber.getUserIdFromToken(request.headers.authorization)
-        // const userId = +request.params.userId
-        const vacations = await vacationLogic.getAllVacationsWithFollowDetails(await userId)
+        const userId = await cyber.getUserIdFromToken(request.headers.authorization)
+        const vacations = await vacationLogic.getAllVacationsWithFollowDetails(userId)
         response.json(vacations)
     }catch(err:any){
         next(err)
@@ -96,9 +95,9 @@ router.get("/vacation_by_continent/:continent_Id", async (request: Request, resp
 
 
 // save followers
-router.post("/follow/:userId([0-9]+)/:vacationId([0-9]+)", verifyLoggedIn, async (request: Request, response: Response, next:NextFunction)=>{
+router.post("/follow/:vacationId([0-9]+)", verifyLoggedIn, async (request: Request, response: Response, next:NextFunction)=>{
     try{
-        const userId = +request.params.userId
+        const userId = await cyber.getUserIdFromToken(request.headers.authorization)
         const vacationId = +request.params.vacationId
         const follow = await vacationLogic.follow(userId, vacationId)
         response.status(201).json(follow)
@@ -107,11 +106,11 @@ router.post("/follow/:userId([0-9]+)/:vacationId([0-9]+)", verifyLoggedIn, async
     }
 })
 // unfollow
-router.delete("/unfollow/:userId([0-9]+)/:vacationId([0-9]+)",verifyLoggedIn,  async (request: Request, response: Response,next: NextFunction)=>{
+router.delete("/unfollow/:vacationId([0-9]+)", verifyLoggedIn, async (request: Request, response: Response,next: NextFunction)=>{
     try{
-        const userId = +request.params.userId
         const vacationId = +request.params.vacationId
-        await vacationLogic.unfollow(userId, vacationId)
+        const userId = await cyber.getUserIdFromToken(request.headers.authorization)
+        await vacationLogic.unfollow( userId, vacationId)
         response.sendStatus(204)
     }catch(err:any){
         next(err)
