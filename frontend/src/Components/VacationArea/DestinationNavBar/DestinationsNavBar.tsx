@@ -23,7 +23,7 @@ const userFromRedux = AuthStore.getState().user
 const [vacations, setVacations] = useState<VacationModel[]>()
 
 useEffect(()=>{
-	VacationService.getAllVacations(userFromRedux.userId)
+	VacationService.getAllVacations()
 	.then(vacations => {
 		setVacations(vacations)
 	})

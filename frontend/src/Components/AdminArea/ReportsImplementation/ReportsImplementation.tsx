@@ -11,7 +11,7 @@ function ReportsImplementation(): JSX.Element {
     const userFromRedux = AuthStore.getState().user
 
     useEffect(()=>{
-        VacationService.getAllVacations(userFromRedux.userId)
+        VacationService.getAllVacations()
         .then(vacations=> {
             setVacations(vacations)
         })

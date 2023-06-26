@@ -5,10 +5,10 @@ import { VacationActionTypes, VacationStore } from "../Redux/VacationState";
 import ContinentModel from "../Models/ContinentModel";
 
 
-async function getAllVacations( userId : number ):Promise<VacationModel[]>{
+async function getAllVacations():Promise<VacationModel[]>{
     let vacations = VacationStore.getState().vacations;
     if (vacations.length === 0) {
-    const response = await axios.get<VacationModel[]>(appConfig.VacationsURL + userId)
+    const response = await axios.get<VacationModel[]>(appConfig.VacationsURL)
     vacations = response.data
     VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: vacations });
 }

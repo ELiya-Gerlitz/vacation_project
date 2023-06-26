@@ -49,7 +49,7 @@ const totalPages = Math.ceil(vacations.length / itemsPerPage);
       }
 
 useEffect(()=>{
-    VacationService.getAllVacations(userFromRedux.userId)
+    VacationService.getAllVacations()
 	.then(vacations => {
 		setVacations(vacations)
         // const unsubscribe = VacationStore.subscribe(() => {
@@ -64,7 +64,7 @@ useEffect(()=>{
 },[])
 
 const handleAllVacations = ()=> {
-    VacationService.getAllVacations(userFromRedux.userId)
+    VacationService.getAllVacations()
 	.then(vacations => {
 		setVacations(vacations)
         setCurrentPage(1)
