@@ -11,7 +11,7 @@ import asiaSurfing from "../../../Assets/images/tatonomusic-FFCgotROOTY-unsplash
 import auto from "../../../Assets/images/tyler-nix-6mze64HRU2Q-unsplash.jpg"
 import hawaii from "../../../Assets/images/pedro-monteiro-HfIex7qwTlI-unsplash.jpg"
 import statue from "../../../Assets/images/michael-heise-FLn6XDnbVVE-unsplash.jpg"
-import athens from "../../../Assets/images/spencer-davis-ilQmlVIMN4c-unsplash.jpg"
+// import athens from "../../../Assets/images/spencer-davis-ilQmlVIMN4c-unsplash.jpg"
 import * as jquery from "jquery";
 import $ from "jquery";
 import Isotope from "isotope-layout"
@@ -95,11 +95,11 @@ function Gallery(): JSX.Element {
 					<img src={southAmerica} alt="gallery-images"/>
 				</a>
 			</div>
-			<div className="gallery-img-wrap">
+			{/* <div className="gallery-img-wrap">
 				<a href="images/gallery-img7.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
 					<img src={athens} alt="gallery-images"/>
 				</a>
-			</div>
+			</div> */}
 			<div className="gallery-img-wrap">
 				<a href="images/gallery-img8.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
 					<img src={hawaii} alt="gallery-images"/>

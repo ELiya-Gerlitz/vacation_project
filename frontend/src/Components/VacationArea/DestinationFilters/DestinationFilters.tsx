@@ -11,6 +11,12 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import FilterService from "../../../Services/FilterService";
 import RoleEnum from "../../../Models/RolesEnum";
+import ImageButtonComponent from "../../ElementsArea/ButtonMUIComplex/ImageButtonComponent";
+// import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
+import London from "../../../Assets/images/London_Bridge.jpg"
+import Water from "../../../Assets/images/Water.jpg"
+// import Athens from "../../../Assets/images/Athens.jpg"
+
 
 
 function DestinationFilters(): JSX.Element {
@@ -98,15 +104,47 @@ const handleActive =()=> {
     })
     .catch()
 }
+// const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+//     alert('Button Clicked! Heydad!!!');
+//   };
+
+// const images = [
+//     {
+//       url: London,
+//       title: 'All Vacations',
+//       width: "25%",
+//     },
+//     {
+//       url: '/static/images/buttons/burgers.jpg',
+//       title: 'Followed',
+//       width: "25%",
+//     },
+//     {
+//       url: '/static/images/buttons/camera.jpg',
+//       title: 'Unstarted',
+//       width: "25%",
+//     },
+//     {
+//         url: '/static/images/buttons/camera.jpg',
+//         title: 'Active',
+//         width: "25%",
+//       },
+//   ];
 
     return (
         <div className="DestinationFilters">
+            <ImageButtonComponent url={London} title="AllVacations" width="25%" onClick={handleAllVacations}/>
+            <ImageButtonComponent url={Water} title="Followed" width="25%" onClick={handleFollowed}/>
+            <ImageButtonComponent url={London} title="Unstarted" width="25%" onClick={handleUnstarted}/>
+            <ImageButtonComponent url={London} title="Active" width="25%" onClick={handleActive}/>
+          
+            
             {/* this div {section-1} is for the `scrollIntoView` */}
            <div style={{height : "20px"}} id="section-1"></div>
-           <span>all</span> <button onClick={()=>handleAllVacations()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
+           {/* <span>all</span> <button onClick={()=>handleAllVacations()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
            <span>followed</span> <button onClick={()=>handleFollowed()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
            <span>unstarted</span> <button onClick={()=>handleUnstarted()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>
-           <span>active </span><button onClick={()=>handleActive()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button> 
+           <span>active </span><button onClick={()=>handleActive()}><img className="filterImg" src="https://img.freepik.com/free-photo/cyclist-bycicle-race_181624-23283.jpg?w=740&t=st=1686774042~exp=1686774642~hmac=d1da707aedacac7fd3abbe90a06f3b07309d90c66bf8108fcc89366885a26f2a"/> </button>  */}
 
             {userFromRedux?.role === RoleEnum.Admin ? <NavLink to={"/Admin/add-vacation"}> <button className="add-btn" >add new Vacation!</button></NavLink>: ""}
             {userFromRedux?.role === RoleEnum.Admin ?  <NavLink to={"/Admin/reports"}> <button className="add-btn" >get FollowersChart</button></NavLink>: ""}
