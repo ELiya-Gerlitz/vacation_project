@@ -5,14 +5,16 @@ import vacationLogic from "../5-Logic/vacationLogic"
 import verifyLoggedIn from "../3-Middleware/verify-loggedin"
 import VacationModel from "../4-Models/VacationModel"
 import verifyAdmin from "../3-Middleware/verify-Admin"
+import cyber from "../2-Utils/cyber"
 
 const router = express.Router()
 
 // get All vacations
-router.get("/vacations/:userId", verifyLoggedIn, async( request: Request, response: Response,next: NextFunction)=>{
+router.get("/vacations/", verifyLoggedIn, async( request: Request, response: Response,next: NextFunction)=>{
     try{
-        const userId = +request.params.userId
-        const vacations = await vacationLogic.getAllVacationsWithFollowDetails(userId)
+        const userId = cyber.getUserIdFromToken(request.headers.authorization)
+        // const userId = +request.params.userId
+        const vacations = await vacationLogic.getAllVacationsWithFollowDetails(await userId)
         response.json(vacations)
     }catch(err:any){
         next(err)

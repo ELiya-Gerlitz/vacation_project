@@ -68,6 +68,21 @@ async function isAdmin(request: Request): Promise<boolean> {
     return user.role === RoleModel.Admin;
 }
 
+
+async function getUserIdFromToken( headers: string): Promise<number> {
+  
+    const token = headers.substring(7);
+
+    // Extract container from token:
+    const container: any = jwt.decode(token);
+
+    // Extract user: 
+    const user: UserModel = container.user;
+    const userId = user.userId
+
+    return userId
+}
+
 const salt = "MakeThingsGoRightinJohnBryce!";
 
 function hash(plainText: string): string {
@@ -84,5 +99,6 @@ export default {
     isLoggedIn,
     createToken,
     hash,
-    isAdmin
+    isAdmin,
+    getUserIdFromToken
 }
