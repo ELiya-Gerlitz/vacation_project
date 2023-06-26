@@ -1,17 +1,16 @@
-.ReportsCanvas {
-	
-}
-
-.ReportsCanvas  svg {
-/* 
-    width: 200%;
-    height: 200%; */
-
-}
-
-
-/* .ReportsCanvas  .vertical {
-    transform: rotate(-90 ,515);
-    color: red;
-
+/* .Chart text {
+	font-size: large;
 } */
+
+.Chart .toolt {
+	font-size: 30px;
+}
+
+.Chart .MuiTooltip-popper {
+    font-size:70px;
+
+}
+.paddingTopCSV {
+	padding-top: 40px;
+}
+

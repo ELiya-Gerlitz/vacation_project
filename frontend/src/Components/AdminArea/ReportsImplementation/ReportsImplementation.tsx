@@ -20,7 +20,7 @@ function ReportsImplementation(): JSX.Element {
 
     return (
         <div className="ReportsImplementation">
-            <h3></h3>
+            <h3>Vacations Reports</h3>
   <Chart vacations={vacations} />			
         </div>
     );
