@@ -74,9 +74,6 @@ function hash(plainText: string): string {
 
     if(!plainText) return null;
 
-    // Hash without salt:
-    // const hashedText = crypto.createHash("sha512").update(plainText).digest("hex");
-
     // Hash with salt: 
     const hashedText = crypto.createHmac("sha512", salt).update(plainText).digest("hex");
 

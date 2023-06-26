@@ -20,7 +20,7 @@ import { event } from "jquery";
 
 
 function EditVacation(): JSX.Element {
-    const {register, setValue, handleSubmit} = useForm<VacationModel>()
+    const {register, setValue, handleSubmit, formState} = useForm<VacationModel>()
     const [continents, setContinents] = useState<ContinentModel[]>()
     const navigate = useNavigate()
     const params = useParams()
@@ -96,11 +96,13 @@ function EditVacation(): JSX.Element {
                 <h3>VACATION PRO Admin Edit Vacation</h3>
                 <input hidden type="number" {...register("vacationId")}/>
     {/* destination */}
+              <span className="errorSpan">{formState.errors?.destination?.message}</span>
                 <FloatingLabel controlId="floatingInput" label="destination" className="mb-3 input outerBoxOfInput">
                   <Form.Control className="input" type="text" placeholder="email" {...register('destination', VacationModel.destinationValidation)} />
                 </FloatingLabel>
     
     {/* description */}
+                <span className="errorSpan">{formState.errors?.description?.message}</span>
                 <FloatingLabel controlId="floatingTextarea2" className="large" label="description" >
                     <Form.Control
                     as="textarea"
@@ -112,22 +114,26 @@ function EditVacation(): JSX.Element {
                     />
                 </FloatingLabel>
     {/* startingDate */}
+                <span className="errorSpan">{formState.errors?.startingDate?.message}</span>
                 <label htmlFor="startDate" className="justifyLefy">starting date</label>
                 {/* <input type="Date | string"  className="inputDate" defaultValue={vacation &&  vacation.startingDate}  {...register('startingDate' , { valueAsDate: true })} required></input> */}
                 <input type="date" className="inputDate" {...register('startingDate')} required onChange={(e :any) => setStartingDate(e.target.value)}></input>
 
     {/* endingDate */}
+                <span className="errorSpan">{formState.errors?.endingDate?.message}</span>
                 <label htmlFor="endingDate" className="justifyLefy">ending date</label>
                 {/* <input type="Date | string" className="inputDate" {...register('endingDate', { valueAsDate: true })} required></input> */}
                 <input type="date" className="inputDate" {...register('endingDate')} required onChange={(e:any) => setEndingDate(e.target.value)}></input>
                 <br></br>
     
       {/* price */}
+                <span className="errorSpan">{formState.errors?.price?.message}</span>
                 <FloatingLabel controlId="floatingInput" label="price" className="mb-3 input outerBoxOfInput" >
                   <Form.Control className="input" type="number"  placeholder="price" {...register('price', VacationModel.priceValidation)} />
                 </FloatingLabel>
 
       {/* select continent*/}
+                <span className="errorSpan">{formState.errors?.continentId?.message}</span>
                 <FloatingLabel controlId="floatingSelect" label="Selects a continent" className="input">
                     <Form.Select aria-label="Floating label select example" {...register("continentId")}>
                      <option defaultValue={vacation?.continentId}>{vacation?.continentName}</option> 

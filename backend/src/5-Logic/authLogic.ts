@@ -38,18 +38,16 @@ async function login( credentials: CredentialsModel ):Promise<string>{
 // }catch(err){
 //     console.log(err)
 // }
-   
+     const hashedPassword = cyber.hash(credentials.password)
+     const values = [credentials.email, hashedPassword]
      // get all users and see whether the userName && password exist.
      const sql =`
      SELECT * FROM users
      WHERE email = ? AND password = ?
      `
-     const hashedPassword = cyber.hash(credentials.password)
-     const values = [credentials.email, hashedPassword]
-     const passwordUsernameExist:OkPacket = await dal.execute(sql, values)
- 
-     if(passwordUsernameExist.fieldCount <= 0) throw new ValidationErrorModel("Please register!") 
-
+     const passwordUsernameExist = await dal.execute(sql, values)
+    //  console.log("filedcount:" +passwordUsernameExist.fieldCount ) // das ist ganz falsch!! Den OkPAcket.fieldCount gibt den Resultat gar nich zurück!
+    if(passwordUsernameExist.length <= 0) throw new ValidationErrorModel("Please register!")
     const token = cyber.createToken(passwordUsernameExist[0])
     return token
 }

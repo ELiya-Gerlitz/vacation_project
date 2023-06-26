@@ -52,7 +52,8 @@ router.put("/vacations/:vacationId([0-9]+)", verifyAdmin, async(request: Request
         request.body.vacationId = +request.params.vacationId
         const vacationToUpdate = new VacationModel(request.body)
         const updatedVacation = await vacationLogic.putVacation(vacationToUpdate)
-        response.json(updatedVacation)
+        console.log(updatedVacation + "I am updated in controller")
+        response.status(201).json(updatedVacation)
     }catch(err:any){
         next(err)
     }

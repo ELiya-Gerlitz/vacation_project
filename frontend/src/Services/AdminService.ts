@@ -39,6 +39,7 @@ async function updateVacation( vacation: VacationModel): Promise<void> {
 
     const response = await axios.put<VacationModel>(appConfig.VacationsURL + vacation.vacationId, myForm)
     const updatedVacation = response.data
+    console.log("updated vac"+updatedVacation)
     VacationStore.dispatch({type: VacationActionTypes.UpdateVacation, payload: updatedVacation})
 }
 

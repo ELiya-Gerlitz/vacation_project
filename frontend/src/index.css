@@ -22,3 +22,16 @@ html {  /* wichtig !!!!!!!*/
 	line-height: 1.15; /* 1 */
 	-webkit-text-size-adjust: 100%; /* 2 */
 }
+
+.errorSpan{
+    color: rgb(231, 7, 67);
+    display: block;
+    width: 300px;
+    /* justify-content: left; */
+    text-align: left;
+    margin-left: 4%;
+    font-size: 12px;
+    margin-bottom: 4px;
+    /* background-color: pink; */
+
+}

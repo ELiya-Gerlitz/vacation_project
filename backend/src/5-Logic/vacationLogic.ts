@@ -63,7 +63,7 @@ async function postNewVacation(vacation :VacationModel):Promise<VacationModel>{
     INSERT INTO vacations
     VALUES(DEFAULT, ?, ?, ?, ?, ?,?, ?)
     `
-    const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName, vacation.continentId ]
+    const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName, vacation.continentId]
     const response: OkPacket = await dal.execute(sql, values )
     vacation.vacationId = response.insertId
     console.log(" I am the added book.bookId"+ vacation.vacationId) //Das wirkt gut ohne zum die arr[0] zurückkehren. Wieso? 🤲🤔
@@ -105,9 +105,10 @@ async function putVacation(vacation: VacationModel):Promise<VacationModel>{
     WHERE vacationId = ?
     `
     const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName, vacation.continentId, vacation.vacationId]
-    const updatedInfo: OkPacket= await dal.execute(sql, values)
-    if(updatedInfo.affectedRows===0) throw new ResourceNotFoundErrorModel(vacation.vacationId)
-    return updatedInfo[0]
+    const updatedInfo = await dal.execute(sql, values)
+    console.log("in the Logic put without okpacket "+ updatedInfo[0])
+    if(updatedInfo.length === 0) throw new ResourceNotFoundErrorModel(vacation.vacationId)
+    return vacation
 }
 
 async function deleteVacation( vacationId: number ):Promise<void>{

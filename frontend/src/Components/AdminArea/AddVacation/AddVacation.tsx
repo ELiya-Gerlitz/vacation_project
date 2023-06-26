@@ -14,10 +14,12 @@ import carrebean from "../../../Assets/images/Caribbean-All-inclusive-Family-Res
 import parachute from "../../../Assets/images/parachute_colorful.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import ContinentModel from "../../../Models/ContinentModel";
+import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
+import skiing from "../../../Assets/images/skii.jpg"
 
 
 function AddVacation(): JSX.Element {
-    const {register, handleSubmit}= useForm<VacationModel>()
+    const {register, handleSubmit, formState}= useForm<VacationModel>()
     const [continents, setContinents] = useState<ContinentModel[]>()
     const navigate= useNavigate()
     const [selectedImage, setSelectedImage] = useState();
@@ -64,10 +66,18 @@ function AddVacation(): JSX.Element {
         }
       };
 
+      const pic = [
+        skiing,
+        surfing,
+        snowBoard
+    ]
+    const num = Math.floor(Math.random()* pic.length)
+    
+
     return (
 
         <FormLayout 
-        imageSrc={snowBoard} 
+        imageSrc={pic[num]} 
         formContent={  
         <div className="AddVacation">
             <form onSubmit={handleSubmit(send)}>
@@ -75,11 +85,13 @@ function AddVacation(): JSX.Element {
                 <h3>VACATION PRO Admin Add Vacation</h3>
     
     {/* destination */}
+                <span className="errorSpan">{formState.errors?.destination?.message}</span>
                 <FloatingLabel controlId="floatingInput" label="destination" className="mb-3 input outerBoxOfInput">
                   <Form.Control className="input" type="text" placeholder="email" {...register('destination', VacationModel.destinationValidation)} />
                 </FloatingLabel>
     
     {/* description */}
+              <span className="errorSpan">{formState.errors?.description?.message}</span>
                 <FloatingLabel controlId="floatingTextarea2" className="large" label="description" >
                     <Form.Control
                     as="textarea"
@@ -92,23 +104,26 @@ function AddVacation(): JSX.Element {
                 </FloatingLabel>
   
     {/* startingDate */}
-
+    <span className="errorSpan">{formState.errors?.startingDate?.message}</span>
     <label htmlFor="startDate" className="justifyLeft">starting date</label>
 
     <input type="date" className="inputDate"  {...register('startingDate')} required  min={new Date().toISOString().split('T')[0]} onChange={handleStartingDateChange}></input> 
 
 
     {/* endingDate */}
+    <span className="errorSpan">{formState.errors?.endingDate?.message}</span>
     <label htmlFor="endingDate" className="justifyLeft">ending date</label>
     <input type="date" className="inputDate" {...register('endingDate')} required onChange={handleEndingDateChange}></input>
     <br></br>
     
       {/* price */}
+              <span className="errorSpan">{formState.errors?.price?.message}</span>
                 <FloatingLabel controlId="floatingInput" label="price" className="mb-3 input outerBoxOfInput" >
                   <Form.Control className="input" type="number" placeholder="price" {...register('price', VacationModel.priceValidation)} />
                 </FloatingLabel>
 
       {/* select continent*/}
+                <span className="errorSpan">{formState.errors?.continentId?.message}</span>
                 <FloatingLabel controlId="floatingSelect" label="selects a continent" className="input">
                     <Form.Select aria-label="Floating label select example" defaultValue="" {...register("continentId")}>
                         <option>Open this select menu</option>
@@ -117,6 +132,8 @@ function AddVacation(): JSX.Element {
                 </FloatingLabel>
                 <br></br>
 
+
+                <span className="errorSpan">{formState.errors?.image?.message}</span>
                 <div className="imageInput">
                 <input accept="image/*" type="file" onChange={imageChange} {...register("image")}/>
                 </div>

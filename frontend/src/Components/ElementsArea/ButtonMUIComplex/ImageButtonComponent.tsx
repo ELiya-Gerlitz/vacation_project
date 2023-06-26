@@ -92,6 +92,7 @@ function ImageButtonComponent(props: ImageButtonProps): JSX.Element {
         <Typography
           component="span"
           variant="subtitle1"
+          fontSize="large"
           color="inherit"
           sx={{
             position: 'relative',

@@ -10,11 +10,13 @@ import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 import FormLayout from "../../ElementsArea/formLayout/formLayout";
 import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
+import skiing from "../../../Assets/images/skii.jpg"
+
 
 
 
 function Login(): JSX.Element {
-        const { handleSubmit, register } = useForm<CredentialsModel>()
+        const { handleSubmit, register, formState} = useForm<CredentialsModel>()
         const navigate = useNavigate();
     
         const send = (data: CredentialsModel) => {
@@ -34,7 +36,8 @@ function Login(): JSX.Element {
         
    const pic = [
     snowBoard,
-    surfing
+    surfing,
+    skiing
 ]
 const num = Math.floor(Math.random()* pic.length)
 
@@ -45,10 +48,12 @@ const num = Math.floor(Math.random()* pic.length)
           <div className="Login">
               <form onSubmit={handleSubmit(send)}>
               <h3>VACATION PRO Login</h3>
+                <span className="errorSpan">{formState.errors?.email?.message}</span>
                 <FloatingLabel controlId="floatingInput" label="Email" className="mb-3 input outerBoxOfInput">
                   <Form.Control className="input" type="email" placeholder="email" {...register('email', CredentialsModel.emailValidation)} />
                 </FloatingLabel>
-  
+
+              <span className="errorSpan">{formState.errors?.password?.message}</span>
                 <FloatingLabel className="input outerBoxOfInput" controlId="floatingPassword" label="Password">
                   <Form.Control className="input" type="password" placeholder="Password" {...register('password', CredentialsModel.passwordValidation)} />
                 </FloatingLabel>

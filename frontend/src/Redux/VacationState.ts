@@ -29,9 +29,13 @@ export function VacationReducer( currentState = new VacationState(), action: Vac
 
     case VacationActionTypes.UpdateVacation:
         let updatedVacationIndex = newState.vacations.findIndex(v=>v.vacationId === action.payload.vacationId)  //new details about one vacation
+        console.log(updatedVacationIndex)
         if(updatedVacationIndex > -1){
+            
+            console.log("in the if")
            newState.vacations[updatedVacationIndex] = action.payload
         }
+        console.log("We are in the update redux")
         break;
 
     case VacationActionTypes.DeleteVacation:

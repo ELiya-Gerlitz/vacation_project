@@ -16,7 +16,7 @@ export class ValidationErrorModel extends ErrorModel{
 
 export class ResourceNotFoundErrorModel extends ErrorModel{
     constructor(id: number){
-        super(`This ${id} does nort exist!`, 404)
+        super(`This ${id} does not exist!`, 404)
     }
 }
 
