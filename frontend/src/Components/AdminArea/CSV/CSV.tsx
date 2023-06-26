@@ -9,14 +9,15 @@ interface VacationInfo {
 function CSV( props: VacationInfo ): JSX.Element {
   const [dataInCSV, setDataInCSV] = useState("");
 
-function handleInsertData()  {
-    const row = props.vacations.map((v)=> {
-    const dataRow = [v.destination, v.followersCount]
-    return dataRow.join(',')
-
-  })
-  setDataInCSV(row.join('\n')) 
-}
+  function handleInsertData() {
+    const headerRow = ["Destination", "followersCount"];
+    const dataRows = props.vacations.map((v) => [v.destination, v.followersCount]);
+  
+    const csvContent = [headerRow.join(','), ...dataRows.map((row) => row.join(','))].join('\n');
+  
+    setDataInCSV(csvContent);
+  }
+  
   return (
       <button onClick={handleInsertData}>
         <a
