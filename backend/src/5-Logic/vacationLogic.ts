@@ -1,9 +1,7 @@
 import dal from "../2-Utils/dal";
 import { ResourceNotFoundErrorModel, ValidationErrorModel } from "../4-Models/ErrorModel";
 import {OkPacket} from "mysql"
-import cyber from "../2-Utils/cyber";
 import fs from "fs"
-import fsPromises from "fs/promises"
 import path from "path";
 import {v4 as uuid} from "uuid"
 import VacationModel from "../4-Models/VacationModel";
@@ -15,12 +13,15 @@ async function getAllVacationsWithFollowDetails(userId: number): Promise<Vacatio
     const sql = `
     SELECT DISTINCT
     v.*,
-	EXISTS(SELECT * FROM followers WHERE vacationId = F.vacationId AND userId = ?) AS isFollowing,
-	COUNT(F.userId) AS followersCount
-    FROM vacations as V LEFT JOIN followers as F
-    ON V.vacationId = F.vacationId
-    GROUP BY vacationId
-    ORDER BY startingDate ASC
+    c.continentName,
+    EXISTS(SELECT * FROM followers WHERE vacationId = F.vacationId AND userId = ?) AS isFollowing,
+    COUNT(F.userId) AS followersCount
+    FROM vacations AS v
+    LEFT JOIN followers AS F ON v.vacationId = F.vacationId
+    LEFT JOIN continents AS c ON v.continentId = c.continentId
+    GROUP BY v.vacationId
+    ORDER BY v.startingDate ASC
+
     `;
 
     const vacations = await dal.execute(sql, [userId]);
@@ -30,7 +31,7 @@ async function getAllVacationsWithFollowDetails(userId: number): Promise<Vacatio
 async function getOneVacation(vacationId :number):Promise<VacationModel>{
  
     const sql= `
-    SELECT v.*
+    SELECT v.*, c.continentName
     FROM vacations AS v JOIN continents AS c
     ON v.continentId = c.continentId
     WHERE v.vacationId = ?
@@ -148,7 +149,6 @@ async function getVacationsByContinentName(continent_Id : string):Promise<Vacati
     return vacations
 }
 
-
 async function follow(userId: number, vacationId :number):Promise<VacationModel>{
 
 // check whether following record exists already
@@ -190,7 +190,6 @@ async function unfollow( userId: number, vacationId :number ):Promise<void>{
         if(info.affectedRows===0) throw new ResourceNotFoundErrorModel(vacationId)
     }
 
-
     async function getAllContinents(): Promise<ContinentModel[]> {
         const sql = `
         SELECT * FROM continents
@@ -198,7 +197,6 @@ async function unfollow( userId: number, vacationId :number ):Promise<void>{
         const vacations = await dal.execute(sql);
         return vacations;
     }
-    
 
 export default {
     getAllVacationsWithFollowDetails,
