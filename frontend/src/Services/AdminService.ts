@@ -1,12 +1,10 @@
 import axios from "axios";
 import VacationModel from "../Models/VacationModel";
-import { AuthStore } from "../Redux/AuthState";
 import appConfig from "../Utils/AppConfig";
 import { VacationActionTypes, VacationStore } from "../Redux/VacationState";
 
 
 async function addVacation(vacation : VacationModel): Promise<void> {
-console.log(VacationStore.getState().vacations)
 
     const myForm = new FormData()
     myForm.append("destination", vacation.destination)
@@ -22,7 +20,6 @@ console.log(VacationStore.getState().vacations)
 
     newVacation.isFollowing = 0
     newVacation.followersCount = 0 
-    console.log(newVacation)
     VacationStore.dispatch({type: VacationActionTypes.AddVacation, payload: newVacation})
 }
 
@@ -39,7 +36,6 @@ async function updateVacation( vacation: VacationModel): Promise<void> {
 
     const response = await axios.put<VacationModel>(appConfig.VacationsURL + vacation.vacationId, myForm)
     const updatedVacation = response.data
-    console.log("updated vac"+updatedVacation)
     VacationStore.dispatch({type: VacationActionTypes.UpdateVacation, payload: updatedVacation})
 }
 

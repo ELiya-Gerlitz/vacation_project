@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import CredentialsModel from "../../../Models/CredentialsModel";
 import authService from "../../../Services/authService";
 import { AuthStore } from "../../../Redux/AuthState";
@@ -59,6 +59,9 @@ const num = Math.floor(Math.random()* pic.length)
                 </FloatingLabel>
   
                 <FrameBtn btnString="Login" />
+
+                <p>don't have an account? </p>
+                <NavLink to={"/auth/register"}>register now</NavLink>
               </form>
           </div>
         }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import AdminService from "../../../Services/AdminService";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { VacationStore } from "../../../Redux/VacationState";
 
 interface ModalInterface{
     vacationId: number

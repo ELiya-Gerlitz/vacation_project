@@ -12,7 +12,6 @@ import Stack from '@mui/material/Stack';
 import FilterService from "../../../Services/FilterService";
 import RoleEnum from "../../../Models/RolesEnum";
 import ImageButtonComponent from "../../ElementsArea/ButtonMUIComplex/ImageButtonComponent";
-// import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import London from "../../../Assets/images/London_Bridge.jpg"
 import Water from "../../../Assets/images/Water.jpg"
 import Athens from "../../../Assets/images/Athens.jpg"
@@ -64,7 +63,7 @@ useEffect(()=>{
 },[])
 
 const handleAllVacations = ()=> {
-    VacationService.getAllVacations()
+     VacationService.getAllVacations()
 	.then(vacations => {
 		setVacations(vacations)
         setCurrentPage(1)
@@ -75,7 +74,7 @@ const handleAllVacations = ()=> {
 }
 
 const handleFollowed = async () => {
-   FilterService.filterByisFollowing( userFromRedux.userId )
+   FilterService.filterByisFollowing()
         .then((filteredFollowedVacations)=>{
         setVacations(filteredFollowedVacations)
         setCurrentPage(1)
@@ -85,7 +84,7 @@ const handleFollowed = async () => {
 
 const handleUnstarted = async ()=> {
 
-    FilterService.filterUnstarted(userFromRedux.userId )
+    FilterService.filterUnstarted()
     .then((filteredUnstarted)=>{
         setVacations(filteredUnstarted)
         setCurrentPage(1)
@@ -94,7 +93,7 @@ const handleUnstarted = async ()=> {
 }
       
 const handleActive =()=> {
-    FilterService.filterActiveVacations(userFromRedux.userId)
+    FilterService.filterActiveVacations()
     .then((filteredActive)=>{
         setVacations(filteredActive)
         setCurrentPage(1)
@@ -110,7 +109,6 @@ const handleActive =()=> {
             <ImageButtonComponent url={Athens} title="Unstarted" width="25%" onClick={handleUnstarted}/>
             <ImageButtonComponent url={Carrebian} title="Active" width="25%" onClick={handleActive}/>
           
-            
             {/* this div {section-1} is for the `scrollIntoView` */}
            <div style={{height : "20px"}} id="section-1"></div>
                     {userFromRedux?.role === RoleEnum.Admin ? <NavLink to={"/Admin/add-vacation"}> <button className="add-btn" >add new Vacation!</button></NavLink>: ""}

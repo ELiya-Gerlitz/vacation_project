@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 interface DataInterface {
     vacationModel : VacationModel
-     userId : number
    }
 
 function ToggleButtonAdmin( props : DataInterface): JSX.Element {

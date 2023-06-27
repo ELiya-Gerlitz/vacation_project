@@ -37,7 +37,6 @@ useEffect(()=>{
 			<br></br>
 			<br></br>
 				<section className="articles">
-               {/* {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} userId={userIdLoggedIn} />)} */}
                {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
 			   </section>			
 		<section className="page-heading">

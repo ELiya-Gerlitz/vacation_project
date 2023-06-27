@@ -11,6 +11,7 @@ import FormLayout from "../../ElementsArea/formLayout/formLayout";
 import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
 import skiing from "../../../Assets/images/skii.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
+import { NavLink } from "react-router-dom";
 
 
 
@@ -32,7 +33,7 @@ function Register(): JSX.Element {
 
    const pic = [
     skiing,
-    surfing,
+    // surfing,
     snowBoard
 ]
 const num = Math.floor(Math.random()* pic.length)
@@ -69,7 +70,11 @@ const num = Math.floor(Math.random()* pic.length)
                   <Form.Control className="input" type="password" placeholder="Password" {...register('password', UserModel.passwordValidation)} />
                 </FloatingLabel>
                 <FrameBtn btnString="Register"/>
+
+                <p>already a member? </p>
+                <NavLink to={"/auth/login"}>login</NavLink>
             </form>
+           
         </div>
           }
           />

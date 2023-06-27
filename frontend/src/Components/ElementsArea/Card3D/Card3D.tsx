@@ -9,6 +9,7 @@ import ToggleButtonAdmin from "../ToggleButtonAdmin/ToggleButtonAdmin";
 interface CardContents{
   vacationModel : VacationModel
   user : UserModel
+  
 }
 
 function Card3D( props : CardContents): JSX.Element {
@@ -18,7 +19,7 @@ function Card3D( props : CardContents): JSX.Element {
                 <div className="article-wrapper">
                   <figure>
                           <div className="toggleController">
-                            {props.user.role === "Admin"? <ToggleButtonAdmin userId={props.user.userId} vacationModel={props.vacationModel} /> : <ToggleButton userId={props.user.userId} vacationModel={props.vacationModel} />}
+                            {props.user.role === "Admin"? <ToggleButtonAdmin vacationModel={props.vacationModel} /> : <ToggleButton vacationModel={props.vacationModel} />}
                           </div>  
                     <img src={appConfig.imgUrl + props.vacationModel.imageName} alt="" />
                   </figure>

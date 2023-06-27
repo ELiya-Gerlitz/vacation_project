@@ -6,7 +6,6 @@ import VacationModel from '../../../Models/VacationModel';
 
 interface DataInterface {
  vacationModel : VacationModel
-  userId : number
 }
 
 function ToggleButton( props : DataInterface ): JSX.Element {
@@ -24,7 +23,7 @@ function ToggleButton( props : DataInterface ): JSX.Element {
     try{
       if(props.vacationModel.isFollowing) {
         setHeartColor(props.vacationModel.isFollowing = 0)
-              VacationService.unfollow(props.userId, props.vacationModel.vacationId)
+              VacationService.unfollow(props.vacationModel.vacationId)
               .then(()=> {
                 "successfully updated unfollow!"
                 setFollowersCount((props.vacationModel.followersCount))
@@ -32,7 +31,7 @@ function ToggleButton( props : DataInterface ): JSX.Element {
               .catch(err => console.log(err))
       }else {
         setHeartColor(props.vacationModel.isFollowing = 1)
-        VacationService.follow(props.userId, props.vacationModel.vacationId)
+        VacationService.follow(props.vacationModel.vacationId)
           .then(()=> {
               "successfully updated follow!"
               setFollowersCount((props.vacationModel.followersCount))

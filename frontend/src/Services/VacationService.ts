@@ -14,20 +14,20 @@ async function getAllVacations():Promise<VacationModel[]>{
 }
     return vacations
 }
-    async function getVacationsByContinentId( continentId : string):Promise<VacationModel[]>{
+    async function getVacationsByContinentId(continentId : string):Promise<VacationModel[]>{
         const response = await axios.get<VacationModel[]>(appConfig.getVacByContinentId + continentId)
         const vacations = response.data
         return vacations
     }
 
     
-async function follow( userId :number, vacationId: number): Promise<void> {
-    await axios.post<any>(appConfig.followURL + userId + "/" + vacationId)
+async function follow(vacationId: number): Promise<void> {
+    await axios.post<any>(appConfig.followURL + vacationId)
     VacationStore.dispatch({type: VacationActionTypes.Follow, payload: {vacationId}})
 }
 
-async function unfollow(userId :number, vacationId: number): Promise<void> {
-    await axios.delete<void>(appConfig.unfollowURL + userId + "/" + vacationId)
+async function unfollow(vacationId: number): Promise<void> {
+    await axios.delete<void>(appConfig.unfollowURL+ vacationId)
     VacationStore.dispatch({type: VacationActionTypes.Unfollow, payload: {vacationId}})
 }
 

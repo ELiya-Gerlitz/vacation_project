@@ -136,7 +136,7 @@ function EditVacation(): JSX.Element {
                 <span className="errorSpan">{formState.errors?.continentId?.message}</span>
                 <FloatingLabel controlId="floatingSelect" label="Selects a continent" className="input">
                     <Form.Select aria-label="Floating label select example" {...register("continentId")}>
-                     <option defaultValue={vacation?.continentId}>{vacation?.continentName}</option> 
+                     <option defaultValue={vacation?.continentName}>{vacation?.continentName}</option> 
                        {continents && continents.map(c=><option key={c.continentId} value={c.continentId} >{c.continentName}</option> )}
                     </Form.Select>
                 </FloatingLabel>
@@ -147,11 +147,11 @@ function EditVacation(): JSX.Element {
                 <img src={vacation && appConfig.imgUrl + vacation?.imageName}/>
                 <input accept="image/*" type="file" onChange={imageChange} {...register("image")} defaultValue={vacation?.imageName}/>
                 </div>
-
+  {/*change preview*/}
                 {/* {selectedImage &&  (<div ><p>{URL.createObjectURL(selectedImage)}</p></div>)}    // This (URL.createObjectURL) sets it as a url- string, rather than a File... */}
                 {selectedImage &&  <div ><img src={URL.createObjectURL(selectedImage)} alt="PreviewImage"/></div>}
              <div className="btnWrapper">
-                <FrameBtn btnString="Update Vacation" />
+                <FrameBtn btnString="Update Vacation"/>
             </div>
             </form>
     </div>
