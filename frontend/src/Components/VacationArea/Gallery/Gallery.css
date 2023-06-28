@@ -48,7 +48,7 @@
 .course-listing-page .button-group button,
 .gallery-section .button-group button,
 .gallery-section2 .button-group button{
-	/*font-size: 1.4rem;*/
+	font-size: 1.4rem;
 	/*font-family: 'Raleway', sans-serif;*/
 	/*color: #000;*/
 	background: transparent;

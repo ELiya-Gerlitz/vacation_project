@@ -132,7 +132,7 @@ function AddVacation(): JSX.Element {
                 </FloatingLabel>
                 <br></br>
 
-
+      {/* image*/}
                 <span className="errorSpan">{formState.errors?.image?.message}</span>
                 <div className="imageInput">
                 <input accept="image/*" type="file" onChange={imageChange} {...register("image")}/>

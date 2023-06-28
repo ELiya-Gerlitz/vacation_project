@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./DestinationFilters.css";
 import VacationService from "../../../Services/VacationService";
 import Card3D from "../../ElementsArea/Card3D/Card3D";
@@ -16,12 +16,16 @@ import London from "../../../Assets/images/London_Bridge.jpg"
 import Water from "../../../Assets/images/Water.jpg"
 import Athens from "../../../Assets/images/Athens.jpg"
 import Carrebian from "../../../Assets/images/Carrebian.jpg"
+import CardOverlap from "../../ElementsArea/CardOverlap/CardOverlap";
+import appConfig from "../../../Utils/AppConfig";
+import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 
 
 
 function DestinationFilters(): JSX.Element {
     const userFromRedux = AuthStore.getState().user
     const [vacations, setVacations] = useState<VacationModel[]>([])
+    const navigate = useNavigate()
     // const [filteredByIsFollowing, setFilteredByIsFollowing] = useState<VacationModel[]>()
 
 // state variables ***********************************************
@@ -74,12 +78,17 @@ const handleAllVacations = ()=> {
 }
 
 const handleFollowed = async () => {
-   FilterService.filterByisFollowing()
-        .then((filteredFollowedVacations)=>{
-        setVacations(filteredFollowedVacations)
-        setCurrentPage(1)
-    })
-        .catch(err=>console.log(err))
+  if(userFromRedux.role === RoleEnum.Admin){
+    navigate("/Admin/reports")
+  } else{
+    FilterService.filterByisFollowing()
+    .then((filteredFollowedVacations)=>{
+    setVacations(filteredFollowedVacations)
+    setCurrentPage(1)
+})
+    .catch(err=>console.log(err))
+  }
+ 
 }
 
 const handleUnstarted = async ()=> {
@@ -101,6 +110,13 @@ const handleActive =()=> {
     .catch()
 }
 
+const alertVal = (e: any)=>{
+    const continentId = e.target.dataset.continent
+    alert(continentId)
+
+
+}
+
 
     return (
         <div className="DestinationFilters">
@@ -109,14 +125,17 @@ const handleActive =()=> {
             <ImageButtonComponent url={Athens} title="Unstarted" width="25%" onClick={handleUnstarted}/>
             <ImageButtonComponent url={Carrebian} title="Active" width="25%" onClick={handleActive}/>
           
+          <div className="continentDiv" data-continent="asia" onClick={alertVal}>continent</div> 
+          <div className="continentDiv" data-continent="africa" onClick={alertVal}>continent</div>
             {/* this div {section-1} is for the `scrollIntoView` */}
            <div style={{height : "20px"}} id="section-1"></div>
-                    {userFromRedux?.role === RoleEnum.Admin ? <NavLink to={"/Admin/add-vacation"}> <button className="add-btn" >add new Vacation!</button></NavLink>: ""}
-            {userFromRedux?.role === RoleEnum.Admin ?  <NavLink to={"/Admin/reports"}> <button className="add-btn" >get FollowersChart</button></NavLink>: ""}
+                    {userFromRedux?.role === RoleEnum.Admin ? <NavLink to={"/Admin/add-vacation"}> <FrameBtn btnString={"add new vacation"}/></NavLink>: ""}
+            {/* {userFromRedux?.role === RoleEnum.Admin ?  <NavLink to={"/Admin/reports"}> <button className="add-btn" >get FollowersChart</button></NavLink>: ""} */}
 
           
                 <section className="articles">
                     {vacations && currentItems.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
+                    {/* {vacations && currentItems.map(v=><CardOverlap key={v.vacationId} image={appConfig.imgUrl + v.imageName} title={v.destination} description={v.description} />)} */}
                     {/* {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)} */}
                 </section>	
 

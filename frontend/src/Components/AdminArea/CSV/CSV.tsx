@@ -1,5 +1,6 @@
 import { useState } from "react";
 import VacationModel from "../../../Models/VacationModel";
+import { Fab } from "@mui/material";
 // genommen von:  https://stackblitz.com/edit/react-download-csv-from-api-response?file=src%2FHttpClient.js
 
 interface VacationInfo {
@@ -18,14 +19,16 @@ function CSV( props: VacationInfo ): JSX.Element {
   }
   
   return (
-      <button onClick={handleInsertData}>
+    <div className="CSV">
+      <Fab variant="extended" onClick={handleInsertData}>
         <a
           href={`data:text/csv;charset=utf-8,${escape(dataInCSV)}`}
           download="Destination_Followers.csv"
         >
-          download CSV file
+        Download CSV file        
         </a>
-         </button>
+        </Fab>
+        </div>
   );
 }
 export default CSV;

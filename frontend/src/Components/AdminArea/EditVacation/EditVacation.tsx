@@ -15,8 +15,7 @@ import ContinentModel from "../../../Models/ContinentModel";
 import VacationService from "../../../Services/VacationService";
 import AdminService from "../../../Services/AdminService";
 import appConfig from "../../../Utils/AppConfig";
-import dateFormatting from "../../../Utils/dateFormatting";
-import { event } from "jquery";
+
 
 
 function EditVacation(): JSX.Element {
@@ -136,7 +135,7 @@ function EditVacation(): JSX.Element {
                 <span className="errorSpan">{formState.errors?.continentId?.message}</span>
                 <FloatingLabel controlId="floatingSelect" label="Selects a continent" className="input">
                     <Form.Select aria-label="Floating label select example" {...register("continentId")}>
-                     <option defaultValue={vacation?.continentName}>{vacation?.continentName}</option> 
+                     <option>{vacation?.continentName}</option> 
                        {continents && continents.map(c=><option key={c.continentId} value={c.continentId} >{c.continentName}</option> )}
                     </Form.Select>
                 </FloatingLabel>

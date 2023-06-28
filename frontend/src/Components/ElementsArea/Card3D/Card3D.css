@@ -1,21 +1,40 @@
+.Card3D img{
+  filter: saturate(0.5);
+}
 .toggleController{
  position: absolute;
  z-index: 999;
  padding: 10px;
 }
+.tripadvisorCircles {
+  /* filter: grayscale(10%); */
+  -webkit-filter: grayscale(10%);
+  /* filter: hue-rotate(180deg); */
+  width: 100px;
+  /* filter: brightness(0.5) saturate(0%); */
+  filter: sepia(50);
+
+
+}
 article {
-    --img-scale: 1.001;
+    /* --img-scale: 1.001; */
+    --img-scale: 1.0001;
     --title-color: black;
     --link-icon-translate: -20px;
     --link-icon-opacity: 0;
     position: relative;
     /* border-radius: 16px; */
-    border-radius: 10px;
+    border-radius: 1px;
     box-shadow: none;
-    background: #fff;
+    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; */
+    box-shadow: 2px 2px 1.5px 0px rgba(0,0,0,0.1);  
+
+    background: #ebf3fd;
     transform-origin: center;
     transition: all 0.4s ease-in-out;
-    overflow: hidden;
+    overflow: hidden;   
+    margin: 20px;
+    
   }
   
   article a::after {
@@ -77,28 +96,17 @@ article {
   
   /* using the has() relational pseudo selector to update our custom properties */
   article:has(:hover, :focus) {
-    --img-scale: 1.1;
+    --img-scale: 1.05;
     --title-color: #28666e;
     --link-icon-translate: 0;
-    --link-icon-opacity: 1;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    --link-icon-opacity: 1; 
   }  
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
-  
-  /* body {
-    margin: 0;
-    padding: 48px 0;
-    font-family: "Figtree", sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    background-image: linear-gradient(45deg, #7c9885, #b5b682);
-    min-height: 100vh;
-  } */
-  
+    
   .articles {
     display: grid;
     max-width: 1200px;
@@ -147,3 +155,43 @@ article {
     white-space: nowrap; 
     width: 1px;
   }
+
+
+
+
+
+
+
+
+
+
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the color and transparency as needed */
+    z-index: 1; /* Make sure the overlay is positioned above the image */
+  }
+  
+  article img {
+    position: relative;
+    z-index: 2; /* Ensure the image is positioned above the overlay */
+    /* Rest of the CSS properties */
+  }
+  .image-container {
+    position: relative;
+  }
+  
+  .image-container img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .image-container .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the color and transparency as needed */
+    z-index: 1; /* Make sure the overlay is positioned above the image */
+  }
+  

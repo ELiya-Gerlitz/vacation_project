@@ -1,8 +1,5 @@
-import { NavLink } from "react-router-dom";
 import "./Header.css";
 import AuthMenu from "../../AuthArea/AuthMenu/AuthMenu";
-import MenuHeader from "../MenuHeader/MenuHeader";
-import HeaderMenuTrial from "../../ElementsArea/HeaderMenuTrial/HeaderMenuTrial";
 
 function Header(): JSX.Element {
     return (
@@ -19,17 +16,14 @@ function Header(): JSX.Element {
 						</div>
 					</div>
 					{/*  className="top header right" -das ist geschrieben in der AuthMenu Component*/}
-						<AuthMenu/>
-					
+					<AuthMenu/>
 				</div>
 			</div>
 			{/* <!-- Top header Close --> */}
-			{/* <MenuHeader/> */}
-			<HeaderMenuTrial/>			
+			<div className="headerWhiteBuffer"></div>
 		</header>
 		{/* <!-- Header Close --> */}
         </div>
     );
 }
-
 export default Header;

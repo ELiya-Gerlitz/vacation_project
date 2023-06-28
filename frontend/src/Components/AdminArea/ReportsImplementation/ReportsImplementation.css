@@ -15,3 +15,16 @@
 .ReportsImplementation  h3 {
 margin-top: 40px;
 }
+
+.flexReport {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.lower {
+     width: 10%;
+}
+.upper {
+    width: 90%;
+}

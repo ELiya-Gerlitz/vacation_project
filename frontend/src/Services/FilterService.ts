@@ -12,6 +12,7 @@ async function filterByisFollowing():Promise<VacationModel[]>{
        console.log(filteredVacations)
        return filteredVacations
     }else{
+        // basically, it should never get into this spot.
         alert("empty")
         const response = await axios.get<VacationModel[]>(appConfig.filterByisFollowingURL)
         let filteredVacations = response.data

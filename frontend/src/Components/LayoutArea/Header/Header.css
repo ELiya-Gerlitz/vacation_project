@@ -2,6 +2,11 @@
 	background-color: transparent;
 	text-decoration: none;
 }
+.headerWhiteBuffer {
+	height: 25px;
+	width: 100%;
+	background-color: aliceblue;
+}
 .container {
 	max-width: 1170px;
 	/* max-height: 100px; */

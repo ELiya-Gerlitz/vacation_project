@@ -5,6 +5,8 @@ import appConfig from "../../../Utils/AppConfig";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import UserModel from "../../../Models/UserModel";
 import ToggleButtonAdmin from "../ToggleButtonAdmin/ToggleButtonAdmin";
+import tripadvisorCircles from "../../../Assets/images/tripadvisor-28216.png"
+
 
 interface CardContents{
   vacationModel : VacationModel
@@ -15,13 +17,19 @@ interface CardContents{
 function Card3D( props : CardContents): JSX.Element {
     return (
         <div className="Card3D">
+        
             <article>
                 <div className="article-wrapper">
                   <figure>
                           <div className="toggleController">
                             {props.user.role === "Admin"? <ToggleButtonAdmin vacationModel={props.vacationModel} /> : <ToggleButton vacationModel={props.vacationModel} />}
-                          </div>  
-                    <img src={appConfig.imgUrl + props.vacationModel.imageName} alt="" />
+                            <img className="tripadvisorCircles" src={tripadvisorCircles} /> 
+
+                          </div> 
+                          <div className="image-container"> 
+                          <div className="image-overlay"></div>
+                          <img src={appConfig.imgUrl + props.vacationModel.imageName} alt="" />
+                          </div>
                   </figure>
                   <div className="article-body">
                     <h2>This is some title &nbsp;{props.vacationModel.vacationId}&nbsp;{props.vacationModel.destination}</h2>
