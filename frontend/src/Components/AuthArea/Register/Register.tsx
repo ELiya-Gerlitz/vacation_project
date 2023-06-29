@@ -13,8 +13,6 @@ import skiing from "../../../Assets/images/skii.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import { NavLink } from "react-router-dom";
 
-
-
 function Register(): JSX.Element {
     const { handleSubmit, register, formState } = useForm<UserModel>()
     const navigate = useNavigate();
@@ -23,22 +21,21 @@ function Register(): JSX.Element {
             if(AuthStore.getState().token){
                 alert("you are already logged in!")
             }else{
-                alert("Hi")
                 authService.register(data)
                 .then(() => { console.log("successfully logged in")
                 navigate("/home") })
-                .catch(err => console.log(err))
-            }
+                .catch(err => {
+                    console.log(err)
+                    alert(err.response?.data)
+                })}
     }
 
    const pic = [
     skiing,
-    // surfing,
     snowBoard
 ]
 const num = Math.floor(Math.random()* pic.length)
 
-   
        return (
         <FormLayout
         imageSrc={pic[num]}

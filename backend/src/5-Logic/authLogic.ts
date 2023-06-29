@@ -34,7 +34,7 @@ async function register(user:UserModel):Promise<string>{
 async function login( credentials: CredentialsModel ):Promise<string>{
 // try{
     const err = credentials.validate()
-    if(err) throw new ValidationErrorModel(err)
+    if(err) throw new ValidationErrorModel(err) 
 // }catch(err){
 //     console.log(err)
 // }
@@ -53,9 +53,11 @@ async function login( credentials: CredentialsModel ):Promise<string>{
 }
 
 async function isEmailTaken(email: string): Promise<boolean> {
-    const sql = `SELECT COUNT(*) FROM users WHERE email = ?`;
-    const count = await dal.execute(sql, [email])[0];
-    return count > 0;
+    const sql=`SELECT * FROM users
+     WHERE email = ? 
+     `
+     const emailTaken = await dal.execute(sql, [email])
+     return emailTaken.length >= 0
 }
 
 export default {

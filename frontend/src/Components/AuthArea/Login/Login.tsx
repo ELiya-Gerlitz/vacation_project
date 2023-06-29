@@ -28,8 +28,9 @@ function Login(): JSX.Element {
                   alert("successfully logged in")
                   navigate("/destinations") 
                 })
-              .catch(err => {alert(err)
-              alert(err.message[0])})
+              .catch(err => {
+              alert(err.response?.data)
+            })
             }
         }
 
