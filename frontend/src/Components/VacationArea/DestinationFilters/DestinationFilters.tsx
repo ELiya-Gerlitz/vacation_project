@@ -16,9 +16,9 @@ import London from "../../../Assets/images/London_Bridge.jpg"
 import Water from "../../../Assets/images/Water.jpg"
 import Athens from "../../../Assets/images/Athens.jpg"
 import Carrebian from "../../../Assets/images/Carrebian.jpg"
-import CardOverlap from "../../ElementsArea/CardOverlap/CardOverlap";
 import appConfig from "../../../Utils/AppConfig";
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
+import ContinentFilter from "../ContinentFilter/ContinentFilter";
 
 
 
@@ -92,7 +92,6 @@ const handleFollowed = async () => {
 }
 
 const handleUnstarted = async ()=> {
-
     FilterService.filterUnstarted()
     .then((filteredUnstarted)=>{
         setVacations(filteredUnstarted)
@@ -138,6 +137,8 @@ const alertVal = (e: any)=>{
                     {/* {vacations && currentItems.map(v=><CardOverlap key={v.vacationId} image={appConfig.imgUrl + v.imageName} title={v.destination} description={v.description} />)} */}
                     {/* {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)} */}
                 </section>	
+
+                <ContinentFilter/>
 
                 <Stack spacing={2}>
                 <Pagination

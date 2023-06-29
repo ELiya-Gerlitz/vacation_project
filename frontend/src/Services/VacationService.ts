@@ -14,7 +14,7 @@ async function getAllVacations():Promise<VacationModel[]>{
 }
     return vacations
 }
-    async function getVacationsByContinentId(continentId : string):Promise<VacationModel[]>{
+    async function getVacationsByContinentId(continentId : number):Promise<VacationModel[]>{
         const response = await axios.get<VacationModel[]>(appConfig.getVacByContinentId + continentId)
         const vacations = response.data
         return vacations

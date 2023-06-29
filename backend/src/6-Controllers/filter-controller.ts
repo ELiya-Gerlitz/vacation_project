@@ -35,5 +35,17 @@ router.get("/vacation_by_activeVacations", async (request: Request, response: Re
     }
 })
 
+// // get vacation arr [] according to the continent
+router.get("/vacation_by_continent/:continent_Id([0-9]+)", async (request: Request, response: Response,next: NextFunction)=>{
+    try{
+            let continent_Id= +request.params?.continent_Id
+            const userId = await cyber.getUserIdFromToken(request.headers.authorization)
+            const vacations = await filterLogic.getVacationsByContinentId(continent_Id, userId)
+            response.json(vacations)
+    }catch(err:any){
+        next(err)
+    }
+})
+
 
 export default router

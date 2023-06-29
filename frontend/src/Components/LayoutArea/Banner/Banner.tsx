@@ -1,6 +1,6 @@
 import "./Banner.css";
 import page_banner from "../../../Assets/images/page-banner-verkleinert.jpg"
-import HeaderMenuTrial from "../../ElementsArea/HeaderMenuTrial/HeaderMenuTrial";
+import HeaderMenuTrial from "../HeaderMenuTrial/HeaderMenuTrial";
 
 function Banner(): JSX.Element {
     return (

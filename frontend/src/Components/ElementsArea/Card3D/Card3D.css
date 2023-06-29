@@ -5,16 +5,11 @@
  position: absolute;
  z-index: 999;
  padding: 10px;
+ justify-content: center;
+ text-align: center;
 }
 .tripadvisorCircles {
-  /* filter: grayscale(10%); */
-  -webkit-filter: grayscale(10%);
-  /* filter: hue-rotate(180deg); */
-  width: 100px;
-  /* filter: brightness(0.5) saturate(0%); */
-  filter: sepia(50);
-
-
+ width: 90%;
 }
 article {
     /* --img-scale: 1.001; */

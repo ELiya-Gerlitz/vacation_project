@@ -31,7 +31,7 @@ async function getAllVacationsWithFollowDetails(userId: number): Promise<Vacatio
 async function getOneVacation(vacationId :number):Promise<VacationModel>{
  
     const sql= `
-    SELECT v.*, c.continentName
+    SELECT v.*, c.continentName,
     FROM vacations AS v JOIN continents AS c
     ON v.continentId = c.continentId
     WHERE v.vacationId = ?
@@ -140,14 +140,6 @@ async function deleteVacation( vacationId: number ):Promise<void>{
     if(info.affectedRows===0) throw new ResourceNotFoundErrorModel(vacationId)
 }
 
-async function getVacationsByContinentName(continent_Id : string):Promise<VacationModel[]>{
-    const sql = `
-    SELECT * FROM vacations
-    WHERE continentId = ${continent_Id}
-    `
-    const vacations = await dal.execute(sql)
-    return vacations
-}
 
 async function follow(userId: number, vacationId :number):Promise<VacationModel>{
 
@@ -203,7 +195,6 @@ export default {
     getOneVacation,
     postNewVacation,
     putVacation,
-    getVacationsByContinentName,
     deleteVacation,
     follow,
     unfollow,

@@ -20,7 +20,7 @@ function CSV( props: VacationInfo ): JSX.Element {
   
   return (
     <div className="CSV">
-      <Fab variant="extended" onClick={handleInsertData}>
+      <Fab variant="extended" onClick={handleInsertData}  >
         <a
           href={`data:text/csv;charset=utf-8,${escape(dataInCSV)}`}
           download="Destination_Followers.csv"

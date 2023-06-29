@@ -5,7 +5,8 @@ import appConfig from "../../../Utils/AppConfig";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import UserModel from "../../../Models/UserModel";
 import ToggleButtonAdmin from "../ToggleButtonAdmin/ToggleButtonAdmin";
-import tripadvisorCircles from "../../../Assets/images/tripadvisor-28216.png"
+// import tripadvisorCircles from "../../../Assets/images/tripadvisor-28216.png"
+import tripadvisor_owl_PNG from "../../../Assets/images/tripadvisor_owl_PNG.png"
 
 
 interface CardContents{
@@ -23,8 +24,7 @@ function Card3D( props : CardContents): JSX.Element {
                   <figure>
                           <div className="toggleController">
                             {props.user.role === "Admin"? <ToggleButtonAdmin vacationModel={props.vacationModel} /> : <ToggleButton vacationModel={props.vacationModel} />}
-                            <img className="tripadvisorCircles" src={tripadvisorCircles} /> 
-
+                            <img className="tripadvisorCircles" src={tripadvisor_owl_PNG} /> 
                           </div> 
                           <div className="image-container"> 
                           <div className="image-overlay"></div>

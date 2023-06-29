@@ -6,6 +6,7 @@ import verifyLoggedIn from "../3-Middleware/verify-loggedin"
 import VacationModel from "../4-Models/VacationModel"
 import verifyAdmin from "../3-Middleware/verify-Admin"
 import cyber from "../2-Utils/cyber"
+import filterLogic from "../5-Logic/filterLogic"
 
 const router = express.Router()
 
@@ -77,17 +78,6 @@ router.get("/vacations/images/:imageName", async (request: Request, response: Re
         let imagename= request.params?.imageName
             const file = path.join(__dirname,"..", "1-Assets", "images" , imagename) 
             response.sendFile(file)
-    }catch(err:any){
-        next(err)
-    }
-})
-
-// // get vacation arr [] according to the continent
-router.get("/vacation_by_continent/:continent_Id", async (request: Request, response: Response,next: NextFunction)=>{
-    try{
-            let continent_Id= request.params?.continent_Id
-            const vacations = await vacationLogic.getVacationsByContinentName(continent_Id)
-            response.json(vacations)
     }catch(err:any){
         next(err)
     }

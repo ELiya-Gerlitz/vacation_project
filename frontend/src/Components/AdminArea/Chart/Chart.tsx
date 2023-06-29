@@ -11,6 +11,7 @@ interface VacationInfo {
 }
 
 function Chart( props : VacationInfo): JSX.Element {
+  
   function getMaxFollowersCount(): number {
     return Math.max(...props.vacations.map(function (vacation) {
       return vacation.followersCount;
