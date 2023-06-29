@@ -9,12 +9,12 @@
     border: 1px solid black;
 }
 .continentGridCell {
-    background-color: black;
+    background-color: rgba(42,39,48,255);
     grid-column: span 2;
 }
 
 .ContinentFilter {
  width: 300px;
  height: 600px;
- background-color: blue;
+ /* background-color: blue; */
 }

@@ -1,3 +1,4 @@
-.ContinentTooltip {
-	
+.ContinentTooltip .divsing {
+    background-color: rgba(42,39,48,255);
+    grid-column: span 2;
 }

@@ -9,6 +9,7 @@ import FilterService from "../../../Services/FilterService";
 interface  continentInterface {
     continentName : string
     continentId : number
+    className :string
 
 }
 
@@ -28,8 +29,8 @@ function ContinentTooltip(props : continentInterface): JSX.Element {
     return (
         <div className="ContinentTooltip">
             <Tooltip title={props.continentName} followCursor>
-                <Box sx={{ color: 'background.paper', p: 2 }}>
-                    <div data-continentname={props.continentName} onClick={fetchContinentIdValue} data-continentid={props.continentId}>Hover over me</div>
+                <Box sx={{ color: 'background.paper'}}>
+                    <div data-continentname={props.continentName} onClick={fetchContinentIdValue} data-continentid={props.continentId} className={"divsing"}>Hover over me</div>
                 </Box>
             </Tooltip>
         </div>

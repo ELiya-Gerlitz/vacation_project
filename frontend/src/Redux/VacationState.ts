@@ -1,8 +1,10 @@
 import { createStore } from "redux"
 import VacationModel from "../Models/VacationModel";
+import ContinentModel from "../Models/ContinentModel";
 
 export class VacationState {
     public vacations: VacationModel[] = [];
+    public continents :ContinentModel[] = [];
 }
 
 export enum VacationActionTypes {
@@ -12,6 +14,7 @@ export enum VacationActionTypes {
     Follow,
     Unfollow,
     AddVacation,
+    FetchAllContinents
 }
 
 export interface VacationActions {
@@ -58,10 +61,14 @@ export function VacationReducer( currentState = new VacationState(), action: Vac
              }
               break;
 
-
         case VacationActionTypes.AddVacation:
             newState.vacations.push(action.payload)
             break;
+
+
+            case VacationActionTypes.FetchAllContinents:
+                newState.continents = action.payload
+                break;
    }
 
    return newState

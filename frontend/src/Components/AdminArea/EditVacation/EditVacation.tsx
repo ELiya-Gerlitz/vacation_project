@@ -5,9 +5,6 @@ import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 import FormLayout from "../../ElementsArea/formLayout/formLayout";
 import "./EditVacation.css";
 import Form from 'react-bootstrap/Form';
-import kite_surf from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
-import carrebean from "../../../Assets/images/Caribbean-All-inclusive-Family-Resorts.jpg"
-import parachute from "../../../Assets/images/parachute_colorful.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -15,8 +12,7 @@ import ContinentModel from "../../../Models/ContinentModel";
 import VacationService from "../../../Services/VacationService";
 import AdminService from "../../../Services/AdminService";
 import appConfig from "../../../Utils/AppConfig";
-
-
+import DateFormatting from "../../../Utils/dateFormatting";
 
 function EditVacation(): JSX.Element {
     const {register, setValue, handleSubmit, formState} = useForm<VacationModel>()
@@ -27,7 +23,9 @@ function EditVacation(): JSX.Element {
     const [vacation, setVacation] = useState<VacationModel>()
     const [startingDate, setStartingDate] = useState("")
     const [endingDate, setEndingDate] = useState("")
-
+    
+    // const dateFormatFunction = new DateFormatting()
+    // dateFormatFunction.formatDate()
 
     function formatDate(dateString :string):string {
       const date = new Date(dateString);

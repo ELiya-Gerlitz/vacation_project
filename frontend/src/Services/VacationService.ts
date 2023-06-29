@@ -28,13 +28,12 @@ async function unfollow(vacationId: number): Promise<void> {
 
 
 async function getAllContinents():Promise<ContinentModel[]>{
-    // let vacations = VacationStore.getState().vacations;
-    // if (vacations.length === 0) {
-    const response = await axios.get<ContinentModel[]>(appConfig.continentsURL)
-//     vacations = response.data
-//     VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: vacations });
-// }
-const continents = response.data
+    let continents = VacationStore.getState().continents;
+        if (continents.length === 0) {
+        const response = await axios.get<ContinentModel[]>(appConfig.continentsURL)
+        continents = response.data
+        VacationStore.dispatch({ type: VacationActionTypes.FetchAllContinents, payload: continents });
+        }
     return continents
 }
 
