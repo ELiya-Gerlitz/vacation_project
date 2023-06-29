@@ -124,8 +124,8 @@ const alertVal = (e: any)=>{
             <ImageButtonComponent url={Athens} title="Unstarted" width="25%" onClick={handleUnstarted}/>
             <ImageButtonComponent url={Carrebian} title="Active" width="25%" onClick={handleActive}/>
           
-          <div className="continentDiv" data-continent="asia" onClick={alertVal}>continent</div> 
-          <div className="continentDiv" data-continent="africa" onClick={alertVal}>continent</div>
+          {/* <div className="continentDiv" data-continent="asia" onClick={alertVal}>continent</div> 
+          <div className="continentDiv" data-continent="africa" onClick={alertVal}>continent</div> */}
             {/* this div {section-1} is for the `scrollIntoView` */}
            <div style={{height : "20px"}} id="section-1"></div>
                     {userFromRedux?.role === RoleEnum.Admin ? <NavLink to={"/Admin/add-vacation"}> <FrameBtn btnString={"add new vacation"}/></NavLink>: ""}
@@ -134,11 +134,9 @@ const alertVal = (e: any)=>{
           
                 <section className="articles">
                     {vacations && currentItems.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
-                    {/* {vacations && currentItems.map(v=><CardOverlap key={v.vacationId} image={appConfig.imgUrl + v.imageName} title={v.destination} description={v.description} />)} */}
-                    {/* {vacations && vacations.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)} */}
                 </section>	
 
-                <ContinentFilter/>
+                {/* <ContinentFilter/> */}
 
                 <Stack spacing={2}>
                 <Pagination

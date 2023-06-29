@@ -48,7 +48,7 @@ async function activeVacations( userId :number):Promise<VacationModel[]>{
 	EXISTS(SELECT * FROM followers WHERE vacationId = F.vacationId AND userId = ?) AS isFollowing,
 	COUNT(F.userId) AS followersCount
     FROM vacations as V LEFT JOIN followers as F ON V.vacationId = F.vacationId
-    LEFT JOIN continents AS c ON v.continentId = c.continentId 
+    LEFT JOIN continents AS c ON V.continentId = c.continentId 
     WHERE V.startingDate <= CURDATE() AND V.endingDate >= CURDATE()
     GROUP BY vacationId
     ORDER BY vacationId ASC
@@ -69,11 +69,11 @@ const sql =
     COUNT(F.userId) AS followersCount
     FROM vacations as V LEFT JOIN followers as F ON V.vacationId = F.vacationId
     LEFT JOIN continents AS c ON v.continentId = c.continentId 
-    WHERE F.userId = ? AND c.continentId = ${continent_Id}
+    WHERE c.continentId = ${continent_Id}
     GROUP BY vacationId
     ORDER BY vacationId ASC`
 
-    const vacations = await dal.execute(sql, [userId, userId])
+    const vacations = await dal.execute(sql, [userId])
     return vacations
 }
 

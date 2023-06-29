@@ -5,6 +5,8 @@ import { VacationActionTypes, VacationStore } from "../Redux/VacationState";
 
 
 async function addVacation(vacation : VacationModel): Promise<void> {
+    console.log(vacation.continentId)
+    console.log("vacation.continentId")
 
     const myForm = new FormData()
     myForm.append("destination", vacation.destination)
@@ -18,8 +20,23 @@ async function addVacation(vacation : VacationModel): Promise<void> {
     const response = await axios.post<VacationModel>(appConfig.VacationsURL, myForm)
     const newVacation = response.data
 
+
+
+    // retrieve continentName from Redux to front to render it 
+    // const continentsFromRedux = VacationStore.getState().continents
+    // console.log("these are the continentsFromRedux")
+    // console.log(continentsFromRedux)
+    // const wantedIndex = continentsFromRedux.findIndex(c=>c.continentId === vacation.continentId)
+    // console.log("wantedIndex")
+    // console.log(wantedIndex)
+    // const wantedContinent = continentsFromRedux[wantedIndex].continentName
+
+    // console.log("wantedcontinentName")
+    // console.log(wantedContinent)
+  
     newVacation.isFollowing = 0
     newVacation.followersCount = 0 
+
     VacationStore.dispatch({type: VacationActionTypes.AddVacation, payload: newVacation})
 }
 
@@ -37,7 +54,6 @@ async function updateVacation( vacation: VacationModel): Promise<void> {
     const response = await axios.put<VacationModel>(appConfig.VacationsURL + vacation.vacationId, myForm)
     const updatedVacation = response.data
     updatedVacation.continentName = vacation.continentName
-    console.log(updatedVacation)
     VacationStore.dispatch({type: VacationActionTypes.UpdateVacation, payload: updatedVacation})
 }
 

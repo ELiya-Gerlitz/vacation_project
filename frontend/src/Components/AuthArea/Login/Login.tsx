@@ -29,7 +29,7 @@ function Login(): JSX.Element {
                   navigate("/destinations") 
                 })
               .catch(err => {alert(err)
-              console.log(err)})
+              alert(err.message[0])})
             }
         }
 

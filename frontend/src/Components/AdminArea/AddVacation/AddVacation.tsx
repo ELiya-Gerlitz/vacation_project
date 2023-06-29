@@ -9,14 +9,10 @@ import FormLayout from "../../ElementsArea/formLayout/formLayout";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
-import kite_surf from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
-import carrebean from "../../../Assets/images/Caribbean-All-inclusive-Family-Resorts.jpg"
-import parachute from "../../../Assets/images/parachute_colorful.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import ContinentModel from "../../../Models/ContinentModel";
 import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
 import skiing from "../../../Assets/images/skii.jpg"
-
 
 function AddVacation(): JSX.Element {
     const {register, handleSubmit, formState}= useForm<VacationModel>()
@@ -25,7 +21,6 @@ function AddVacation(): JSX.Element {
     const [selectedImage, setSelectedImage] = useState();
     const [startingDate, setStartingDate] = useState();
     const [endingDate, setEndingDate] = useState();
-
 
     useEffect(()=> {
             VacationService.getAllContinents()
@@ -56,7 +51,6 @@ function AddVacation(): JSX.Element {
         .catch(err=> console.log(err))
     }else{
         alert("Ending Date can't precede starting date!")
-
     }
 }
     // This function will be triggered when the file field changes
@@ -73,7 +67,6 @@ function AddVacation(): JSX.Element {
     ]
     const num = Math.floor(Math.random()* pic.length)
     
-
     return (
 
         <FormLayout 

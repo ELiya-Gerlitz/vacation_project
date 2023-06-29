@@ -32,7 +32,7 @@ async function getAllContinents():Promise<ContinentModel[]>{
         if (continents.length === 0) {
         const response = await axios.get<ContinentModel[]>(appConfig.continentsURL)
         continents = response.data
-        VacationStore.dispatch({ type: VacationActionTypes.FetchAllContinents, payload: continents });
+        VacationStore.dispatch({ type: VacationActionTypes.FetchAllContinents, payload: continents});
         }
     return continents
 }

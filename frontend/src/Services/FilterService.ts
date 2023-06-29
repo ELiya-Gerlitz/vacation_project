@@ -52,9 +52,20 @@ async function filterActiveVacations():Promise<VacationModel[]>{
 
 
 async function getVacationsByContinentId( continentId : number):Promise<VacationModel[]>{
-    const response = await axios.get<VacationModel[]>(appConfig.getVacByContinentId + continentId)
-    const vacations = response.data
-    return vacations
+    let vacations = VacationStore.getState().vacations
+    console.log("I am before th if")
+    console.log(vacations)
+    // if(vacations.length === 0){
+    //     console.log("I am in the if")
+    //     const response = await axios.get<VacationModel[]>(appConfig.getVacByContinentId + continentId)
+    //     const filteredVacations = response.data
+    //     return filteredVacations
+    // }
+    // else{
+        const filteredVacations = vacations.filter(v=> v.continentId === continentId )
+        console.log(filteredVacations)
+        return filteredVacations
+    // }
 }
 
 

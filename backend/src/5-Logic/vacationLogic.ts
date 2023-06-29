@@ -20,7 +20,7 @@ async function getAllVacationsWithFollowDetails(userId: number): Promise<Vacatio
     LEFT JOIN followers AS F ON v.vacationId = F.vacationId
     LEFT JOIN continents AS c ON v.continentId = c.continentId
     GROUP BY v.vacationId
-    ORDER BY v.startingDate ASC
+    ORDER BY v.vacationId ASC
 
     `;
 
@@ -67,7 +67,7 @@ async function postNewVacation(vacation :VacationModel):Promise<VacationModel>{
     const values = [vacation.destination, vacation.description, vacation.startingDate, vacation.endingDate, vacation.price, vacation.imageName, vacation.continentId]
     const response: OkPacket = await dal.execute(sql, values )
     vacation.vacationId = response.insertId
-    console.log(" I am the added book.bookId"+ vacation.vacationId) //Das wirkt gut ohne zum die arr[0] zurückkehren. Wieso? 🤲🤔
+    console.log(" I am the added vacation.vacationId"+ vacation.vacationId) //Das wirkt gut ohne zum die arr[0] zurückkehren. Wieso? 🤲🤔
     return vacation
 }
 
