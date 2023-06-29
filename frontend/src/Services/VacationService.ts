@@ -14,13 +14,8 @@ async function getAllVacations():Promise<VacationModel[]>{
 }
     return vacations
 }
-    async function getVacationsByContinentId(continentId : number):Promise<VacationModel[]>{
-        const response = await axios.get<VacationModel[]>(appConfig.getVacByContinentId + continentId)
-        const vacations = response.data
-        return vacations
-    }
 
-    
+
 async function follow(vacationId: number): Promise<void> {
     await axios.post<any>(appConfig.followURL + vacationId)
     VacationStore.dispatch({type: VacationActionTypes.Follow, payload: {vacationId}})
@@ -45,7 +40,6 @@ const continents = response.data
 
 export default {
     getAllVacations,
-    getVacationsByContinentId,
     follow,
     unfollow,
     getAllContinents

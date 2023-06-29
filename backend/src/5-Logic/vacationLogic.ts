@@ -31,9 +31,9 @@ async function getAllVacationsWithFollowDetails(userId: number): Promise<Vacatio
 async function getOneVacation(vacationId :number):Promise<VacationModel>{
  
     const sql= `
-    SELECT v.*, c.continentName,
-    FROM vacations AS v JOIN continents AS c
-    ON v.continentId = c.continentId
+    SELECT v.*, c.continentName
+    FROM vacations AS v 
+    JOIN continents AS c ON v.continentId = c.continentId
     WHERE v.vacationId = ?
 `
     const info : OkPacket = await dal.execute(sql, [vacationId])

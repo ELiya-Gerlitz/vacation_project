@@ -50,8 +50,18 @@ async function filterActiveVacations():Promise<VacationModel[]>{
     }
 }
 
+
+async function getVacationsByContinentId( continentId : number):Promise<VacationModel[]>{
+    const response = await axios.get<VacationModel[]>(appConfig.getVacByContinentId + continentId)
+    const vacations = response.data
+    return vacations
+}
+
+
+
 export default{
     filterByisFollowing,
     filterUnstarted,
-    filterActiveVacations
+    filterActiveVacations,
+    getVacationsByContinentId
 }
