@@ -8,12 +8,9 @@ async function filterByisFollowing():Promise<VacationModel[]>{
     let allVacationsUnfiltered = VacationStore.getState().vacations;
     if(allVacationsUnfiltered.length > 0) {
        let filteredVacations = allVacationsUnfiltered.filter(v=> v.isFollowing === 1)
-       console.log("I am in the filtering from the redux FilterService")
-       console.log(filteredVacations)
        return filteredVacations
     }else{
         // basically, it should never get into this spot.
-        alert("empty")
         const response = await axios.get<VacationModel[]>(appConfig.filterByisFollowingURL)
         let filteredVacations = response.data
         return filteredVacations
@@ -24,12 +21,8 @@ async function filterUnstarted():Promise<VacationModel[]>{
     let allVacationsUnfiltered = VacationStore.getState().vacations;
     if(allVacationsUnfiltered.length > 0) {
        let filteredVacations = allVacationsUnfiltered.filter( v => new Date(v.startingDate) > new Date())
-       console.log(filteredVacations)
-    // eslint-disable-next-line no-restricted-globals
-// console.log(new Date(v.startingDate) )
        return filteredVacations
     }else{
-        alert("empty")
         const response = await axios.get<VacationModel[]>(appConfig.filterByUnstartedURL)
         let filteredVacations = response.data
         return filteredVacations
@@ -43,7 +36,6 @@ async function filterActiveVacations():Promise<VacationModel[]>{
        let filteredVacations = allVacationsUnfiltered.filter( v => new Date(v.startingDate) <= currentDate && new Date(v.endingDate) >= currentDate)
        return filteredVacations
     }else{
-        alert("empty")
         const response = await axios.get<VacationModel[]>(appConfig.filterByActiveVacationsURL)
         let filteredVacations = response.data
         return filteredVacations

@@ -11,6 +11,8 @@ import FormLayout from "../../ElementsArea/formLayout/formLayout";
 import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import skiing from "../../../Assets/images/skii.jpg"
+import notifyService from "../../../Services/NotifyService";
+import notyf from "notyf/notyf";
 
 
 
@@ -21,15 +23,15 @@ function Login(): JSX.Element {
     
         const send = (data: CredentialsModel) => {
             if(AuthStore.getState().token){
-                alert("you are already logged in!")
+              notifyService.error("you are already logged in!")
             }else{
               authService.login(data)
               .then(() => { 
-                  alert("successfully logged in")
+                notifyService.success("successfully logged in!")
                   navigate("/destinations") 
                 })
               .catch(err => {
-              alert(err.response?.data)
+                notifyService.error(err)
             })
             }
         }

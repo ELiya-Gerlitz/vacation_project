@@ -13,6 +13,7 @@ import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import ContinentModel from "../../../Models/ContinentModel";
 import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
 import skiing from "../../../Assets/images/skii.jpg"
+import notifyService from "../../../Services/NotifyService";
 
 function AddVacation(): JSX.Element {
     const {register, handleSubmit, formState}= useForm<VacationModel>()
@@ -27,7 +28,7 @@ function AddVacation(): JSX.Element {
             .then((continents)=> {
             setContinents(continents)
             })
-            .catch(err=> console.log(err))
+            .catch(err=> console.log(err.response?.data))
         },[])
 
         const handleStartingDateChange = (e : any) => {
@@ -45,10 +46,14 @@ function AddVacation(): JSX.Element {
         if (startingDate && endingDate && startingDate <= endingDate) {
         AdminService.addVacation(data)
         .then(()=> {
+          notifyService.success("vacation successfully added!")
             alert("vacation successfully added!")
             navigate("/home")
         })
-        .catch(err=> console.log(err))
+        .catch(err=> {
+          console.log(err)
+          notifyService.error(err)
+        })
     }else{
         alert("Ending Date can't precede starting date!")
     }
@@ -106,7 +111,7 @@ function AddVacation(): JSX.Element {
     {/* endingDate */}
     <span className="errorSpan">{formState.errors?.endingDate?.message}</span>
     <label htmlFor="endingDate" className="justifyLeft">ending date</label>
-    <input type="date" className="inputDate" {...register('endingDate')} required onChange={handleEndingDateChange}></input>
+    <input type="date" className="inputDate" {...register('endingDate')} required onChange={handleEndingDateChange} min={new Date().toISOString().split('T')[0]}></input>
     <br></br>
     
       {/* price */}
@@ -114,11 +119,12 @@ function AddVacation(): JSX.Element {
                 <FloatingLabel controlId="floatingInput" label="price" className="mb-3 input outerBoxOfInput" >
                   <Form.Control className="input" type="number" placeholder="price" {...register('price', VacationModel.priceValidation)} />
                 </FloatingLabel>
+                <span className="errorSpan">{formState.errors?.continentId?.message}</span>
+
 
       {/* select continent*/}
-                <span className="errorSpan">{formState.errors?.continentId?.message}</span>
                 <FloatingLabel controlId="floatingSelect" label="selects a continent" className="input">
-                    <Form.Select aria-label="Floating label select example" defaultValue="" {...register("continentId")}>
+                    <Form.Select aria-label="Floating label select example" {...register("continentId", VacationModel.continentIdValidation)} >
                         <option>Open this select menu</option>
                        {continents && continents.map(c=><option key={c.continentId} value={c.continentId}>{c.continentName}</option> )}
                     </Form.Select>
@@ -128,7 +134,7 @@ function AddVacation(): JSX.Element {
       {/* image*/}
                 <span className="errorSpan">{formState.errors?.image?.message}</span>
                 <div className="imageInput">
-                <input accept="image/*" type="file" onChange={imageChange} {...register("image")}/>
+                <input accept="image/*" type="file" onChange={imageChange} {...register("image", VacationModel.imageValidation)} />
                 </div>
 
                      {/* {selectedImage &&  (<div ><p>{URL.createObjectURL(selectedImage)}</p></div>)}    // This (URL.createObjectURL) sets it as a url- string, rather than a File... */}

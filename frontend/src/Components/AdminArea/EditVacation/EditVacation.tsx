@@ -13,6 +13,7 @@ import VacationService from "../../../Services/VacationService";
 import AdminService from "../../../Services/AdminService";
 import appConfig from "../../../Utils/AppConfig";
 import DateFormatting from "../../../Utils/dateFormatting";
+import notifyService from "../../../Services/NotifyService";
 
 function EditVacation(): JSX.Element {
     const {register, setValue, handleSubmit, formState} = useForm<VacationModel>()
@@ -65,11 +66,15 @@ function EditVacation(): JSX.Element {
       if(startingDate <= endingDate) {
         AdminService.updateVacation(data)
         .then(()=> {
+          notifyService.success("vacation successfully updated!")
             alert("vacation successfully updated!")
             navigate("/destinations")
         })
-        .catch(err=> console.log(err))
+        .catch(err=> {
+          notifyService.error(err)
+          console.log(err)})
 }else{
+  notifyService.error("Ending Date can't precede starting date!")
   alert("Ending Date can't precede starting date!")
 }
     }

@@ -12,7 +12,6 @@ function ToggleButtonAdmin( props : DataInterface): JSX.Element {
       
     const handleEdit = ()=> {
        const vacationId = props.vacationModel.vacationId
-       console.log("vacationID"+vacationId)
        navigate("/Admin/update-vacation/" + vacationId)
     }
 

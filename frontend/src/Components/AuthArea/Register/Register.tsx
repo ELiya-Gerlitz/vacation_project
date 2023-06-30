@@ -12,6 +12,7 @@ import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
 import skiing from "../../../Assets/images/skii.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import { NavLink } from "react-router-dom";
+import notifyService from "../../../Services/NotifyService";
 
 function Register(): JSX.Element {
     const { handleSubmit, register, formState } = useForm<UserModel>()
@@ -19,12 +20,15 @@ function Register(): JSX.Element {
 
     const send = (data: UserModel) => {
             if(AuthStore.getState().token){
+                notifyService.error("you are already logged in!")
                 alert("you are already logged in!")
             }else{
                 authService.register(data)
                 .then(() => { console.log("successfully logged in")
+                notifyService.success("successfully registered!")
                 navigate("/home") })
                 .catch(err => {
+                    notifyService.error(err)
                     console.log(err)
                     alert(err.response?.data)
                 })}

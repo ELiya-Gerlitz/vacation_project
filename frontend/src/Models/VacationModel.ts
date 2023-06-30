@@ -32,14 +32,14 @@ class VacationModel{
         max:{value: 10000, message: "too high price!"},
     }
 
-    public static continentId = {
+    public static continentIdValidation = {
         required:{value: true, message: "continent required!"},
-        min:{value: 0, message: "continent reqiored!"},
+        min:{value: 1, message: "continent reqiored!"},
         max:{value: 20, message: "continent does not exist!"},
     }
 
-    public static image = {
-        required:{value: true, message: "continent required!"},
+    public static imageValidation = {
+        required:{value: true, message: "image required!"},
        
     }
    
