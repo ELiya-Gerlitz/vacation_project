@@ -25,7 +25,8 @@ function Register(): JSX.Element {
             }else{
                 authService.register(data)
                 .then(() => { console.log("successfully logged in")
-                notifyService.success("successfully registered!")
+                // notifyService.success("successfully registered!")
+                alert("successfully registered!")
                 navigate("/home") })
                 .catch(err => {
                     notifyService.error(err)

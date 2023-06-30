@@ -67,7 +67,7 @@ function EditVacation(): JSX.Element {
         AdminService.updateVacation(data)
         .then(()=> {
           notifyService.success("vacation successfully updated!")
-            alert("vacation successfully updated!")
+            // alert("vacation successfully updated!")
             navigate("/destinations")
         })
         .catch(err=> {

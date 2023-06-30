@@ -19,7 +19,7 @@ function AddVacation(): JSX.Element {
     const {register, handleSubmit, formState}= useForm<VacationModel>()
     const [continents, setContinents] = useState<ContinentModel[]>()
     const navigate= useNavigate()
-    const [selectedImage, setSelectedImage] = useState();
+    const [selectedImage, setSelectedImage] = useState<string>("");
     const [startingDate, setStartingDate] = useState();
     const [endingDate, setEndingDate] = useState();
 
@@ -47,7 +47,7 @@ function AddVacation(): JSX.Element {
         AdminService.addVacation(data)
         .then(()=> {
           notifyService.success("vacation successfully added!")
-            alert("vacation successfully added!")
+            // alert("vacation successfully added!")
             navigate("/home")
         })
         .catch(err=> {
@@ -59,11 +59,33 @@ function AddVacation(): JSX.Element {
     }
 }
     // This function will be triggered when the file field changes
-    const imageChange = (e:any) => {
-        if (e.target.files && e.target.files.length > 0) {
-          setSelectedImage(e.target.files.value[0]);
+    // const imageChange = (e:any) => {
+    //     if (e.target.files && e.target.files.length > 0) {
+    //       setSelectedImage(e.target.files.value[0]);
+         
+    //     }
+    //   };
+
+
+      const imageChange = (e : React.ChangeEvent<HTMLInputElement>)=>{
+        const image = e.target.files?.[0]
+        if(image){
+          const reader = new FileReader()
+          reader.onloadend = () => {
+            setSelectedImage(reader.result as string)
+            console.log("hi")
+          }
+          reader.readAsDataURL(image)
         }
-      };
+      }
+
+
+      // const imageChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+      //   const file = event.target.files?.[0];
+      //   const imageUrl = URL.createObjectURL(file);
+      //   console.log(imageUrl)
+      //   setSelectedImage(imageUrl);
+      // };
 
       const pic = [
         skiing,
@@ -136,9 +158,10 @@ function AddVacation(): JSX.Element {
                 <div className="imageInput">
                 <input accept="image/*" type="file" onChange={imageChange} {...register("image", VacationModel.imageValidation)} />
                 </div>
-
+                {selectedImage &&  <div ><img src={(selectedImage)} alt="PreviewImage"/></div>}
                      {/* {selectedImage &&  (<div ><p>{URL.createObjectURL(selectedImage)}</p></div>)}    // This (URL.createObjectURL) sets it as a url- string, rather than a File... */}
-          {selectedImage &&  <div ><img src={URL.createObjectURL(selectedImage)} alt="PreviewImage"/></div>}
+          {/* {selectedImage &&  <div ><img src={URL.createObjectURL(selectedImage)} alt="PreviewImage"/></div>} */}
+      
 
                 <FrameBtn btnString="Add Vacation" />
 

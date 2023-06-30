@@ -16,9 +16,9 @@ import London from "../../../Assets/images/London_Bridge.jpg"
 import Water from "../../../Assets/images/Water.jpg"
 import Athens from "../../../Assets/images/Athens.jpg"
 import Carrebian from "../../../Assets/images/Carrebian.jpg"
-import appConfig from "../../../Utils/AppConfig";
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
-import ContinentFilter from "../ContinentFilter/ContinentFilter";
+import notifyService from "../../../Services/NotifyService";
+import Card from "../../ElementsArea/Card/Card";
 
 
 
@@ -72,9 +72,18 @@ const handleAllVacations = ()=> {
 		setVacations(vacations)
         setCurrentPage(1)
 
-        VacationStore.subscribe(() => {setVacations(vacations)})
+        const unsubscribe = VacationStore.subscribe(() => {
+            try{
+                setVacations(VacationStore.getState().vacations)
+
+            }catch(err:any){
+                notifyService.error(err)
+            }
+        })
 	})
-	.catch(err=> console.log(err))
+	.catch(err=> {
+        notifyService.error(err)
+    })
 }
 
 const handleFollowed = async () => {
@@ -86,9 +95,10 @@ const handleFollowed = async () => {
     setVacations(filteredFollowedVacations)
     setCurrentPage(1)
 })
-    .catch(err=>console.log(err))
+    .catch(err=>{
+        notifyService.error(err)
+    })
   }
- 
 }
 
 const handleUnstarted = async ()=> {
@@ -97,7 +107,9 @@ const handleUnstarted = async ()=> {
         setVacations(filteredUnstarted)
         setCurrentPage(1)
     })
-    .catch()
+    .catch(err=>{
+        notifyService.error(err)
+    })
 }
       
 const handleActive =()=> {
@@ -106,38 +118,25 @@ const handleActive =()=> {
         setVacations(filteredActive)
         setCurrentPage(1)
     })
-    .catch()
+    .catch(err=>{
+        notifyService.error(err)
+    })
 }
-
-const alertVal = (e: any)=>{
-    const continentId = e.target.dataset.continent
-    alert(continentId)
-
-
-}
-
-
     return (
         <div className="DestinationFilters">
             <ImageButtonComponent url={London} title="AllVacations" width="25%" onClick={handleAllVacations}/>
             <ImageButtonComponent url={Water} title="Followed" width="25%" onClick={handleFollowed}/>
             <ImageButtonComponent url={Athens} title="Unstarted" width="25%" onClick={handleUnstarted}/>
             <ImageButtonComponent url={Carrebian} title="Active" width="25%" onClick={handleActive}/>
-          
-          {/* <div className="continentDiv" data-continent="asia" onClick={alertVal}>continent</div> 
-          <div className="continentDiv" data-continent="africa" onClick={alertVal}>continent</div> */}
+        
             {/* this div {section-1} is for the `scrollIntoView` */}
            <div style={{height : "20px"}} id="section-1"></div>
                     {userFromRedux?.role === RoleEnum.Admin ? <NavLink to={"/Admin/add-vacation"}> <FrameBtn btnString={"add new vacation"}/></NavLink>: ""}
-            {/* {userFromRedux?.role === RoleEnum.Admin ?  <NavLink to={"/Admin/reports"}> <button className="add-btn" >get FollowersChart</button></NavLink>: ""} */}
 
-          
                 <section className="articles">
                     {vacations && currentItems.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}
                 </section>	
-
-                {/* <ContinentFilter/> */}
-
+                                 {/* <ContinentFilter/> */}
                 <Stack spacing={2}>
                 <Pagination
                     count={totalPages}

@@ -1,6 +1,14 @@
 .Card3D img{
   filter: saturate(0.5);
+
 }
+.Card3D p{
+  font-size: 13px;
+  font-weight: bold;
+
+}
+
+
 .toggleController{
  position: absolute;
  z-index: 999;
@@ -29,6 +37,7 @@ article {
     transition: all 0.4s ease-in-out;
     overflow: hidden;   
     margin: 20px;
+    /* float: right; */
     
   }
   
@@ -55,6 +64,7 @@ article {
     padding: 0;
     aspect-ratio: 16 / 9;
     overflow: hidden;
+    position: relative;
   }
   
   article img {
@@ -63,9 +73,22 @@ article {
     transform: scale(var(--img-scale));
     transition: transform 0.4s ease-in-out;
   }
-  
+  .tripadvisorReviewsText {
+    color: #ebf3fd;
+  }
+  /* .dunkel { */
+    /* color: rgb(209, 18, 18); */
+    /* opacity: 40%; */
+    /* z-index: 999 !important;
+    width: 100%;
+    height: 100%;
+  } */
   .article-body {
-    padding: 24px;
+    padding-top: 12px;
+    padding-right: 24px;
+    padding-left: 24px;
+    padding-bottom: 24px;
+    text-align: right;    /*das habe ich rechts belag gemacht.*/
   }
   
   .Card3D article a {
@@ -73,6 +96,7 @@ article {
     align-items: center;
     text-decoration: none;
     color: #28666e;
+    font-size: 13px;
   }
   
   article a:focus {
@@ -101,6 +125,7 @@ article {
   *::after {
     box-sizing: border-box;
   }
+ 
     
   .articles {
     display: grid;
@@ -109,6 +134,9 @@ article {
     padding-inline: 24px;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
+  }
+  .article-wrapper {
+float: right;
   }
   
   @media screen and (max-width: 960px) {
@@ -151,28 +179,8 @@ article {
     width: 1px;
   }
 
-
-
-
-
-
-
-
-
-
-
-  .image-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5); /* Adjust the color and transparency as needed */
-    z-index: 1; /* Make sure the overlay is positioned above the image */
-  }
   
-  article img {
-    position: relative;
-    z-index: 2; /* Ensure the image is positioned above the overlay */
-    /* Rest of the CSS properties */
-  }
+
   .image-container {
     position: relative;
   }
@@ -186,7 +194,7 @@ article {
   .image-container .image-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5); /* Adjust the color and transparency as needed */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)); /* Use a linear gradient with desired colors and transparency */
     z-index: 1; /* Make sure the overlay is positioned above the image */
   }
   

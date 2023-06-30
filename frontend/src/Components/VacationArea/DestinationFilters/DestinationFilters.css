@@ -11,6 +11,7 @@
 
 .DestinationFilters  .articles {
     margin-top: 40px;
+    width: 80%;
 }
 
 .DestinationFilters  .handlePageChange {

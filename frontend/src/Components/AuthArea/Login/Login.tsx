@@ -23,7 +23,8 @@ function Login(): JSX.Element {
     
         const send = (data: CredentialsModel) => {
             if(AuthStore.getState().token){
-              notifyService.error("you are already logged in!")
+              // notifyService.error("you are already logged in!")
+             alert("you are already logged in!")
             }else{
               authService.login(data)
               .then(() => { 

@@ -1,5 +1,7 @@
 .HeaderMenuTrial a:visited {
 	color: rgb(0, 2, 8);
+	height: 40px;
+	padding: 30px;
 } 
 
 /* cool! this removes the underline from the active NavLink!!! */
@@ -27,7 +29,9 @@ a:-webkit-any-link {
 	padding-bottom: 6.25em;
 }
 .gallery-section2 .container {
-	padding-top: 4.0625em;
+	
+	/* padding-top: 4.0625em; */
+	padding-top: 6em;
 	padding-bottom: 3.75em;
 }
 .gallery2 {
@@ -95,7 +99,7 @@ a:-webkit-any-link {
 .gallery-section .button-group button,
 .gallery-section2 .button-group button{
 	/*font-size: 1.4rem;*/
-	font-size: 1.4rem;
+	font-size: 2rem;
 	/*font-family: 'Raleway', sans-serif;*/
 	/*color: #000;*/
 	background: transparent;
@@ -104,6 +108,7 @@ a:-webkit-any-link {
 	font-weight: bold;
 	cursor: pointer;
 	position: relative;
+	color: rgb(36, 35, 35);
 }
 .course-listing-page .button-group button:hover::after,
 .gallery-section .button-group button:hover::after,
@@ -170,6 +175,7 @@ a:-webkit-any-link {
 	width: 80%;
 	left: 10%;
 	z-index: 999;
+	/* font-size: larger; */
 }
 /*=====gallery Images=========*/
 .gallery-images-section {

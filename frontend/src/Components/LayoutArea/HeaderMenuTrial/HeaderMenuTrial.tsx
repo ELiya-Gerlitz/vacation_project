@@ -17,11 +17,9 @@ function HeaderMenuTrial(): JSX.Element {
         <div className="HeaderMenuTrial">
 			<div className="gallery-section2">
 					<div id="filters" className="button-group">       
-						<button className="button" ><NavLink to="/home">Home</NavLink></button>
-						<button className="button" onClick={handleClick}><NavLink to="#">Destinations</NavLink></button>
-						{/* <button className="button" ><NavLink to="/gallery">Gallery</NavLink></button> */}
+						<button className="button" ><NavLink to="/home">Home</NavLink></button>&nbsp; &nbsp; &nbsp;
+						<button className="button" onClick={handleClick}><NavLink to="#">Destinations</NavLink></button>&nbsp;
 						<button className="button" ><NavLink to="/about">About</NavLink></button>
-						{/* <button className="button" ><NavLink to="#">Contact</NavLink></button> */}
 					</div>
 				</div>
         </div>
