@@ -18,8 +18,6 @@ import Athens from "../../../Assets/images/Athens.jpg"
 import Carrebian from "../../../Assets/images/Carrebian.jpg"
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 import notifyService from "../../../Services/NotifyService";
-import Card from "../../ElementsArea/Card/Card";
-
 
 
 function DestinationFilters(): JSX.Element {
@@ -55,15 +53,14 @@ useEffect(()=>{
     VacationService.getAllVacations()
 	.then(vacations => {
 		setVacations(vacations)
-        // const unsubscribe = VacationStore.subscribe(() => {
-        //    const updatedVacations= VacationStore.getState().vacations
-        //     setVacations(updatedVacations)
-        })
-        // return ()=> {
-        //     unsubscribe()
-        // }
-	// })
+	})
 	.catch(err=> console.log(err))
+    
+    const unsubscribe = VacationStore.subscribe(() => {
+        const updatedVacations = [...VacationStore.getState().vacations]
+        setVacations(updatedVacations);
+      });
+  
 },[])
 
 const handleAllVacations = ()=> {
@@ -130,8 +127,8 @@ const handleActive =()=> {
             <ImageButtonComponent url={Carrebian} title="Active" width="25%" onClick={handleActive}/>
         
             {/* this div {section-1} is for the `scrollIntoView` */}
-           <div style={{height : "20px"}} id="section-1"></div>
-                    {userFromRedux?.role === RoleEnum.Admin ? <NavLink to={"/Admin/add-vacation"}> <FrameBtn btnString={"add new vacation"}/></NavLink>: ""}
+            <div style={{height : "20px"}} id="section-1"></div>
+                  <div className="addingOrnament">{userFromRedux?.role === RoleEnum.Admin ? <NavLink to={"/Admin/add-vacation"}> <FrameBtn btnString={"Add Vacation"}/></NavLink>: ""}</div>
 
                 <section className="articles">
                     {vacations && currentItems.map(v=><Card3D key={v.vacationId} vacationModel={v} user={userFromRedux} />)}

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import VacationModel from "../../../Models/VacationModel";
 import AdminService from "../../../Services/AdminService";
-import FormLayout from "../../ElementsArea/formLayout/formLayout";
+import FormLayout from "../../LayoutArea/formLayout/formLayout";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
@@ -143,7 +143,6 @@ function AddVacation(): JSX.Element {
                 </FloatingLabel>
                 <span className="errorSpan">{formState.errors?.continentId?.message}</span>
 
-
       {/* select continent*/}
                 <FloatingLabel controlId="floatingSelect" label="selects a continent" className="input">
                     <Form.Select aria-label="Floating label select example" {...register("continentId", VacationModel.continentIdValidation)} >
@@ -162,19 +161,10 @@ function AddVacation(): JSX.Element {
                      {/* {selectedImage &&  (<div ><p>{URL.createObjectURL(selectedImage)}</p></div>)}    // This (URL.createObjectURL) sets it as a url- string, rather than a File... */}
           {/* {selectedImage &&  <div ><img src={URL.createObjectURL(selectedImage)} alt="PreviewImage"/></div>} */}
       
-
-                <FrameBtn btnString="Add Vacation" />
-
+                <FrameBtn btnString="Add Vacation"/>
             </form>
-        
     </div>
-
 }/>
-        
-      
-
-
-    );
-}
+);}
 
 export default AddVacation;

@@ -1,16 +1,14 @@
 .FrameBtn {
   width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .frame {
   width: 90%;
   margin: 40px auto;
   text-align: center;
 }
-
-
-  /* display: inline-block; */
-  /* text-align: center;
-} */
 
 .FrameBtn button {
   margin: 20px;
@@ -29,7 +27,6 @@
   position: relative;
   display: inline-block;
 }
-
 
 /* 13 */
 .btn-13 {

@@ -32,12 +32,12 @@ async function register(user:UserModel):Promise<string>{
 }
 
 async function login( credentials: CredentialsModel ):Promise<string>{
-// try{
+try{
     const err = credentials.validate()
     if(err) throw new ValidationErrorModel(err) 
-// }catch(err){
-//     console.log(err)
-// }
+}catch(err){
+    console.log(err)
+}
      const hashedPassword = cyber.hash(credentials.password)
      const values = [credentials.email, hashedPassword]
      // get all users and see whether the userName && password exist.
@@ -57,7 +57,7 @@ async function isEmailTaken(email: string): Promise<boolean> {
      WHERE email = ? 
      `
      const emailTaken = await dal.execute(sql, [email])
-     return emailTaken.length >= 0
+     return emailTaken.length > 0
 }
 
 export default {

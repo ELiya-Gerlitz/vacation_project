@@ -9,6 +9,7 @@ import DestinationFilters from "../../VacationArea/DestinationFilters/Destinatio
 import AddVacation from "../../AdminArea/AddVacation/AddVacation";
 import EditVacation from "../../AdminArea/EditVacation/EditVacation";
 import ReportsImplementation from "../../AdminArea/ReportsImplementation/ReportsImplementation";
+import PageNotFound from "../PageNotFound/PageNotFound";
 // import Reports from "../../AdminArea/Reports/Reports";
 
 function Routing(): JSX.Element {
@@ -25,6 +26,7 @@ function Routing(): JSX.Element {
                 <Route path="/Admin/add-vacation" element={<AddVacation/>} />
                 <Route path="/Admin/update-vacation/:vacationId" element={<EditVacation/>} />
                 <Route path="/Admin/reports" element={<ReportsImplementation/>} />
+                <Route path="*" element={<PageNotFound/>} />
             </Routes>
         </div>
     );

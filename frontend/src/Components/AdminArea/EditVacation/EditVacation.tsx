@@ -2,7 +2,7 @@ import { FloatingLabel } from "react-bootstrap";
 import {useNavigate, useParams } from "react-router-dom";
 import VacationModel from "../../../Models/VacationModel";
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
-import FormLayout from "../../ElementsArea/formLayout/formLayout";
+import FormLayout from "../../LayoutArea/formLayout/formLayout";
 import "./EditVacation.css";
 import Form from 'react-bootstrap/Form';
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
