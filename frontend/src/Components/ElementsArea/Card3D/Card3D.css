@@ -1,13 +1,12 @@
 .Card3D img{
-  filter: saturate(0.5);
+  filter: saturate(0.7);
 
 }
 .Card3D p{
   font-size: 13px;
-  font-weight: bold;
+  /* font-weight: bold; */
 
 }
-
 
 .toggleController{
  position: absolute;
@@ -76,13 +75,7 @@ article {
   .tripadvisorReviewsText {
     color: #ebf3fd;
   }
-  /* .dunkel { */
-    /* color: rgb(209, 18, 18); */
-    /* opacity: 40%; */
-    /* z-index: 999 !important;
-    width: 100%;
-    height: 100%;
-  } */
+  
   .article-body {
     padding-top: 12px;
     padding-right: 24px;
@@ -194,7 +187,7 @@ float: right;
   .image-container .image-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)); /* Use a linear gradient with desired colors and transparency */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); /* Use a linear gradient with desired colors and transparency */
     z-index: 1; /* Make sure the overlay is positioned above the image */
   }
   

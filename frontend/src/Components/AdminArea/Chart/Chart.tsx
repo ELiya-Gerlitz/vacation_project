@@ -1,5 +1,4 @@
 import "./Chart.css"
-
 import * as React from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import Zoom from '@mui/material/Zoom';
@@ -11,29 +10,29 @@ interface VacationInfo {
 }
 
 function Chart( props : VacationInfo): JSX.Element {
-  
   function getMaxFollowersCount(): number {
-    return Math.max(...props.vacations.map(function (vacation) {
-      return vacation.followersCount;
-    }));
+    return Math.max(...props.vacations.map((vacation) => vacation.followersCount));
   }
 
   const maxFollowersCount = getMaxFollowersCount();
+  const maxHeight = 400;
+  const unitHeight = maxFollowersCount > 0 ? maxHeight / maxFollowersCount : 0;
 
-  const yAxisLabels = Array.from(Array(5).keys()).map(function (_, index) {
-    const label = ((maxFollowersCount / 5) * (index + 1)).toFixed(0);
+  const yAxisLabels = maxFollowersCount > 0 ? Array.from(Array(maxFollowersCount + 1).keys()).map((_, index) => {
+    const label = index.toFixed(0); // Use index as the label directly
     return (
-      <text key={index} x="2%" y={`${100 + (400 / 5) * (4 - index + 0.5)}`} textAnchor="end">
+      <text key={index} x="2%" y={`${100 + maxHeight - (index * unitHeight)}`} textAnchor="end">
         {label}
       </text>
     );
-  });
-
-  const horizontalLines = Array.from(Array(5).keys()).map(function (_, index) {
-    const yPos = `${100 + (400 / 5) * (4 - index)}`;
-    return <line key={index} x1="5%" y1={yPos} x2="95%" y2={yPos} stroke="rgba(0, 0, 0, 0.3)" strokeWidth="1" />;
-  });
+  }) : null;
   
+  
+
+  const horizontalLines = maxFollowersCount > 0 ? Array.from(Array(maxFollowersCount + 1).keys()).map((_, index) => {
+    const yPos = `${100 + maxHeight - (index * unitHeight)}`;
+    return <line key={index} x1="5%" y1={yPos} x2="95%" y2={yPos} stroke="rgba(0, 0, 0, 0.3)" strokeWidth="1" />;
+  }) : null;
   return (
     <div className="Chart paddingTopCSV">
       {/* CSV downloader *************/}
@@ -75,12 +74,7 @@ function Chart( props : VacationInfo): JSX.Element {
       <line x1="5%" y1="100" x2="5%" y2="500" stroke="black" />
       {yAxisLabels}
     </svg>
-
-    {/* CSV download button */}
-    {/* <NavLink to={"/Admin/reports"}> <button className="add-btn" >get CSV</button></NavLink> */}   
     </div>
-
-    
   );
 }
 

@@ -32,13 +32,13 @@ function Card3D( props : CardContents): JSX.Element {
                           </div>
                   </figure>
                   <div className="article-body">
-                    <h2>   $ {props.vacationModel.price}  &nbsp;{props.vacationModel.destination}</h2>
+                    <h2>   $ {props.vacationModel.price} |  &nbsp;{props.vacationModel.destination}</h2>
                     {/* <hr></hr> */}
                     <p>
                     <EventIcon/> &nbsp; {new Date(props.vacationModel.startingDate).toLocaleDateString()} &nbsp; - &nbsp; {new Date(props.vacationModel.endingDate).toLocaleDateString()}
                     </p>
                     <p>
-                    {props.vacationModel.description} 
+                    {props.vacationModel.description.substring(0, 100)}... 
                     </p>
                     <NavLink to="#" className="read-more">
                       Take Me There <span className="sr-only">about this is some title</span>

@@ -5,8 +5,8 @@ import { VacationActionTypes, VacationStore } from "../Redux/VacationState";
 
 
 async function addVacation(vacation : VacationModel): Promise<void> {
-    console.log(vacation.continentId)
-    console.log("vacation.continentId")
+    // console.log(vacation.continentId)
+    // console.log("vacation.continentId")
 
     const myForm = new FormData()
     myForm.append("destination", vacation.destination)
@@ -19,8 +19,6 @@ async function addVacation(vacation : VacationModel): Promise<void> {
 
     const response = await axios.post<VacationModel>(appConfig.VacationsURL, myForm)
     const newVacation = response.data
-
-
 
     // retrieve continentName from Redux to front to render it 
     // const continentsFromRedux = VacationStore.getState().continents
@@ -57,12 +55,10 @@ async function updateVacation( vacation: VacationModel): Promise<void> {
     VacationStore.dispatch({type: VacationActionTypes.UpdateVacation, payload: updatedVacation})
 }
 
-
 async function deleteVacation( vacationId: number): Promise<void> {
     await axios.delete<void>(appConfig.VacationsURL + vacationId)
     VacationStore.dispatch({type: VacationActionTypes.DeleteVacation, payload: vacationId})
 }
-
 
 async function getSingleVacation( vacationId : number ): Promise<VacationModel> {
     let vacations = VacationStore.getState().vacations
@@ -77,7 +73,6 @@ async function getSingleVacation( vacationId : number ): Promise<VacationModel> 
     return specificVacation
     }
 }
-
 
 export default {
     addVacation,

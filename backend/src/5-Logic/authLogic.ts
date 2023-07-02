@@ -6,10 +6,7 @@ import {OkPacket} from "mysql"
 import UserModel from "../4-Models/UserModel"
 import RoleModel from "../4-Models/RoleModel"
 
-
-
 async function register(user:UserModel):Promise<string>{
-    console.log("I am the beginning of authLogic")
     const err = user.validate()
     if(!err) throw new ValidationErrorModel(err)
 
@@ -32,12 +29,10 @@ async function register(user:UserModel):Promise<string>{
 }
 
 async function login( credentials: CredentialsModel ):Promise<string>{
-try{
+
     const err = credentials.validate()
     if(err) throw new ValidationErrorModel(err) 
-}catch(err){
-    console.log(err)
-}
+
      const hashedPassword = cyber.hash(credentials.password)
      const values = [credentials.email, hashedPassword]
      // get all users and see whether the userName && password exist.
@@ -46,7 +41,6 @@ try{
      WHERE email = ? AND password = ?
      `
      const passwordUsernameExist = await dal.execute(sql, values)
-    //  console.log("filedcount:" +passwordUsernameExist.fieldCount ) // das ist ganz falsch!! Den OkPAcket.fieldCount gibt den Resultat gar nich zurück!
     if(passwordUsernameExist.length <= 0) throw new ValidationErrorModel("Please register!")
     const token = cyber.createToken(passwordUsernameExist[0])
     return token
