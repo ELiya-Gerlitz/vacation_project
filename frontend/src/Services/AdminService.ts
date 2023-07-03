@@ -52,6 +52,8 @@ async function updateVacation( vacation: VacationModel): Promise<void> {
     const response = await axios.put<VacationModel>(appConfig.VacationsURL + vacation.vacationId, myForm)
     const updatedVacation = response.data
     updatedVacation.continentName = vacation.continentName
+    updatedVacation.followersCount = vacation.followersCount
+
     VacationStore.dispatch({type: VacationActionTypes.UpdateVacation, payload: updatedVacation})
 }
 

@@ -95,7 +95,6 @@ function AddVacation(): JSX.Element {
     const num = Math.floor(Math.random()* pic.length)
     
     return (
-
         <FormLayout 
         imageSrc={pic[num]} 
         formContent={  
@@ -128,7 +127,6 @@ function AddVacation(): JSX.Element {
     <label htmlFor="startDate" className="justifyLeft">starting date</label>
 
     <input type="date" className="inputDate"  {...register('startingDate')} required  min={new Date().toISOString().split('T')[0]} onChange={handleStartingDateChange}></input> 
-
 
     {/* endingDate */}
     <span className="errorSpan">{formState.errors?.endingDate?.message}</span>

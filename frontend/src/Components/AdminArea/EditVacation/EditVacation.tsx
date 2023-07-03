@@ -63,12 +63,12 @@ function EditVacation(): JSX.Element {
     },[])
 
  const send = ( data : VacationModel )=> { 
+      data.followersCount = vacation.followersCount
       if(startingDate <= endingDate) {
         AdminService.updateVacation(data)
         .then(()=> {
           notifyService.success("vacation successfully updated!")
-            // alert("vacation successfully updated!")
-            navigate("/destinations")
+          navigate("/destinations")
         })
         .catch(err=> {
           notifyService.error(err)

@@ -46,7 +46,7 @@ function Footer(): JSX.Element {
 	
 			<div className="footer-last-section">
 				<div className="container">
-					<p>Copyright 2023 &copy; Eliya Gerlitz <span> | </span> Web Developer </p>
+					<p>Copyright 2023 &copy; Eliya Gerlitz <span> | </span>Full-Stack Web Developer </p>
 				</div>
 			</div>
 		</footer>

@@ -11,7 +11,6 @@ import { NavLink } from "react-router-dom";
 interface CardContents{
   vacationModel : VacationModel
   user : UserModel
-
 }
 
 function Card3D( props : CardContents): JSX.Element {

@@ -3,7 +3,6 @@ import jwtDecode from "jwt-decode";
 import UserModel from "../Models/UserModel";
 import { VacationActionTypes, VacationStore } from "./VacationState";
 
-
 export class AuthState{
     public token: string = null
     public user: UserModel = null
@@ -47,7 +46,6 @@ export function AuthReducer(currentState = new AuthState(), action: AuthActions)
             sessionStorage.removeItem("token")
             break;
     }
-
     return newState 
 }
 

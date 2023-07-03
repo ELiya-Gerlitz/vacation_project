@@ -68,11 +68,7 @@ function ModalExample( props : ModalInterface ): JSX.Element {
               </Button>
             </Modal.Footer>
       </Modal>
-
-
-
-			
-        </div>
+    </div>
     );
 }
 

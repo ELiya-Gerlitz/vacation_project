@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2023 at 09:07 PM
+-- Generation Time: Jul 02, 2023 at 02:43 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -63,9 +63,23 @@ CREATE TABLE `followers` (
 --
 
 INSERT INTO `followers` (`userId`, `vacationId`) VALUES
-(12, 43),
-(12, 42),
-(12, 45);
+(12, 59),
+(12, 60),
+(12, 54),
+(12, 57),
+(10, 53),
+(10, 54),
+(10, 65),
+(10, 63),
+(19, 65),
+(19, 61),
+(19, 63),
+(19, 54),
+(19, 53),
+(11, 53),
+(11, 54),
+(14, 53),
+(12, 53);
 
 -- --------------------------------------------------------
 
@@ -95,7 +109,9 @@ INSERT INTO `users` (`userId`, `firstName`, `lastName`, `username`, `email`, `pa
 (14, 'Barbara', 'Barbara', '', 'Barbara@gmail.com', 'e35f0059543601fb6bc5c535f6bad81ae6b4a23225b928d509796e39f34a3f1b8436cbaa33de3c5fa7e1c80b09643044b458788a0feae4e8e3619a3893ce2407', 'user'),
 (15, 'BBBB', 'BBBB', '', 'BBBB@gmail.com', '97be7fe06c4b068ccc465607a878189fdfb9af6731bff408cc8364e1756d29ef85865f947264a085610a4dab96ea25e62fcebaff29e6c9cfea935fe3b65872a5', 'user'),
 (17, 'Toffy', 'Toffy', '', 'Toffy@gmail.com', '7a054ba94c84fda1d131a47f8562808beda324376ae4d3cdb0da561792401a58b3cf56c246b901780643d0a18a51e82e3fd909eb2b314a3b240e86921c0bb3ae', 'Admin'),
-(18, 'Eliya', 'Gerlitz', '', 'tent84e@gmail.com', '82730914fc54853971cd0651cf068cc5f7945fe69f924495be6e58a0cfe78d6b762070fc767adf7c656e0b8f241f8c9578cafbdedecfc219192ad0a86013dac5', 'Admin');
+(18, 'Eliya', 'Gerlitz', '', 'tent84e@gmail.com', '82730914fc54853971cd0651cf068cc5f7945fe69f924495be6e58a0cfe78d6b762070fc767adf7c656e0b8f241f8c9578cafbdedecfc219192ad0a86013dac5', 'Admin'),
+(19, 'Panda', 'Panda', '', 'Panda@gmail.com', '2a4e586d882f89039f38ed828a4555adcee41bcd3b3216de9b45482eb8aa0d4bafa2efa488e25f35411daa7b5bacc15cf338a04c6e4f1b071b156ed704ab7d85', 'user'),
+(20, 'Bear', 'Bear', '', 'Bear@gmail.com', '2f86864ff85914583ed9e87af58a30f3af8cb8bcacc6c1d7ba5d9b069a84101b1365f99782c2fb67ba26b64fe447790ce3f14ea9830249171bdca821d4ac537c', 'user');
 
 -- --------------------------------------------------------
 
@@ -106,7 +122,7 @@ INSERT INTO `users` (`userId`, `firstName`, `lastName`, `username`, `email`, `pa
 CREATE TABLE `vacations` (
   `vacationId` int(11) NOT NULL,
   `destination` varchar(50) NOT NULL,
-  `description` varchar(50) NOT NULL,
+  `description` varchar(700) NOT NULL,
   `startingDate` date NOT NULL,
   `endingDate` date NOT NULL,
   `price` decimal(10,0) NOT NULL,
@@ -119,18 +135,19 @@ CREATE TABLE `vacations` (
 --
 
 INSERT INTO `vacations` (`vacationId`, `destination`, `description`, `startingDate`, `endingDate`, `price`, `imageName`, `continentId`) VALUES
-(41, 'Wedding', 'Shidduch', '2023-06-22', '2023-06-29', '147', '6be6af0b-b9d2-4e49-8f63-584619f4fef1.jpg', 2),
-(42, 'Baby Born', 'Cutie Little Baby!!', '2023-06-22', '2023-06-23', '23', '6fe65756-b6a8-4874-87b4-e89730bd76c9.jpg', 1),
-(43, 'Wedding', 'Shidduch', '2023-06-21', '2023-06-22', '17', '188aa09a-3f1c-4adb-9e6c-d7eacfb7b9b2.jpg', 3),
-(44, 'Destination', 'Description', '2023-06-14', '2023-06-21', '147', '7ba23668-e36c-4401-875a-f9aea84e8fe2.gif', 2),
-(45, 'unstarted!   ', 'unstartedVacation!    ', '2023-06-30', '2023-07-01', '18', '7638dbd3-b5e2-4247-9afc-842e50f94315.gif', 3),
-(46, 'America', 'Shidduch', '2023-06-23', '2023-06-24', '17', 'fe952dc8-c217-41e2-84ee-6fc3263af26f.gif', 4),
-(47, 'America', 'Weeding', '2023-06-23', '2023-06-24', '17', '9510aa57-28de-49da-9431-8d7836b5baff.gif', 6),
-(48, 'Shidduch', 'America', '2023-06-23', '2023-06-24', '147', '631eb8e9-73a8-4790-965d-c23ed6f59185.gif', 7),
-(49, 'America', 'Wedding !!!', '2023-06-23', '2023-06-24', '17', 'bffed844-25b8-4339-9097-2fda98105f31.jpg', 7),
-(50, 'VACATION', 'VACATION', '2023-06-23', '2023-06-24', '17', 'd0a89e79-087a-4ae3-94b7-21e13a0ab132.jpg', 6),
-(51, 'America', 'Wedding', '2023-06-23', '2023-07-08', '19', '4c20269e-f39b-437c-95d3-3bccd4cfcdea.gif', 6),
-(52, 'Wedding', 'America', '2023-06-30', '2023-07-07', '17', '1481cd72-1f35-49dc-9c70-07a9b10f2313.gif', 7);
+(53, 'London', 'London is famous for Big Ben, Buckingham Palace, British Museum, and Tower Bridge. London is also known for its rich history, double-decker buses and  red phone booths.', '2023-07-02', '2023-08-03', '2800', '66c26c50-08cb-4581-99c8-5f038c305acf.jpg', 4),
+(54, 'Jerusalem', 'Situated on a plateau in the Judaean Mountains between the Mediterranean and the Dead Sea, is one of the oldest cities in the world and is considered to be a holy city for the three major Abrahamic religions: Judaism, Christianity, and Islam. ', '2023-07-20', '2023-07-27', '1400', 'adc77c02-14ef-4c91-9c32-eedea840f059.jpg', 3),
+(55, 'Palm Jmeirah', ' Built from reclaimed land in a series of artificial archipelagos, Palm Jumeirah is shaped like a palm tree when viewed from above.', '2023-07-02', '2023-07-11', '3000', '42dc719c-79fb-46ca-9afd-631c01e1c713.jpg', 3),
+(56, 'India', 'The Taj Mahal (\'Crown of the Palace\') is an ivory-white marble mausoleum on the right bank of the river Yamuna in Agra, Uttar Pradesh, India. It was commissioned by the fifth Mughal emperor, to house the tomb of his favourite wife, Mumtaz Mahal.', '2023-07-14', '2023-07-20', '1540', '5b2263d0-6017-4aa2-ae1b-10c67fab35a5.jpg', 3),
+(57, 'New York', 'There\'s no other city on the planet with an energy that can compete with New York. The fast pace, the buzzing traffic, the hustle and bustle of the people, the 24-hour life, and the creative spirit make NYC one of the most vibrant places in the world.', '2023-07-02', '2023-07-19', '1200', '1443deba-a39d-4f16-985a-833e8a7ccbd5.jpg', 1),
+(58, 'Venice', 'Venice Italy is so much more than just gondolas and special infrastructure, because during a visit to the city you can also admire the many palaces, many museums and other sites.', '2023-07-04', '2023-07-19', '2600', 'cc6599b7-2d62-4045-a111-0606f7ea0806.jpg', 4),
+(59, 'Romania', 'It\'s home to breathtaking nature. Due to its varied landscape, Romania is the most biogeographically diverse country in the European Union. With snow-capped mountains, green hills covered in forests and vineyards', '2023-07-13', '2023-07-20', '1700', '16626648-61dd-4852-9864-21046fc444fa.jpg', 4),
+(60, 'Tokyo', 'Tokyo inarguably is Japan’s most well-known city. The Tokyo Metropolis is made up of 23 Special Wards, home to upwards of 35 million people. It is also known for having the world’s busiest pedestrian crossing, known as Shibuya Scramble Crossing.', '2023-07-02', '2023-07-12', '4000', '1364801f-2def-4b04-a524-4a84077cd587.jpg', 3),
+(61, 'Arizona', 'Arizona is home to some of the most stunning natural beauty in America. From the blooming saguaros down south to the crimson slot canyons up north and everywhere in between, there\'s an endless array of sights. ', '2023-07-13', '2023-07-21', '2100', '8f6454ba-4812-4994-b2e5-72984186c4cd.jpg', 2),
+(62, 'Santorini', '\r\nSantorini is the busiest of the Greek Islands. It is a paradise of bars, cafes, restaurants, and more all in one place. Along with the great places to spend you days and nights, Santorini has some of the best beaches in Greece. ', '2023-07-04', '2023-07-20', '1300', 'dba2c123-8fdf-4baa-9be1-8b3a3e38b9a6.jpg', 4),
+(63, 'Beijing', '‪Beijing Great Wall of China: Top Sections, How to Get There Beijing is the best destination to admire the Great Wall of China. Most famous Beijing Great Wall sections are located in its suburban areas, including the well-preserved Badaling and Mutianyu.', '2023-08-01', '2023-08-08', '4800', 'efd2f19c-ff61-41f1-9756-cfd34a7f1af1.jpg', 3),
+(64, 'Arosa', 'Located in Graubünden, Switzerland, Arosa is home to an impressive selection of attractions and experiences, making it well worth a visit. Located in Grisons, Switzerland, Arosa is home to an impressive selection of attractions and experiences.', '2023-07-02', '2023-07-10', '1800', 'd3c76ab1-f0fa-45da-b7d9-2be34b3b73b1.jpg', 4),
+(65, 'Amazon Rainforests', 'Spectacular wildlife viewing, with the opportunity to view macaws, tourcons, spectacle bear, freshwater dolphin, howler monkeys and jaguar. Enjoy fascinating cultural interactions with indigenous tribes in the Amazon...', '2023-07-05', '2023-07-26', '1600', 'd16e8313-2c14-4318-b2d7-4076c2b151fd.jpg', 2);
 
 --
 -- Indexes for dumped tables
@@ -177,13 +194,13 @@ ALTER TABLE `continents`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `vacations`
 --
 ALTER TABLE `vacations`
-  MODIFY `vacationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `vacationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- Constraints for dumped tables
