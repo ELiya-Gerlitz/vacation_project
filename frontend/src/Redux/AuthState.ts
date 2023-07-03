@@ -41,8 +41,8 @@ export function AuthReducer(currentState = new AuthState(), action: AuthActions)
         case AuthActionTypes.Logout:
             newState.token = null
             newState.user = null
-            // reset the vacation Store for the next user
-            VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: [] });
+            // reset the vacation Store for the next user:
+            VacationStore.dispatch({ type: VacationActionTypes.FetchAllVacations, payload: [] }); // highly important!!
             sessionStorage.removeItem("token")
             break;
     }

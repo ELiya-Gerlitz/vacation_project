@@ -39,7 +39,6 @@ export function VacationReducer( currentState = new VacationState(), action: Vac
 
     case VacationActionTypes.DeleteVacation:
         let indexToDelete = newState.vacations.findIndex(v=> v.vacationId === action.payload)        
-        console.log(indexToDelete + "index to delete")
         if(indexToDelete > -1){
             newState.vacations.splice(indexToDelete, 1)
         }
@@ -64,7 +63,6 @@ export function VacationReducer( currentState = new VacationState(), action: Vac
         case VacationActionTypes.AddVacation:
             newState.vacations.push(action.payload)
             break;
-
 
             case VacationActionTypes.FetchAllContinents:
                 newState.continents = action.payload

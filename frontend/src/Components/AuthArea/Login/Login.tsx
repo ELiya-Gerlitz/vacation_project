@@ -12,10 +12,6 @@ import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import skiing from "../../../Assets/images/skii.jpg"
 import notifyService from "../../../Services/NotifyService";
-import notyf from "notyf/notyf";
-
-
-
 
 function Login(): JSX.Element {
         const { handleSubmit, register, formState} = useForm<CredentialsModel>()
@@ -37,7 +33,6 @@ function Login(): JSX.Element {
             }
         }
 
-        
    const pic = [
     snowBoard,
     surfing,

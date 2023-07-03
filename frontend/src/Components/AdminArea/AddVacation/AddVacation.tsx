@@ -39,7 +39,6 @@ function AddVacation(): JSX.Element {
             setEndingDate(e.target.value);
           };
 
-   
     const send= (data:VacationModel)=>{
   // eslint-disable-next-line no-restricted-globals
         event.preventDefault()
@@ -47,8 +46,7 @@ function AddVacation(): JSX.Element {
         AdminService.addVacation(data)
         .then(()=> {
           notifyService.success("vacation successfully added!")
-            // alert("vacation successfully added!")
-            navigate("/home")
+          navigate("/destinations")
         })
         .catch(err=> {
           console.log(err)
@@ -58,15 +56,6 @@ function AddVacation(): JSX.Element {
         alert("Ending Date can't precede starting date!")
     }
 }
-    // This function will be triggered when the file field changes
-    // const imageChange = (e:any) => {
-    //     if (e.target.files && e.target.files.length > 0) {
-    //       setSelectedImage(e.target.files.value[0]);
-         
-    //     }
-    //   };
-
-
       const imageChange = (e : React.ChangeEvent<HTMLInputElement>)=>{
         const image = e.target.files?.[0]
         if(image){
@@ -78,15 +67,6 @@ function AddVacation(): JSX.Element {
           reader.readAsDataURL(image)
         }
       }
-
-
-      // const imageChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-      //   const file = event.target.files?.[0];
-      //   const imageUrl = URL.createObjectURL(file);
-      //   console.log(imageUrl)
-      //   setSelectedImage(imageUrl);
-      // };
-
       const pic = [
         skiing,
         surfing,

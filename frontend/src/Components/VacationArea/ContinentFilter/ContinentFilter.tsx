@@ -1,6 +1,8 @@
 import ContinentTooltip from "../ContinentTooltip/ContinentTooltip";
 import "./ContinentFilter.css";
 
+//  This component is not yet in use************************
+
 function ContinentFilter(): JSX.Element {
     return (
         <div className="ContinentFilter">

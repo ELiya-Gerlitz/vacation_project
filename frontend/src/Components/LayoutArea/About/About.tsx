@@ -3,28 +3,22 @@ import "./About.css";
 function About(): JSX.Element {
     return (
         <div className="About">
-				<section className="about-upper-section" itemProp="mainContentofPage">
 			<div className="container">
 				<article className="who-we-are">
-					<h2 className="top-heading">who we are </h2>
-					<h2 className="top-heading">About us: </h2>
-				
-				
-				</article>
-				
-			</div>
-		</section>
+					<div className="center">
+					<span className="thankyouSpan">NIV, Thanks a million!!!!!!</span>
 
-		<section className="team-members" itemProp="contributor">
-			<div className="container">
-				<h2 className="top-heading">meet our team</h2>
-				<article className="developer-grid">
-					
+<script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+<lord-icon
+    src="https://cdn.lordicon.com/zygphpgt.json"
+    trigger="loop"
+    delay="200"
+    colors="primary:#121331,secondary:#2ca58d,tertiary:#ffc738,quaternary:#ebe6ef"
+    style={{width: '350px', height: ' 350px'}}>
+</lord-icon>
+					</div>
 				</article>
 			</div>
-		</section>
-
-
         </div>
     );
 }

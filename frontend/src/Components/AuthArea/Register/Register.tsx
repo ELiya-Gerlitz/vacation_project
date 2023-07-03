@@ -8,7 +8,6 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import FrameBtn from "../../ElementsArea/FrameBtn/FrameBtn";
 import FormLayout from "../../LayoutArea/formLayout/formLayout";
-import surfing from "../../../Assets/images/young-man-with-kitesurf-board.jpg"
 import skiing from "../../../Assets/images/skii.jpg"
 import snowBoard from "../../../Assets/images/Snowboard_helmet.jpg"
 import { NavLink } from "react-router-dom";
@@ -25,13 +24,10 @@ function Register(): JSX.Element {
             }else{
                 authService.register(data)
                 .then(() => { console.log("successfully logged in")
-                // notifyService.success("successfully registered!")
                 alert("successfully registered!")
                 navigate("/home") })
                 .catch(err => {
                     notifyService.error(err)
-                    console.log(err)
-                    alert(err.response?.data)
                 })}
     }
 

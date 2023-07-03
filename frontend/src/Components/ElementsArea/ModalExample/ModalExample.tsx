@@ -4,7 +4,7 @@ import { useState } from "react";
 import AdminService from "../../../Services/AdminService";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { VacationStore } from "../../../Redux/VacationState";
+import notifyService from "../../../Services/NotifyService";
 
 interface ModalInterface{
     vacationId: number
@@ -18,16 +18,13 @@ function ModalExample( props : ModalInterface ): JSX.Element {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
   async function deleteVacation ( vacationId :number){
     try{
         await AdminService.deleteVacation(vacationId)
         handleClose()
-        console.log(`vacation ${vacationId} was successfully deleted!`)
-        // alert("successfully deleted!")
-        // navigate("/home")
+        notifyService.success("successfully deleted!")
     }catch(err:any){
-        alert(err)
+        notifyService.error(err)
     }
 }
 
@@ -46,7 +43,7 @@ function ModalExample( props : ModalInterface ): JSX.Element {
 
      <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Delete Vacation</Modal.Title>
             </Modal.Header>
             
             <Modal.Body>Are you sure you want to delete the vacation?

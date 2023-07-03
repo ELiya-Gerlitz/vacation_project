@@ -20,6 +20,7 @@ async function addVacation(vacation : VacationModel): Promise<void> {
     const response = await axios.post<VacationModel>(appConfig.VacationsURL, myForm)
     const newVacation = response.data
 
+    // Unfinished SVG Continents Tooltip Feature ******************************************************//
     // retrieve continentName from Redux to front to render it 
     // const continentsFromRedux = VacationStore.getState().continents
     // console.log("these are the continentsFromRedux")
@@ -69,7 +70,6 @@ async function getSingleVacation( vacationId : number ): Promise<VacationModel> 
         return specificVacation
     }
     else{
-        alert("empty")
     const response = await axios.get<VacationModel>(appConfig.getSingleVacation + vacationId)
     let specificVacation = response.data
     return specificVacation

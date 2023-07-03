@@ -2,10 +2,10 @@ import "./ContinentTooltip.css";
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import { useState } from "react";
-import VacationService from "../../../Services/VacationService";
 import VacationModel from "../../../Models/VacationModel";
 import FilterService from "../../../Services/FilterService";
 
+// This component is not yet in use *****************************//
 interface  continentInterface {
     continentName : string
     continentId : number
@@ -17,8 +17,6 @@ function ContinentTooltip(props : continentInterface): JSX.Element {
     const [vacationsByContinentId, setVacationsByContinentId] = useState<VacationModel[]>([])
 
     const fetchContinentIdValue = (e : any)=>{
-
-        // console.log(e.target.dataset.continentid + "e.target.dataset.continentid")
         FilterService.getVacationsByContinentId(e.target.dataset.continentid)
         .then((vacationsByContinentId)=>{
            (setVacationsByContinentId(vacationsByContinentId))

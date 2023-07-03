@@ -3,14 +3,13 @@ import VacationModel from "../Models/VacationModel";
 import { VacationStore } from "../Redux/VacationState";
 import appConfig from "../Utils/AppConfig";
 
-
 async function filterByisFollowing():Promise<VacationModel[]>{
     let allVacationsUnfiltered = VacationStore.getState().vacations;
     if(allVacationsUnfiltered.length > 0) {
        let filteredVacations = allVacationsUnfiltered.filter(v=> v.isFollowing === 1)
        return filteredVacations
     }else{
-        // basically, it should never get into this spot.
+        // basically, it should never get into this spot, but just in case....
         const response = await axios.get<VacationModel[]>(appConfig.filterByisFollowingURL)
         let filteredVacations = response.data
         return filteredVacations
@@ -42,7 +41,7 @@ async function filterActiveVacations():Promise<VacationModel[]>{
     }
 }
 
-
+// Unfinished feature ************************************//
 async function getVacationsByContinentId( continentId : number):Promise<VacationModel[]>{
     let vacations = VacationStore.getState().vacations
     console.log("I am before th if")
@@ -59,8 +58,6 @@ async function getVacationsByContinentId( continentId : number):Promise<Vacation
         return filteredVacations
     // }
 }
-
-
 
 export default{
     filterByisFollowing,

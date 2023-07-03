@@ -15,7 +15,6 @@ async function getAllVacations():Promise<VacationModel[]>{
     return vacations
 }
 
-
 async function follow(vacationId: number): Promise<void> {
     await axios.post<any>(appConfig.followURL + vacationId)
     VacationStore.dispatch({type: VacationActionTypes.Follow, payload: {vacationId}})
@@ -25,7 +24,6 @@ async function unfollow(vacationId: number): Promise<void> {
     await axios.delete<void>(appConfig.unfollowURL+ vacationId)
     VacationStore.dispatch({type: VacationActionTypes.Unfollow, payload: {vacationId}})
 }
-
 
 async function getAllContinents():Promise<ContinentModel[]>{
     let continents = VacationStore.getState().continents;

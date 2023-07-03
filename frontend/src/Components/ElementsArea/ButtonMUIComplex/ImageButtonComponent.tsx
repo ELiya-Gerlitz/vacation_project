@@ -68,11 +68,9 @@ const ImageMarked = styled('span')(({ theme }) => ({
 }));
 
 interface ImageButtonProps {
-  // image: {
     url: string;
     title: string;
     width: string;
-  // };
   onClick: React.MouseEventHandler<HTMLButtonElement>; // Add this line
 }
 

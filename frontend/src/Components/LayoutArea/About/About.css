@@ -3,6 +3,23 @@
 		top: 50% !important;
 	}
 
+	.About .thankyouSpan {
+		font-size: 50px;
+		font-family: 'Segoe Print';
+		font-weight: bolder;
+		text-align: center;
+		color:  #1c3961;
+		text-decoration: underline;
+		text-decoration-color: rgb(3, 151, 151);
+	}
+
+	.About .center {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 400px; 
+	}
+
 	/*==Why Us Section========*/
 
 	.whyUs-section .container {
@@ -51,16 +68,16 @@
 		Contact Page
 	======================================*/
 
-	.contact-page-section .people-info-wrap form span{
+	.contact-page-section .people-info-wrap form {
 		flex-flow: column wrap;
 	}
 
-	.contact-page-section .people-info-wrap form span .name,
-	 .contact-page-section .people-info-wrap form span .email {
+	.contact-page-section .people-info-wrap form  .name,
+	 .contact-page-section .people-info-wrap form  .email {
 	 	width: 100%;
 	 }
 
-	.contact-page-section .people-info-wrap form span .name {
+	.contact-page-section .people-info-wrap form  .name {
 		margin-bottom: 0.9375em;
 	}
 

@@ -10,7 +10,6 @@ import AddVacation from "../../AdminArea/AddVacation/AddVacation";
 import EditVacation from "../../AdminArea/EditVacation/EditVacation";
 import ReportsImplementation from "../../AdminArea/ReportsImplementation/ReportsImplementation";
 import PageNotFound from "../PageNotFound/PageNotFound";
-// import Reports from "../../AdminArea/Reports/Reports";
 
 function Routing(): JSX.Element {
     return (

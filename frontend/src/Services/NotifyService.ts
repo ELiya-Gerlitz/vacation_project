@@ -1,7 +1,6 @@
 import { Notyf } from "notyf"; // npm i notyf
 
 class NotifyService {
-   
 
     private notify = new Notyf({
         duration: 3000, // display duration
@@ -39,5 +38,4 @@ class NotifyService {
 }
 
 const notifyService = new NotifyService();
-
 export default notifyService;

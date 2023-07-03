@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2023 at 02:43 PM
+-- Generation Time: Jul 03, 2023 at 11:39 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -64,10 +64,8 @@ CREATE TABLE `followers` (
 
 INSERT INTO `followers` (`userId`, `vacationId`) VALUES
 (12, 59),
-(12, 60),
 (12, 54),
 (12, 57),
-(10, 53),
 (10, 54),
 (10, 65),
 (10, 63),
@@ -75,11 +73,10 @@ INSERT INTO `followers` (`userId`, `vacationId`) VALUES
 (19, 61),
 (19, 63),
 (19, 54),
-(19, 53),
-(11, 53),
 (11, 54),
-(14, 53),
-(12, 53);
+(12, 55),
+(21, 60),
+(21, 54);
 
 -- --------------------------------------------------------
 
@@ -111,7 +108,8 @@ INSERT INTO `users` (`userId`, `firstName`, `lastName`, `username`, `email`, `pa
 (17, 'Toffy', 'Toffy', '', 'Toffy@gmail.com', '7a054ba94c84fda1d131a47f8562808beda324376ae4d3cdb0da561792401a58b3cf56c246b901780643d0a18a51e82e3fd909eb2b314a3b240e86921c0bb3ae', 'Admin'),
 (18, 'Eliya', 'Gerlitz', '', 'tent84e@gmail.com', '82730914fc54853971cd0651cf068cc5f7945fe69f924495be6e58a0cfe78d6b762070fc767adf7c656e0b8f241f8c9578cafbdedecfc219192ad0a86013dac5', 'Admin'),
 (19, 'Panda', 'Panda', '', 'Panda@gmail.com', '2a4e586d882f89039f38ed828a4555adcee41bcd3b3216de9b45482eb8aa0d4bafa2efa488e25f35411daa7b5bacc15cf338a04c6e4f1b071b156ed704ab7d85', 'user'),
-(20, 'Bear', 'Bear', '', 'Bear@gmail.com', '2f86864ff85914583ed9e87af58a30f3af8cb8bcacc6c1d7ba5d9b069a84101b1365f99782c2fb67ba26b64fe447790ce3f14ea9830249171bdca821d4ac537c', 'user');
+(20, 'Bear', 'Bear', '', 'Bear@gmail.com', '2f86864ff85914583ed9e87af58a30f3af8cb8bcacc6c1d7ba5d9b069a84101b1365f99782c2fb67ba26b64fe447790ce3f14ea9830249171bdca821d4ac537c', 'user'),
+(21, 'AuthArea', 'AuthArea', '', 'AuthArea@gmail.com', '86ef09c197f419a6bb5047f4970e0474285cde75a5c9643172148a86631f99c6f14a50908d1e367071db95222dc1323102bd4730e453f557df851c0911307a14', 'user');
 
 -- --------------------------------------------------------
 
@@ -135,19 +133,18 @@ CREATE TABLE `vacations` (
 --
 
 INSERT INTO `vacations` (`vacationId`, `destination`, `description`, `startingDate`, `endingDate`, `price`, `imageName`, `continentId`) VALUES
-(53, 'London', 'London is famous for Big Ben, Buckingham Palace, British Museum, and Tower Bridge. London is also known for its rich history, double-decker buses and  red phone booths.', '2023-07-02', '2023-08-03', '2800', '66c26c50-08cb-4581-99c8-5f038c305acf.jpg', 4),
 (54, 'Jerusalem', 'Situated on a plateau in the Judaean Mountains between the Mediterranean and the Dead Sea, is one of the oldest cities in the world and is considered to be a holy city for the three major Abrahamic religions: Judaism, Christianity, and Islam. ', '2023-07-20', '2023-07-27', '1400', 'adc77c02-14ef-4c91-9c32-eedea840f059.jpg', 3),
-(55, 'Palm Jmeirah', ' Built from reclaimed land in a series of artificial archipelagos, Palm Jumeirah is shaped like a palm tree when viewed from above.', '2023-07-02', '2023-07-11', '3000', '42dc719c-79fb-46ca-9afd-631c01e1c713.jpg', 3),
+(55, 'Palm Jumeirah', ' Built from reclaimed land in a series of artificial archipelagos, Palm Jumeirah is shaped like a palm tree when viewed from above.', '2023-07-02', '2023-07-11', '3000', '42dc719c-79fb-46ca-9afd-631c01e1c713.jpg', 3),
 (56, 'India', 'The Taj Mahal (\'Crown of the Palace\') is an ivory-white marble mausoleum on the right bank of the river Yamuna in Agra, Uttar Pradesh, India. It was commissioned by the fifth Mughal emperor, to house the tomb of his favourite wife, Mumtaz Mahal.', '2023-07-14', '2023-07-20', '1540', '5b2263d0-6017-4aa2-ae1b-10c67fab35a5.jpg', 3),
 (57, 'New York', 'There\'s no other city on the planet with an energy that can compete with New York. The fast pace, the buzzing traffic, the hustle and bustle of the people, the 24-hour life, and the creative spirit make NYC one of the most vibrant places in the world.', '2023-07-02', '2023-07-19', '1200', '1443deba-a39d-4f16-985a-833e8a7ccbd5.jpg', 1),
-(58, 'Venice', 'Venice Italy is so much more than just gondolas and special infrastructure, because during a visit to the city you can also admire the many palaces, many museums and other sites.', '2023-07-04', '2023-07-19', '2600', 'cc6599b7-2d62-4045-a111-0606f7ea0806.jpg', 4),
 (59, 'Romania', 'It\'s home to breathtaking nature. Due to its varied landscape, Romania is the most biogeographically diverse country in the European Union. With snow-capped mountains, green hills covered in forests and vineyards', '2023-07-13', '2023-07-20', '1700', '16626648-61dd-4852-9864-21046fc444fa.jpg', 4),
 (60, 'Tokyo', 'Tokyo inarguably is Japan’s most well-known city. The Tokyo Metropolis is made up of 23 Special Wards, home to upwards of 35 million people. It is also known for having the world’s busiest pedestrian crossing, known as Shibuya Scramble Crossing.', '2023-07-02', '2023-07-12', '4000', '1364801f-2def-4b04-a524-4a84077cd587.jpg', 3),
 (61, 'Arizona', 'Arizona is home to some of the most stunning natural beauty in America. From the blooming saguaros down south to the crimson slot canyons up north and everywhere in between, there\'s an endless array of sights. ', '2023-07-13', '2023-07-21', '2100', '8f6454ba-4812-4994-b2e5-72984186c4cd.jpg', 2),
 (62, 'Santorini', '\r\nSantorini is the busiest of the Greek Islands. It is a paradise of bars, cafes, restaurants, and more all in one place. Along with the great places to spend you days and nights, Santorini has some of the best beaches in Greece. ', '2023-07-04', '2023-07-20', '1300', 'dba2c123-8fdf-4baa-9be1-8b3a3e38b9a6.jpg', 4),
 (63, 'Beijing', '‪Beijing Great Wall of China: Top Sections, How to Get There Beijing is the best destination to admire the Great Wall of China. Most famous Beijing Great Wall sections are located in its suburban areas, including the well-preserved Badaling and Mutianyu.', '2023-08-01', '2023-08-08', '4800', 'efd2f19c-ff61-41f1-9756-cfd34a7f1af1.jpg', 3),
 (64, 'Arosa', 'Located in Graubünden, Switzerland, Arosa is home to an impressive selection of attractions and experiences, making it well worth a visit. Located in Grisons, Switzerland, Arosa is home to an impressive selection of attractions and experiences.', '2023-07-02', '2023-07-10', '1800', 'd3c76ab1-f0fa-45da-b7d9-2be34b3b73b1.jpg', 4),
-(65, 'Amazon Rainforests', 'Spectacular wildlife viewing, with the opportunity to view macaws, tourcons, spectacle bear, freshwater dolphin, howler monkeys and jaguar. Enjoy fascinating cultural interactions with indigenous tribes in the Amazon...', '2023-07-05', '2023-07-26', '1600', 'd16e8313-2c14-4318-b2d7-4076c2b151fd.jpg', 2);
+(65, 'Amazon Rainforests', 'Spectacular wildlife viewing, with the opportunity to view macaws, tourcons, spectacle bear, freshwater dolphin, howler monkeys and jaguar. Enjoy fascinating cultural interactions with indigenous tribes in the Amazon...', '2023-07-05', '2023-07-26', '1603', 'd16e8313-2c14-4318-b2d7-4076c2b151fd.jpg', 2),
+(67, 'London', 'Big Ben, the Tower of London, Buckingham Palace, the London Eye, the list goes on and on. There\'s nothing quite like the experience of hopping on a red double-decker bus and seeing some of the most recognisable sights in the world from its top deck', '2023-07-03', '2023-07-04', '1700', 'e836edc2-f4b6-4855-9a84-d96d5c6a5fb2.jpg', 4);
 
 --
 -- Indexes for dumped tables
@@ -194,13 +191,13 @@ ALTER TABLE `continents`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `vacations`
 --
 ALTER TABLE `vacations`
-  MODIFY `vacationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `vacationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- Constraints for dumped tables

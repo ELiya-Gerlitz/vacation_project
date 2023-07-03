@@ -40,7 +40,6 @@ class VacationModel{
 
     public static imageValidation = {
         required:{value: true, message: "image required!"},
-       
     }
    
 }

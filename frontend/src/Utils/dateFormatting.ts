@@ -8,5 +8,4 @@ public formatDate(dateString :string):string {
     return `${year}-${month}-${day}`;
   }
 }
-
-  export default DateFormatting;
+export default DateFormatting;

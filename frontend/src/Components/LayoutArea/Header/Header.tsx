@@ -2,7 +2,6 @@ import "./Header.css";
 import AuthMenu from "../../AuthArea/AuthMenu/AuthMenu";
 import TravelLogo from  "../../../Assets/images/logo_PNG.png"
 
-
 function Header(): JSX.Element {
     return (
         <div className="Header">
@@ -23,10 +22,8 @@ function Header(): JSX.Element {
 					<AuthMenu/>
 				</div>
 			</div>
-			{/* <!-- Top header Close --> */}
 			<div className="headerWhiteBuffer"></div>
 		</header>
-		{/* <!-- Header Close --> */}
         </div>
     );
 }

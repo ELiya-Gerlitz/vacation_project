@@ -32,7 +32,6 @@ function Card3D( props : CardContents): JSX.Element {
                   </figure>
                   <div className="article-body">
                     <h2>   $ {props.vacationModel.price} |  &nbsp;{props.vacationModel.destination}</h2>
-                    {/* <hr></hr> */}
                     <p>
                     <EventIcon/> &nbsp; {new Date(props.vacationModel.startingDate).toLocaleDateString()} &nbsp; - &nbsp; {new Date(props.vacationModel.endingDate).toLocaleDateString()}
                     </p>

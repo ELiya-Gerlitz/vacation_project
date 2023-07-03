@@ -12,7 +12,6 @@ import ContinentModel from "../../../Models/ContinentModel";
 import VacationService from "../../../Services/VacationService";
 import AdminService from "../../../Services/AdminService";
 import appConfig from "../../../Utils/AppConfig";
-import DateFormatting from "../../../Utils/dateFormatting";
 import notifyService from "../../../Services/NotifyService";
 
 function EditVacation(): JSX.Element {
@@ -24,22 +23,19 @@ function EditVacation(): JSX.Element {
     const [vacation, setVacation] = useState<VacationModel>()
     const [startingDate, setStartingDate] = useState("")
     const [endingDate, setEndingDate] = useState("")
-    
-    // const dateFormatFunction = new DateFormatting()
-    // dateFormatFunction.formatDate()
 
     function formatDate(dateString :string):string {
-      const date = new Date(dateString);
-      const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const day = date.getDate().toString().padStart(2, '0');
-      return `${year}-${month}-${day}`;
+      const date = new Date(dateString)
+      const year = date.getFullYear()
+      const month = (date.getMonth() + 1).toString().padStart(2, '0')
+      const day = date.getDate().toString().padStart(2, '0')
+      return `${year}-${month}-${day}`
     }
 
     useEffect(()=>{
         const vacationId = + params.vacationId
         AdminService.getSingleVacation(vacationId)
-        .then((vacation)=>{
+        .then((vacation)=> {
             setValue("vacationId", vacation.vacationId)
             setValue("destination", vacation.destination)
             setValue("description", vacation.description) 
@@ -87,8 +83,6 @@ function EditVacation(): JSX.Element {
   };
 
     return (
-   
-
 <FormLayout 
         imageSrc={snowBoard} 
         formContent={  
